@@ -1,40 +1,43 @@
 ﻿<Properties StartupConfiguration="Multiple Projects">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Domain/Models/UserRequirements.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="API/Controllers/ApartmentController.cs">
     <Files>
-      <File FileName="API/Controllers/ApartmentController.cs" Line="57" Column="1" />
-      <File FileName="Application/Handlers/ApartmentHandler.cs" Line="23" Column="60" />
-      <File FileName="Infrastructure/Repositories/ApartmentRepository.cs" Line="26" Column="1" />
-      <File FileName="Infrastructure/DB.cs" Line="8" Column="36" />
-      <File FileName="UNIKProjekt/appsettings.json" Line="2" Column="2" />
-      <File FileName="API/appsettings.json" Line="3" Column="112" />
-      <File FileName="API/Startup.cs" Line="43" Column="41" />
-      <File FileName="UNIKProjekt/Startup.cs" Line="35" Column="13" />
-      <File FileName="Domain/Models/Apartment.cs" Line="19" Column="22" />
-      <File FileName="Infrastructure/Interface/IDB.cs" Line="15" Column="11" />
-      <File FileName="Domain/Models/User.cs" Line="13" Column="22" />
-      <File FileName="Domain/Models/UserDetails.cs" Line="16" Column="22" />
-      <File FileName="Domain/Models/UserRequirements.cs" Line="16" Column="22" />
+      <File FileName="API/Controllers/ApartmentController.cs" Line="62" Column="27" />
+      <File FileName="Application/Handlers/ApartmentHandler.cs" />
+      <File FileName="Infrastructure/Repositories/ApartmentRepository.cs" Line="31" Column="29" />
+      <File FileName="Infrastructure/DB.cs" />
+      <File FileName="UNIKProjekt/appsettings.json" />
+      <File FileName="API/appsettings.json" />
+      <File FileName="API/Startup.cs" />
+      <File FileName="UNIKProjekt/Startup.cs" />
+      <File FileName="Domain/Models/Apartment.cs" />
+      <File FileName="Infrastructure/Interface/IDB.cs" />
+      <File FileName="Domain/Models/User.cs" Line="43" Column="22" />
+      <File FileName="Domain/Models/UserDetails.cs" />
+      <File FileName="Domain/Models/UserRequirements.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="UNIKProjekt" expanded="True">
             <Node name="API" expanded="True">
-              <Node name="Controllers" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="ApartmentController.cs" selected="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
             </Node>
             <Node name="Application" expanded="True">
               <Node name="Handlers" expanded="True" />
             </Node>
             <Node name="Domain" expanded="True">
-              <Node name="Models" expanded="True">
-                <Node name="UserRequirements.cs" selected="True" />
-              </Node>
+              <Node name="Models" expanded="True" />
             </Node>
             <Node name="Infrastructure" expanded="True">
               <Node name="Interface" expanded="True" />
               <Node name="Repositories" expanded="True" />
             </Node>
-            <Node name="MVC" expanded="True" />
+            <Node name="MVC" expanded="True">
+              <Node name="Properties" expanded="True" />
+            </Node>
           </Node>
         </State>
       </Pad>

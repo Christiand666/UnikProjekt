@@ -23,7 +23,13 @@ namespace Infrastructure.Repositories
 
         public List<Apartment> GetApartment()
         {
-            return Context.Apartments.Where(x => x.IsRented.Equals(false)).ToList();
+            try
+            {
+                return Context.Apartments.Where(x => x.IsRented.Equals(false)).ToList();
+            } catch(Exception e)
+            {
+                return null;
+            }
             //return Context.Apartments.ToList<Apartment>();
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Models;
 using Application.Handlers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -53,15 +54,19 @@ namespace API.Controllers
         [Route("GetAll")]
         public IActionResult GetAllApartments()
         {
-
             List<Domain.Models.Apartment> ApartmentResponse = apartmentHandler.GetAll();
-            /*var client = new HttpClient();
-            var content = new StringContent(JsonConvert.SerializeObject(new Apartment {  }));
-            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");*/
-            //return Request.
-            //return StatusCode(500, "Du så fucking lort.");
-            return Ok(ApartmentResponse);
-            //return JsonConvert.SerializeObject(apartmentHandler.GetAll());
+
+            if (ApartmentResponse != null)
+                return Ok(ApartmentResponse);
+            else
+            {
+                ErrorMessage err = new ErrorMessage
+                {
+                    Message = "Some error",
+                    ErrorCode = 502
+                };
+                return StatusCode(502, err);
+            }
         }
     }
 }
