@@ -10,9 +10,9 @@ namespace Infrastructure.Interface
         IEnumerable<User> GetUsers();
         User GetUsersByID(string ID);
         bool EmailExists(string Email);
-        void Add(User User, UserDetails ud);
+        void Add(User User);
         void Delete(User User);
-        void Update(User User, UserDetails ud);
+        void Update(User User);
         void Save();
         void CreateUpdateUserDetails(UserDetails user);
     }
