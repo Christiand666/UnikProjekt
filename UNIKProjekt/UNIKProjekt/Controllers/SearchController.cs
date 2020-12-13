@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Domain.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -21,14 +23,32 @@ namespace MVC.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             ViewData["Page"] = "Search";
 
-            /*var client = new HttpClient();
-            var content = new StringContent(JsonConvert.SerializeObject(new Apartment { }));
-            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");*/
-            //var response = await client.PostAsync("API/GetAllApartments");
+            string apiUrl = "https://localhost:58197/";
+
+            using(var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage res = await client.GetAsync("api/Apartment/GetAll");
+
+                if(res.IsSuccessStatusCode)
+                {
+                    var response = res.Content.ReadAsStringAsync().Result;
+
+                    HttpContext.Session.SetString("AlertMessage", response);
+                    HttpContext.Session.SetString("AlertType", "Success");
+                } else
+                {
+                    HttpContext.Session.SetString("AlertMessage", "API Error");
+                    HttpContext.Session.SetString("AlertType", "Error");
+                }
+            }
 
             return View();
         }

@@ -33,18 +33,23 @@ namespace Application.Handlers
             if (Fname == "" || Lname == "" || Email == "" || Password == "" || Phone == "" || Birthdate == null || Address == "" || Convert.ToString(Zip) == "" || Country == "")
                 throw new Exception("nogen felter er ikke udfyldt");
 
-            User users = new User();
-            UserDetails ud = new UserDetails();
-            users.UserID = UserID; //HER
-            users.Fname = Fname;
-            users.Lname = Lname;
-            users.Email = Email;
-            users.Password = Password;
-            ud.Phone = Phone;
-            ud.Birthdate = Birthdate;
-            ud.Address = Address;
-            ud.Zip = Zip;
-            ud.Country = Country;
+            User users = new User()
+            {
+                UserID = UserID,
+                Fname = Fname,
+                Lname = Lname,
+                Email = Email,
+                Password = Password
+            };
+
+            UserDetails ud = new UserDetails()
+            {
+                Phone = Phone,
+                Birthdate = Birthdate,
+                Address = Address,
+                Zip = Zip,
+                Country = Country,
+            };
 
             try
             {
@@ -65,18 +70,23 @@ namespace Application.Handlers
         }
         public void UpdateUser(string UserID, string Fname, string Lname, string Email, string Password, string Phone, DateTime Birthdate, string Address, int Zip, string Country)
         {
-            User users = new User();
-            UserDetails ud = new UserDetails();
-            users.UserID = UserID; //HER
-            users.Fname = Fname;
-            users.Lname = Lname;
-            users.Email = Email;
-            users.Password = Password;
-            ud.Phone = Phone;
-            ud.Birthdate = Birthdate;
-            ud.Address = Address;
-            ud.Zip = Zip;
-            ud.Country = Country;
+            User users = new User()
+            {
+                UserID = UserID,
+                Fname = Fname,
+                Lname = Lname,
+                Email = Email,
+                Password = Password
+            };
+
+            UserDetails ud = new UserDetails()
+            {
+                Phone = Phone,
+                Birthdate = Birthdate,
+                Address = Address,
+                Zip = Zip,
+                Country = Country,
+            };
 
             try
             {
