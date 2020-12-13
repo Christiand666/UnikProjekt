@@ -1,41 +1,32 @@
 ﻿<Properties StartupConfiguration="Multiple Projects">
-  <MonoDevelop.Ide.Workbench ActiveDocument="API/Controllers/ApartmentController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Application/Handlers/UserHandler.cs">
     <Files>
-      <File FileName="API/Controllers/ApartmentController.cs" Line="62" Column="27" />
-      <File FileName="Application/Handlers/ApartmentHandler.cs" />
-      <File FileName="Infrastructure/Repositories/ApartmentRepository.cs" Line="31" Column="29" />
-      <File FileName="Infrastructure/DB.cs" />
-      <File FileName="UNIKProjekt/appsettings.json" />
-      <File FileName="API/appsettings.json" />
-      <File FileName="API/Startup.cs" />
-      <File FileName="UNIKProjekt/Startup.cs" />
-      <File FileName="Domain/Models/Apartment.cs" />
-      <File FileName="Infrastructure/Interface/IDB.cs" />
-      <File FileName="Domain/Models/User.cs" Line="43" Column="22" />
-      <File FileName="Domain/Models/UserDetails.cs" />
-      <File FileName="Domain/Models/UserRequirements.cs" />
+      <File FileName="API/Controllers/ApartmentController.cs" Line="67" Column="19" />
+      <File FileName="UNIKProjekt/Controllers/SearchController.cs" Line="40" Column="44" />
+      <File FileName="UNIKProjekt/Controllers/MyPageController.cs" Line="58" Column="17" />
+      <File FileName="Domain/Models/Apartment.cs" Line="64" Column="49" />
+      <File FileName="Application/Handlers/UserHandler.cs" Line="23" Column="38" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="UNIKProjekt" expanded="True">
             <Node name="API" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="ApartmentController.cs" selected="True" />
-              </Node>
-              <Node name="Models" expanded="True" />
+              <Node name="Controllers" expanded="True" />
             </Node>
             <Node name="Application" expanded="True">
-              <Node name="Handlers" expanded="True" />
+              <Node name="Handlers" expanded="True">
+                <Node name="UserHandler.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="Domain" expanded="True">
               <Node name="Models" expanded="True" />
             </Node>
             <Node name="Infrastructure" expanded="True">
-              <Node name="Interface" expanded="True" />
               <Node name="Repositories" expanded="True" />
             </Node>
             <Node name="MVC" expanded="True">
+              <Node name="Controllers" expanded="True" />
               <Node name="Properties" expanded="True" />
             </Node>
           </Node>
