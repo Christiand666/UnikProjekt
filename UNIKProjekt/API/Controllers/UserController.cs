@@ -58,7 +58,7 @@ namespace API.Controllers
         {
             try
             {
-                var match = userHandler.GetAll();
+                var match = userHandler.GetAllUsers();
                 return Ok(match);
             } 
             catch (Exception e)
@@ -94,7 +94,7 @@ namespace API.Controllers
         {
             try
             {
-                userHandler.DeleteUsers(user);
+                userHandler.DeleteUsers(user.UserID);
                 return Ok();
             }
             catch (Exception e)

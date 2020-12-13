@@ -2,6 +2,7 @@
 using Infrastructure.Interface;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Infrastructure.Repositories
@@ -11,7 +12,6 @@ namespace Infrastructure.Repositories
         private bool disposedValue;
 
         private List<User> users = new List<User>();
-        private List<UserDetails> userDetailList = new List<UserDetails>();
 
         public void Add(User User)
         {
@@ -23,9 +23,9 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public void Delete(User User)
+        public void Delete(User user)
         {
-            throw new NotImplementedException();
+            users.Remove(user);
         }
 
         public bool EmailExists(string Email)
@@ -40,7 +40,7 @@ namespace Infrastructure.Repositories
 
         public User GetUsersByID(string ID)
         {
-            throw new NotImplementedException();
+            return users.Where(x => x.UserID == ID).FirstOrDefault();
         }
 
         public void Save()
@@ -48,9 +48,10 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public void Update(User User)
+        public void Update(User user)
         {
-            throw new NotImplementedException();
+            var match = users.Where(x => x.UserID == user.UserID).FirstOrDefault();
+            match = user;
         }
 
         protected virtual void Dispose(bool disposing)
@@ -63,7 +64,6 @@ namespace Infrastructure.Repositories
 
         public void Dispose()
         {
-
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }

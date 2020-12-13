@@ -15,6 +15,7 @@ namespace Application.Handlers
         void DeleteUsers(string ID);
         bool Login(string Email, string Password);
         User GetUsersByID(string ID);
+        List<User> GetAllUsers();
     }
     public class UserHandler : IUserHandler
     {
