@@ -1,18 +1,21 @@
 ﻿<Properties StartupConfiguration="{7995D79E-333A-4122-BF11-007CF2DABF92}|UNIKProjekt">
-  <MonoDevelop.Ide.Workbench ActiveDocument="UNIKProjekt/obj/Debug/netcoreapp3.1/Razor/Views/MyPage/Register.cshtml.g.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UNIKProjekt/Views/MyPage/Register.cshtml">
     <Files>
       <File FileName="Application/Handlers/UserHandler.cs" Line="194" Column="10" />
       <File FileName="API/Controllers/ApartmentController.cs" />
       <File FileName="UNIKProjekt/Startup.cs" />
-      <File FileName="UNIKProjekt/Controllers/HomeController.cs" />
+      <File FileName="UNIKProjekt/Controllers/HomeController.cs" Line="1" Column="1" />
       <File FileName="UNIKProjekt/Controllers/SearchController.cs" />
-      <File FileName="UNIKProjekt/Models/UserData.cs" Line="7" Column="10" />
+      <File FileName="UNIKProjekt/Models/UserData.cs" />
       <File FileName="UNIKProjekt/obj/Debug/netcoreapp3.1/Razor/Views/MyPage/Register.cshtml.g.cs" Line="62" Column="131" />
+      <File FileName="UNIKProjekt/Views/MyPage/Views/Login.cshtml" Line="1" Column="1" />
+      <File FileName="UNIKProjekt/Controllers/MyPageController.cs" Line="68" Column="49" />
+      <File FileName="UNIKProjekt/Views/MyPage/Register.cshtml" Line="1" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="UNIKProjekt" expanded="True" selected="True">
+          <Node name="UNIKProjekt" expanded="True">
             <Node name="API" expanded="True" />
             <Node name="Application" expanded="True">
               <Node name="Classes" expanded="True" />
@@ -27,6 +30,7 @@
                 <Node name="MyPage" expanded="True">
                   <Node name="Account" expanded="True" />
                   <Node name="Views" expanded="True" />
+                  <Node name="Register.cshtml" selected="True" />
                 </Node>
                 <Node name="Search" expanded="True" />
               </Node>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application.Classes;
+﻿using Application.Classes;
 using Infrastructure;
 using Infrastructure.Interface;
 using Infrastructure.Repositories;
@@ -10,8 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MVC.Models;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MVC.Controllers
 {

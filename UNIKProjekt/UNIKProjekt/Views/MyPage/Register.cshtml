@@ -1,4 +1,4 @@
-@model RegisterViewModel;
+@model MVC.Models.RegisterViewModel
 
 <div class="col full no-margin">
     <div class="col col-8 col-t-6">
@@ -11,7 +11,7 @@
 
     <div class="col col-4 col-t-6 formCard">
         <h1>Oprettelse af brugerkonti</h1>
-        
+
         <form asp-controller="MyPage" asp-action="RegisterUser" method="post" class="beautify">
             <ul>
                 <li>
@@ -76,13 +76,13 @@
                 </li>
 
                 @* <li class="full">
-                    <label for="gender" class="required">Køn</label>
-                    <select name="gender" id="gender">
-                        <option value="0">Mand</option>
-                        <option value="1">Kvinde</option>
-                        <option value="2">Andet</option>
-                    </select>
-                </li> *@
+                        <label for="gender" class="required">Køn</label>
+                        <select name="gender" id="gender">
+                            <option value="0">Mand</option>
+                            <option value="1">Kvinde</option>
+                            <option value="2">Andet</option>
+                        </select>
+                    </li> *@
 
                 <li class="full">
                     <input type="submit" value="Opret mig!" class="btnPrimary">
