@@ -1,6 +1,17 @@
 @using Domain.Models
+@using Infrastructure.Interface
 @model Apartment
+@inject IUserAuth ua
 
 @{ ViewData["title"] = @Model.Address; }
 
-<h1>@Model.Address</h1>
+<div class="leaseContainer">
+    <h1>@Model.Address</h1>
+
+    @if(ua.isLoggedIn()) {
+        <span>SKRIV MIG OP</span>
+    } else {
+        <span>Log ind for at ansøge om denne bolig</span>
+    }
+    <a href=""></a>
+</div>

@@ -10,15 +10,15 @@ namespace Domain.Models
     {
         [Key]
         [Column(TypeName = "VARCHAR(64)")]
-        public Guid WaitingID { get; set; }
+        public string WaitingID { get; set; }
 
         [Column(TypeName = "VARCHAR(64)")]
-        public Guid? UserID { get; set; }
+        public string UserID { get; set; }
 
         public List<User> User { get; set; }
 
         [Column(TypeName = "VARCHAR(64)")]
-        public Guid? ApartmentID { get; set; }
+        public string ApartmentID { get; set; }
 
         public List<Apartment> Apartment { get; set; }
 

@@ -2,13 +2,14 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="UNIKProjekt/Controllers/SearchController.cs">
     <Files>
       <File FileName="API/Controllers/ApartmentController.cs" Line="77" Column="42" />
-      <File FileName="UNIKProjekt/Controllers/SearchController.cs" Line="68" Column="91" />
-      <File FileName="UNIKProjekt/Controllers/MyPageController.cs" Line="58" Column="17" />
-      <File FileName="Application/Handlers/UserHandler.cs" Line="55" Column="14" />
-      <File FileName="UNIKProjekt/Views/Search/Index.cshtml" Line="2" Column="1" />
-      <File FileName="Application/Handlers/ApartmentHandler.cs" Line="59" Column="62" />
-      <File FileName="Infrastructure/Repositories/ApartmentRepository.cs" Line="14" Column="43" />
-      <File FileName="UNIKProjekt/Views/Search/Item.cshtml" Line="4" Column="24" />
+      <File FileName="UNIKProjekt/Controllers/SearchController.cs" Line="40" Column="89" />
+      <File FileName="UNIKProjekt/Controllers/MyPageController.cs" />
+      <File FileName="Application/Handlers/UserHandler.cs" />
+      <File FileName="UNIKProjekt/Views/Search/Index.cshtml" />
+      <File FileName="Application/Handlers/ApartmentHandler.cs" />
+      <File FileName="Infrastructure/Repositories/ApartmentRepository.cs" />
+      <File FileName="UNIKProjekt/Views/Search/Item.cshtml" />
+      <File FileName="API/Properties/launchSettings.json" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,6 +17,7 @@
           <Node name="UNIKProjekt" expanded="True">
             <Node name="API" expanded="True">
               <Node name="Controllers" expanded="True" />
+              <Node name="Properties" expanded="True" />
             </Node>
             <Node name="Application" expanded="True">
               <Node name="Handlers" expanded="True" />
