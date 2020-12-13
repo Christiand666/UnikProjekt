@@ -12,11 +12,11 @@ namespace Domain.Models
         [Required]
         [Column(TypeName = "VARCHAR(250)")]
 
-        public Guid ApartmentID { get; set; }
+        public string ApartmentID { get; set; }
 
         [Column(TypeName = "VARCHAR(250)")]
 
-        public Guid UserID { get; set; }
+        public string UserID { get; set; }
         public User User { get; set; }
 
         [Required]

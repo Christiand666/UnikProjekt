@@ -11,7 +11,7 @@ namespace Application.Handlers
         void CreateApartment(Guid ID, string Address, int Zip, string City, int RoomCount, int SqrMeter, int Floors, double Rent, string Comment, bool AllowPets, bool Shareable, bool Balcony, bool IsApartment, bool IsHouse, bool IsRented);
         void UpdateApartment(Guid ID, string Address, int Zip, string City, int RoomCount, int SqrMeter, int Floors, double Rent, string Comment, bool AllowPets, bool Shareable, bool Balcony, bool IsApartment, bool IsHouse, bool IsRented);
         void DeleteApartment(Guid ID);
-        IEnumerable<Apartment> GetAll();
+        List<Apartment> GetAll();
     }
 
     public class ApartmentHandler : IApartmentHandler
@@ -134,7 +134,7 @@ namespace Application.Handlers
         }
 
 
-        public IEnumerable<Apartment> GetAll()
+        public List<Apartment> GetAll()
         {
             return apartmentRepository.GetApartment();
         }

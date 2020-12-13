@@ -10,11 +10,11 @@ namespace Application.Handlers
 {
     public interface IUserHandler
     {
-        void CreateUser(Guid ID, string Fname, string Lname, string Email, string Password, string Phone, DateTime Birthdate, string Address, int Zip, string Country);
-        void UpdateUser(Guid ID, string Fname, string Lname, string Email, string Password, string Phone, DateTime Birthdate, string Address, int Zip, string Country);
-        void DeleteUsers(Guid ID);
+        void CreateUser(string ID, string Fname, string Lname, string Email, string Password, string Phone, DateTime Birthdate, string Address, int Zip, string Country);
+        void UpdateUser(string ID, string Fname, string Lname, string Email, string Password, string Phone, DateTime Birthdate, string Address, int Zip, string Country);
+        void DeleteUsers(string ID);
         bool Login(string Email, string Password);
-        User GetUsersByID(Guid ID);
+        User GetUsersByID(string ID);
     }
     public class UserHandler : IUserHandler
     {
@@ -28,7 +28,7 @@ namespace Application.Handlers
             this.Context = Context;
         }
 
-        public void CreateUser(Guid UserID, string Fname, string Lname, string Email, string Password, string Phone, DateTime Birthdate, string Address, int Zip, string Country)
+        public void CreateUser(string UserID, string Fname, string Lname, string Email, string Password, string Phone, DateTime Birthdate, string Address, int Zip, string Country)
         {
             if (Fname == "" || Lname == "" || Email == "" || Password == "" || Phone == "" || Birthdate == null || Address == "" || Convert.ToString(Zip) == "" || Country == "")
                 throw new Exception("nogen felter er ikke udfyldt");
@@ -63,7 +63,7 @@ namespace Application.Handlers
                 throw e;
             }
         }
-        public void UpdateUser(Guid UserID, string Fname, string Lname, string Email, string Password, string Phone, DateTime Birthdate, string Address, int Zip, string Country)
+        public void UpdateUser(string UserID, string Fname, string Lname, string Email, string Password, string Phone, DateTime Birthdate, string Address, int Zip, string Country)
         {
             User users = new User();
             UserDetails ud = new UserDetails();
@@ -88,14 +88,14 @@ namespace Application.Handlers
                 throw e;
             }
         }
-        public User GetUsersByID(Guid ID)
+        public User GetUsersByID(string ID)
         {
             return userRepository.GetUsersByID(ID);
         }
 
         //delete user ved faktisk ikke helt om man selv skulle slette sin profil eller om admin skal kun kunne gøre det eller den dummy liste over inaktive
 
-        public void DeleteUsers(Guid UserID)
+        public void DeleteUsers(string UserID)
         {
             //mangler noget admin slette elelr om de skal achvies
             User user = userRepository.GetUsersByID(UserID);
@@ -103,7 +103,7 @@ namespace Application.Handlers
             userRepository.Save();
 
         }
-        public void ToggleUserActivity(Guid UserID, Guid AdminID)
+        public void ToggleUserActivity(string UserID, string AdminID)
         {
             //WIP//
             /*Users user= userRepository.GetUsersByID(UsersID);
@@ -134,11 +134,11 @@ namespace Application.Handlers
             return false;
         }
 
-        public bool UserAuthorize(Guid UserID, int UserType)
+        public bool UserAuthorize(string UserID, int UserType)
         {
             try
             {
-                var userAuth = Context.Users.Where(x => x.UserID == UserID && x.UserType == UserType).FirstOrDefault();
+                var userAuth = Context.Users.Where(x => x.UserID == UserID.ToString() && x.UserType == UserType).FirstOrDefault();
 
                 if (userAuth != null)
                     return true;
@@ -151,13 +151,13 @@ namespace Application.Handlers
             return false;
         }
 
-        public void ChageUserType(Guid UserID, int UserType)
+        public void ChageUserType(string UserID, int UserType)
         {
             if (!UserAuthorize(UserID, UserType)) throw new Exception("Adgang nægtet!");
 
             try
             {
-                var user = Context.Users.Where(x => x.UserID == UserID).FirstOrDefault();
+                var user = Context.Users.Where(x => x.UserID == UserID.ToString()).FirstOrDefault();
 
                 user.UserType = UserType;
 

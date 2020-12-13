@@ -8,7 +8,7 @@ namespace Infrastructure.Interface
     public interface IUserRepository : IDisposable
     {
         IEnumerable<User> GetUsers();
-        User GetUsersByID(Guid ID);
+        User GetUsersByID(string ID);
         bool EmailExists(string Email);
         void Add(User User, UserDetails ud);
         void Delete(User User);

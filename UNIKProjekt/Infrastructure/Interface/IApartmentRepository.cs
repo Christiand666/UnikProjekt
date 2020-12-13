@@ -7,7 +7,7 @@ namespace Infrastructure.Interface
 {
     public interface IApartmentRepository : IDisposable
     {
-        IEnumerable<Apartment> GetApartment();
+        List<Apartment> GetApartment();
         Apartment GetApartmentsByID(Guid ID);
 
         void Add(Apartment apartment);

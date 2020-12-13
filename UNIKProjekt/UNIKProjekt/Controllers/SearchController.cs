@@ -21,14 +21,13 @@ namespace MVC.Controllers
             _logger = logger;
         }
 
-        [HttpPost]
         public IActionResult Index()
         {
             ViewData["Page"] = "Search";
 
-            var client = new HttpClient();
+            /*var client = new HttpClient();
             var content = new StringContent(JsonConvert.SerializeObject(new Apartment { }));
-            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");*/
             //var response = await client.PostAsync("API/GetAllApartments");
 
             return View();

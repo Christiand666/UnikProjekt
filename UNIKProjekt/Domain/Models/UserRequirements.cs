@@ -10,10 +10,10 @@ namespace Domain.Models
     {
         [Key]
         [Column(TypeName = "VARCHAR(64)")]
-        public Guid RequirementID { get; set; }
+        public string RequirementID { get; set; }
 
         [Column(TypeName = "VARCHAR(64)")]
-        public Guid? UserID { get; set; }
+        public string UserID { get; set; }
 
         public User User { get; set; }
 

@@ -31,7 +31,7 @@ namespace Infrastructure
 
         public DbSet<UserDetails> UserDetails { get; set; }
         public DbSet<UserRequirements> UserRequirements { get; set; }
-        public DbSet<WaitingList> WaitingList { get; set; }
+        //public DbSet<WaitingList> WaitingList { get; set; }
         //public DbSet<PriorityList> PriorityList { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)

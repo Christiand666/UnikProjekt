@@ -34,9 +34,9 @@ namespace Infrastructure.Repositories
             return false;
         }
 
-        public User GetUsersByID(Guid ID)
+        public User GetUsersByID(string ID)
         {
-            return Context.Users.Where(x => x.UserID == ID).FirstOrDefault(); // HER
+            return Context.Users.Where(x => x.UserID == ID.ToString()).FirstOrDefault(); // HER
         }
 
         public IEnumerable<User> GetUsers()

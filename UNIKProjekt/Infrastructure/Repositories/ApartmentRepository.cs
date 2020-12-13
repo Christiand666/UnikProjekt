@@ -18,12 +18,13 @@ namespace Infrastructure.Repositories
 
         public Apartment GetApartmentsByID(Guid ID)
         {
-            return Context.Apartments.Where<Apartment>(x => x.ApartmentID == ID).FirstOrDefault();
+            return Context.Apartments.Where<Apartment>(x => x.ApartmentID == ID.ToString()).FirstOrDefault();
         }
 
-        public IEnumerable<Apartment> GetApartment()
+        public List<Apartment> GetApartment()
         {
-            return Context.Apartments.ToList<Apartment>();
+            return Context.Apartments.Where(x => x.IsRented.Equals(false)).ToList();
+            //return Context.Apartments.ToList<Apartment>();
         }
 
         public void Add(Apartment apartment)

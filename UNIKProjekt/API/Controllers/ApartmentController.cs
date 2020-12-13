@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Handlers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -9,6 +10,13 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class ApartmentController : Controller
     {
+        private readonly IApartmentHandler apartmentHandler;
+
+        public ApartmentController(IApartmentHandler apartmentHandler)
+        {
+            this.apartmentHandler = apartmentHandler;
+        }
+
         // GET: api/values
         [HttpGet]
         public IEnumerable<string> Get()
@@ -39,6 +47,21 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        [HttpGet]
+        [Route("GetAll")]
+        public IActionResult GetAllApartments()
+        {
+
+            List<Domain.Models.Apartment> ApartmentResponse = apartmentHandler.GetAll();
+            /*var client = new HttpClient();
+            var content = new StringContent(JsonConvert.SerializeObject(new Apartment {  }));
+            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");*/
+            //return Request.
+            //return StatusCode(500, "Du så fucking lort.");
+            return Ok(ApartmentResponse);
+            //return JsonConvert.SerializeObject(apartmentHandler.GetAll());
         }
     }
 }
