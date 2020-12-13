@@ -58,6 +58,9 @@ namespace Domain.Models
         [Required]
         public bool IsHouse { get; set; }
 
+        [Required]
+        public ApplicantGoals ApplicantGoals { get; set; }
+
         public bool IsRented { get; set; }
 
         /*[Timestamp()]
