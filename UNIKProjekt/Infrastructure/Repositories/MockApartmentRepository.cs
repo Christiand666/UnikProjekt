@@ -25,7 +25,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Apartment GetApartmentsByID(Guid ID)
+        public Apartment GetApartmentByID(string ID)
         {
             throw new NotImplementedException();
         }

@@ -1,0 +1,85 @@
+// Required mark
+
+.required
+    position: relative
+    &:after
+        position: absolute
+        content: "*"
+
+        top: -5px
+        right: -10px
+
+        color: red
+
+// Collapse menu
+
+.collapse
+    height: 0
+    opacity: 0
+
+    padding: 0 15px
+    margin: 0 0 10px 0
+
+    overflow: hidden
+
+    box-sizing: border-box
+
+    transition: opacity transSpeed*3 ease
+
+    &.on
+        height: 100%
+        opacity: 1
+
+        margin: 0 0 20px 0
+
+        border-left: 3px solid colMainBlue
+        border-bottom: 1px solid rgba(0,0,0,.1)
+
+// Arrow
+
+.arrow
+    position: absolute
+
+    width: 20px
+    height: 20px
+
+    &:after
+        position: absolute
+
+        content: ""
+
+        width: 10px
+        height: 10px
+        
+        top: 5px
+        right: -5px
+
+        border: solid rgba(0,0,0,.4)
+        border-width: 0 3px 3px 0
+
+        transform: rotate(45deg)
+
+        transition: transform transSpeed ease, border-color transSpeed ease
+    
+    &.Open
+        &:after
+            top: 10px
+
+            border-color: rgba(0,0,0,.7)
+
+            transform: rotate(225deg)
+        
+// Text customization
+
+.txt
+    &.right
+        text-align: right
+
+    &.left
+        text-align: left
+
+    &.center
+        text-align: center
+
+    &.bold
+        font-weight: bold

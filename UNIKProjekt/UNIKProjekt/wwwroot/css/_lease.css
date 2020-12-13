@@ -1,0 +1,99 @@
+.leaseContainer .leaseSidebar,
+.leaseContainer .leaseContent {
+  padding: 10px 30px 10px 10px;
+  box-sizing: border-box;
+}
+.leaseContainer .leaseSidebar.noPad,
+.leaseContainer .leaseContent.noPad {
+  padding: 0;
+}
+.leaseContainer .leaseSidebar {
+  margin-top: 0;
+  margin-right: 0;
+  border-right: 1px solid rgba(0,0,0,0.1);
+}
+@media screen and (max-width: s_mobile) {
+  .leaseContainer .leaseSidebar {
+    border: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+}
+.leaseContainer .leaseContent {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.leaseContainer .leaseContent .leaseContentInner {
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 3px solid colMainBlue;
+  border-left: 0;
+  box-shadow: shaDefault;
+  transition: background-color transSpeed ease, box-shadow transSpeed ease;
+}
+@media screen and (max-width: s_mobile) {
+  .leaseContainer .leaseContent .leaseContentInner {
+    border-left: 1px solid rgba(0,0,0,0.1);
+  }
+}
+.leaseContainer .leaseContent .leaseContentInner:hover {
+  box-shadow: shaDefaultMedium;
+}
+.leaseContainer .leaseContent .leaseItemContainer {
+  padding: 20px;
+  box-sizing: border-box;
+}
+.leaseContainer .leaseContent .leaseItemContainer .leaseItem {
+  margin-bottom: 20px;
+  box-shadow: shaDefault;
+  border-radius: 3px;
+  box-sizing: border-box;
+  transition: box-shadow transSpeed ease;
+}
+.leaseContainer .leaseContent .leaseItemContainer .leaseItem:hover {
+  box-shadow: shaDefaultMedium;
+}
+.leaseContainer .leaseContent .leaseItemContainer .leaseItem .image {
+  position: relative;
+  width: 100%;
+  padding-bottom: 45%;
+  background-color: #333;
+  background-size: cover;
+  background-position: center center;
+  border-bottom: 3px solid colMainBlue;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.leaseContainer .leaseContent .leaseItemContainer .leaseItem .content {
+  padding: 10px;
+  box-sizing: border-box;
+}
+.leaseContainer .leaseContent .leaseItemContainer .leaseItem .content h3 {
+  margin: 0;
+}
+.leaseContainer .leaseContent .leaseItemContainer .leaseItem .content small {
+  font-size: 0.7em;
+  font-weight: 700;
+  color: rgba(0,0,0,0.5);
+}
+.leaseContainer .leaseContent .leaseItemContainer .leaseItem .content .desc {
+  position: relative;
+  min-height: 36px;
+  max-height: 36px;
+  margin: 10px 0;
+  font-size: 0.9em;
+  overflow: hidden;
+}
+.leaseContainer .leaseContent .leaseItemContainer .leaseItem .content .desc:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  background-image: url("../images/HiddenGradient.png");
+  background-repeat: repeat-x;
+  background-position: bottom;
+  pointer-events: none;
+}

@@ -1,0 +1,44 @@
+.alert
+    position: relative
+    display: block
+
+    width: 100%
+
+    margin: 0 0 10px 0
+    padding: 20px 20px
+
+    box-shadow: shaDefault
+
+    font-weight: 500
+
+    box-sizing: border-box
+
+    transition: opacity transSpeed * 2 ease
+
+    &.alertDefault
+        background-color: #ddd
+
+        color: #444
+
+    &.alertSuccess
+        background-color: colMainGreen
+
+        color: darken(colMainGreen, 30)
+
+    &.alertError
+        background-color: colMainRed
+
+        color: darken(colMainRed, 40)
+
+    &.alertWarning
+        background-color: colMainYellow
+
+        color: darken(colMainYellow, 40)
+
+    &.alertInfo
+        background-color: colMainBlue
+
+        color: lighten(colMainBlue, 25)
+
+    &.fadeOut
+        opacity: 0

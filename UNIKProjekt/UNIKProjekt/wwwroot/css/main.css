@@ -316,12 +316,14 @@ body form ul li.full input[type="phone"],
 body form ul li.full input[type="date"],
 body form ul li.full input[type="submit"],
 body form ul li.full textarea,
-body form ul li.full button {
+body form ul li.full button,
+body form ul li.full select {
   width: 100%;
 }
 body form ul li input.full,
 body form ul li textarea.full,
-body form ul li button.full {
+body form ul li button.full,
+body form ul li select.full {
   width: 100%;
   min-width: 100% !important;
 }
@@ -380,12 +382,16 @@ body form ul li label.checkboxContainer input:checked ~ .checkboxItem:after {
 }
 body form ul li input,
 body form ul li textarea,
-body form ul li button {
+body form ul li button,
+body form ul li select {
   position: relative;
   display: block;
   margin: 0 0 10px 0;
   appearance: none;
   outline: none;
+}
+body form ul li select {
+  appearance: auto;
 }
 body form ul li input[type="text"],
 body form ul li input[type="password"],
@@ -393,7 +399,8 @@ body form ul li input[type="email"],
 body form ul li input[type="number"],
 body form ul li input[type="search"],
 body form ul li input[type="phone"],
-body form ul li input[type="date"] {
+body form ul li input[type="date"],
+body form ul li select {
   min-width: 250px;
   height: 45px;
   padding: 0 10px;
@@ -407,7 +414,8 @@ body form ul li input[type="email"]::placeholder,
 body form ul li input[type="number"]::placeholder,
 body form ul li input[type="search"]::placeholder,
 body form ul li input[type="phone"]::placeholder,
-body form ul li input[type="date"]::placeholder {
+body form ul li input[type="date"]::placeholder,
+body form ul li select::placeholder {
   font-style: italic;
 }
 body form ul li input[type="text"]:hover,
@@ -416,7 +424,8 @@ body form ul li input[type="email"]:hover,
 body form ul li input[type="number"]:hover,
 body form ul li input[type="search"]:hover,
 body form ul li input[type="phone"]:hover,
-body form ul li input[type="date"]:hover {
+body form ul li input[type="date"]:hover,
+body form ul li select:hover {
   border-bottom-color: rgba(0,0,0,0.2);
 }
 body form ul li input[type="text"]:active,
@@ -426,13 +435,15 @@ body form ul li input[type="number"]:active,
 body form ul li input[type="search"]:active,
 body form ul li input[type="phone"]:active,
 body form ul li input[type="date"]:active,
+body form ul li select:active,
 body form ul li input[type="text"]:focus,
 body form ul li input[type="password"]:focus,
 body form ul li input[type="email"]:focus,
 body form ul li input[type="number"]:focus,
 body form ul li input[type="search"]:focus,
 body form ul li input[type="phone"]:focus,
-body form ul li input[type="date"]:focus {
+body form ul li input[type="date"]:focus,
+body form ul li select:focus {
   border-bottom-color: #6495ed;
 }
 body form ul li textarea {

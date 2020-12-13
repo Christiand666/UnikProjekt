@@ -1,0 +1,118 @@
+flex-version = flex
+//support-for-ie = false
+vendor-prefixes = official
+
+@import 'nib'
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap')
+
+// ---- Vars ----
+
+// Width's
+maxWidth = 1200px
+s_tablet = 1000px
+s_mobile = 800px
+
+// Paddings
+padMain = 20px
+
+// Fonts
+mainFont = 'Roboto', sans-serif
+
+// Colors
+colMainWhite = #fff;
+colMainBlue = cornflowerblue;
+colMainRed = #F06048;
+colMainGreen = #5ED415;
+colMainYellow = #F8D025;
+
+// Shadows
+shaDefault = 1px 1px 5px rgba(0,0,0,.15)
+shaDefaultMedium = 2px 2px 10px rgba(0,0,0,.25)
+
+// Misc
+transSpeed = 0.2s
+
+// ---- End of vars ----
+
+html
+    display: table
+    
+    width: 100%
+    height: 100%
+
+    margin: 0
+
+body
+    display: table
+    
+    width: 100%
+    height: 100%
+
+    margin: 0
+
+    background-color: #efefef
+    //background-color: #222
+    background-image: url(../images/bg.png)
+
+    font-family: mainFont
+    font-weight: 300
+    color #121212
+
+    overflow: auto
+
+    box-sizing: border-box
+
+    @import '_normalize'
+
+    // Anchor
+
+    a
+        position: relative
+
+        text-decoration: none
+
+        color: colMainBlue
+
+        &:after
+            position: absolute
+
+            content: "."
+
+            width: 0%
+            height: 1px
+        
+            background-color: #121212
+
+            left: 0
+            right: 0
+            bottom: 0
+
+            margin: 0 auto
+
+            color: transparent
+
+            transition: width transSpeed ease, background-color transSpeed ease
+
+        &:hover, &.on
+            &:after
+                width: 100%
+
+                background-color: colMainBlue
+
+        &.noLine
+            &:after
+                display: none
+
+    @import '_header'
+    @import '_container'
+    @import '_cover'
+    @import '_news'
+    @import '_misc'
+    @import '_formInputs'
+    @import '_alerts'
+    @import '_buttons'
+    @import '_contact'
+    @import '_cards'
+    @import '_lease'
+    @import '_col'
+    @import '_footer'
