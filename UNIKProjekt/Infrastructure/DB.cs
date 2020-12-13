@@ -2,9 +2,6 @@
 using Infrastructure.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-
-using System.Text;
 
 namespace Infrastructure
 {
@@ -52,6 +49,10 @@ namespace Infrastructure
 
         }
 
+        public void Dispose(bool disposing)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

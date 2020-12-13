@@ -14,6 +14,8 @@ namespace Infrastructure.Interface
         DbSet<UserRequirements> UserRequirements { get; set; }
         DbSet<WaitingList> WaitingList { get; set; }
 
+        void Dispose(bool disposing);
         void SaveChanges();
+        void Dispose();
     }
 }

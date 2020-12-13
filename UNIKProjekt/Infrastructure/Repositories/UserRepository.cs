@@ -9,10 +9,10 @@ namespace Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly DB Context;
+        private readonly IDB Context;
         private bool IsItDisposed = false;
 
-        public UserRepository(DB dB)
+        public UserRepository(IDB dB)
         {
             this.Context = dB;
         }

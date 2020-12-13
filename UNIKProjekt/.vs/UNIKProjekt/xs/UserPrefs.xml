@@ -1,16 +1,20 @@
 ﻿<Properties StartupConfiguration="{7995D79E-333A-4122-BF11-007CF2DABF92}|UNIKProjekt">
-  <MonoDevelop.Ide.Workbench ActiveDocument="UNIKProjekt/Views/MyPage/Register.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UNIKProjekt/Startup.cs">
     <Files>
       <File FileName="Application/Handlers/UserHandler.cs" Line="194" Column="10" />
       <File FileName="API/Controllers/ApartmentController.cs" />
-      <File FileName="UNIKProjekt/Startup.cs" />
-      <File FileName="UNIKProjekt/Controllers/HomeController.cs" Line="1" Column="1" />
+      <File FileName="UNIKProjekt/Startup.cs" Line="35" Column="49" />
+      <File FileName="UNIKProjekt/Controllers/HomeController.cs" />
       <File FileName="UNIKProjekt/Controllers/SearchController.cs" />
       <File FileName="UNIKProjekt/Models/UserData.cs" />
-      <File FileName="UNIKProjekt/obj/Debug/netcoreapp3.1/Razor/Views/MyPage/Register.cshtml.g.cs" Line="62" Column="131" />
-      <File FileName="UNIKProjekt/Views/MyPage/Views/Login.cshtml" Line="1" Column="1" />
-      <File FileName="UNIKProjekt/Controllers/MyPageController.cs" Line="68" Column="49" />
-      <File FileName="UNIKProjekt/Views/MyPage/Register.cshtml" Line="1" Column="18" />
+      <File FileName="UNIKProjekt/Views/MyPage/Views/Login.cshtml" />
+      <File FileName="UNIKProjekt/Controllers/MyPageController.cs" />
+      <File FileName="UNIKProjekt/Views/MyPage/Register.cshtml" />
+      <File FileName="UNIKProjekt/Program.cs" />
+      <File FileName="UNIKProjekt/Views/Shared/_Layout.cshtml" />
+      <File FileName="Infrastructure/DB.cs" />
+      <File FileName="Infrastructure/Repositories/ApartmentRepository.cs" />
+      <File FileName="Infrastructure/Interface/IDB.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,19 +25,17 @@
               <Node name="Classes" expanded="True" />
               <Node name="Handlers" expanded="True" />
             </Node>
-            <Node name="Infrastructure" expanded="True" />
+            <Node name="Infrastructure" expanded="True">
+              <Node name="Interface" expanded="True" />
+              <Node name="Repositories" expanded="True" />
+            </Node>
             <Node name="MVC" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="Home" expanded="True" />
-                <Node name="MyPage" expanded="True">
-                  <Node name="Account" expanded="True" />
-                  <Node name="Views" expanded="True" />
-                  <Node name="Register.cshtml" selected="True" />
-                </Node>
-                <Node name="Search" expanded="True" />
+                <Node name="Shared" expanded="True" />
               </Node>
+              <Node name="Startup.cs" selected="True" />
             </Node>
           </Node>
         </State>

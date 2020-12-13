@@ -9,9 +9,9 @@ namespace Infrastructure.Repositories
 {
     public class ApartmentRepository : IApartmentRepository
     {
-        private readonly DB Context;
+        private readonly IDB Context;
         private bool IsDisposed = false;
-        public ApartmentRepository(DB dB)
+        public ApartmentRepository(IDB dB)
         {
             this.Context = dB;
         }

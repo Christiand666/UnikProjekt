@@ -32,18 +32,18 @@ namespace UNIKProjekt
             services.AddDistributedMemoryCache();
             services.AddSession();
 
-            services.AddControllersWithViews();
-            services.AddRazorPages();
-            services.AddScoped<IApartmentRepository, ApartmentRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IDB, DB>();
-
-            services.AddHttpContextAccessor();
-            services.AddScoped<IUserAuth, UserAuth>();
-
             services.AddDbContext<DB>(options =>
                 options.UseMySQL(
                     Configuration.GetConnectionString("DBconnection")));
+
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddScoped<IDB, DB>();
+            services.AddScoped<IApartmentRepository, ApartmentRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddHttpContextAccessor();
+            services.AddScoped<IUserAuth, UserAuth>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
