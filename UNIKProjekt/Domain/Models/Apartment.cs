@@ -60,7 +60,7 @@ namespace Domain.Models
 
         public bool IsRented { get; set; }
 
-        [Timestamp()]
-        public byte[] RowVersion { get; set; }
+        /*[Timestamp()]
+        public byte[] RowVersion { get; set; }*/
     }
 }

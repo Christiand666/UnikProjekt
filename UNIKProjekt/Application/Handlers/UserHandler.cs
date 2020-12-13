@@ -10,11 +10,12 @@ namespace Application.Handlers
 {
     public interface IUserHandler
     {
-        void CreateUser(string ID, string Fname, string Lname, string Email, string Password, string Phone, DateTime Birthdate, string Address, int Zip, string Country);
-        void UpdateUser(string ID, string Fname, string Lname, string Email, string Password, string Phone, DateTime Birthdate, string Address, int Zip, string Country);
+        void CreateUser(User user);
+        void UpdateUser(User user);
         void DeleteUsers(string ID);
         bool Login(string Email, string Password);
         User GetUsersByID(string ID);
+        List<User> GetAllUsers();
     }
     public class UserHandler : IUserHandler
     {
@@ -28,71 +29,54 @@ namespace Application.Handlers
             this.Context = Context;
         }
 
-        public void CreateUser(string UserID, string Fname, string Lname, string Email, string Password, string Phone, DateTime Birthdate, string Address, int Zip, string Country)
+        public void CreateUser(User user)
         {
-            if (Fname == "" || Lname == "" || Email == "" || Password == "" || Phone == "" || Birthdate == null || Address == "" || Convert.ToString(Zip) == "" || Country == "")
-                throw new Exception("nogen felter er ikke udfyldt");
-
-            User users = new User();
-            UserDetails ud = new UserDetails();
-            users.UserID = UserID; //HER
-            users.Fname = Fname;
-            users.Lname = Lname;
-            users.Email = Email;
-            users.Password = Password;
-            ud.Phone = Phone;
-            ud.Birthdate = Birthdate;
-            ud.Address = Address;
-            ud.Zip = Zip;
-            ud.Country = Country;
-
-            try
+            if (IsNotEmpty(user))
             {
-                //using (transactionscope scoped = new transactionscope())
-                //{
-                //    context.users.add(users);
-                //    context.savechanges();
-                //    context.ud.add(ud);
-                //    context.savechanges();
-                //}
-                userRepository.Add(users, ud);
-                userRepository.Save();
+                try
+                {
+                    //using (transactionscope scoped = new transactionscope())
+                    //{
+                    //    context.users.add(users);
+                    //    context.savechanges();
+                    //    context.ud.add(ud);
+                    //    context.savechanges();
+                    //}
+                    userRepository.Add(user);
+                    userRepository.Save();
+                }
+                catch (Exception e)
+                {
+                   throw e;
+                }
             }
-            catch (Exception e)
-            {
-                throw e;
-            }
+
+            
         }
-        public void UpdateUser(string UserID, string Fname, string Lname, string Email, string Password, string Phone, DateTime Birthdate, string Address, int Zip, string Country)
+        public void UpdateUser(User user)
         {
-            User users = new User();
-            UserDetails ud = new UserDetails();
-            users.UserID = UserID; //HER
-            users.Fname = Fname;
-            users.Lname = Lname;
-            users.Email = Email;
-            users.Password = Password;
-            ud.Phone = Phone;
-            ud.Birthdate = Birthdate;
-            ud.Address = Address;
-            ud.Zip = Zip;
-            ud.Country = Country;
-
+            if (IsNotEmpty(user))
+            {
             try
-            {
-                userRepository.Add(users, ud);
-                userRepository.Save();
+                {
+                    userRepository.Update(user);
+                    userRepository.Save();
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
             }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            
         }
         public User GetUsersByID(string ID)
         {
             return userRepository.GetUsersByID(ID);
         }
-
+        public List<User> GetAllUsers()
+        {
+            return userRepository.GetUsers().ToList();
+        }
         //delete user ved faktisk ikke helt om man selv skulle slette sin profil eller om admin skal kun kunne gøre det eller den dummy liste over inaktive
 
         public void DeleteUsers(string UserID)
@@ -191,6 +175,13 @@ namespace Application.Handlers
             }*/
 
             //Context.SaveChanges();
+        }
+        private bool IsNotEmpty(User user)
+        {
+            if (user.Fname == "" || user.Lname == "" || user.Email == "" || user.Password == "" || user.UserDetails.Phone == "" || user.UserDetails.Birthdate == null || user.UserDetails.Address == "" || Convert.ToString(user.UserDetails.Zip) == "" || user.UserDetails.Country == "")
+                return false;
+            else
+                return true;
         }
     }
 }

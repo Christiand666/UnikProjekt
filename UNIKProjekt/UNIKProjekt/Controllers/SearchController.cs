@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Domain.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -16,37 +18,68 @@ namespace MVC.Controllers
     {
         private readonly ILogger<SearchController> _logger;
 
+        private const string apiUrl = "https://localhost:58197/";
+
         public SearchController(ILogger<SearchController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             ViewData["Page"] = "Search";
 
-            /*var client = new HttpClient();
-            var content = new StringContent(JsonConvert.SerializeObject(new Apartment { }));
-            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");*/
-            //var response = await client.PostAsync("API/GetAllApartments");
+            List<Apartment> Results = new List<Apartment>();
 
-            return View();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage res = await client.GetAsync("api/Apartment/GetAll");
+
+                if(res.IsSuccessStatusCode)
+                {
+                    var response = res.Content.ReadAsStringAsync().Result;
+                    Results = JsonConvert.DeserializeObject<List<Apartment>>(response);
+                } else
+                {
+                    HttpContext.Session.SetString("AlertMessage", "API Error");
+                    HttpContext.Session.SetString("AlertType", "Error");
+                }
+            }
+
+            return View(Results);
         }
 
-        public IActionResult Item(int id)
+        public async Task<IActionResult> Item(string id)
         {
             ViewData["Page"] = "Search";
 
-            if (id <= 0)
+            Apartment Results = new Apartment();
+
+            using (var client = new HttpClient())
             {
-                //throw new Exception("Missing id.");
-                ViewBag.ID = "Missing id.";
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage res = await client.GetAsync("api/Apartment/GetItem?id=" + id);
+
+                if (res.IsSuccessStatusCode)
+                {
+                    var response = res.Content.ReadAsStringAsync().Result;
+                    Results = JsonConvert.DeserializeObject<Apartment>(response);
+                }
+                else
+                {
+                    HttpContext.Session.SetString("AlertMessage", "API Error");
+                    HttpContext.Session.SetString("AlertType", "Error");
+                }
             }
-            else
-            {
-                ViewBag.ID = id;
-            }
-            return View();
+
+            return View(Results);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

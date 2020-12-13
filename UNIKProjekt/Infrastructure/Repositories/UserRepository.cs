@@ -44,13 +44,13 @@ namespace Infrastructure.Repositories
             return Context.Users.ToList<User>();
         }
 
-        public void Add(User users, UserDetails ud)
+        public void Add(User user)
         {
-            var CheckUser = this.Context.Users.Where(x => x.Email == users.Email || x.UserID.Equals(Context.UserDetails.Where(s => s.Phone == ud.Phone).FirstOrDefault().UserID)).FirstOrDefault();
+            var CheckUser = this.Context.Users.Where(x => x.Email == user.Email || x.UserID.Equals(Context.UserDetails.Where(s => s.Phone == user.UserDetails.Phone).FirstOrDefault().UserID)).FirstOrDefault();
             if (CheckUser != null)
                 throw new Exception("Brugeren eksistere allerede, Login eller tryk glemt kodeord");
 
-            Context.Users.Add(users);
+            Context.Users.Add(user);
             Context.SaveChanges();
 
         }
@@ -65,21 +65,21 @@ namespace Infrastructure.Repositories
         }
 
 
-        public void Update(User users, UserDetails ud)
+        public void Update(User user)
         {
-            var contextusers = Context.Users.Where(x => x.UserID == users.UserID).FirstOrDefault();
-            var contextUserDetails = Context.UserDetails.Where(x => x.UserID.Equals(users.UserID)).FirstOrDefault();
+            var contextusers = Context.Users.Where(x => x.UserID == user.UserID).FirstOrDefault();
+            var contextUserDetails = Context.UserDetails.Where(x => x.UserID.Equals(user.UserID)).FirstOrDefault();
             if (contextusers == null)
                 throw new Exception("brugeren blev ikke fundet");
 
-            if (Context.Users.Any(x => x.Email == users.Email)) throw new Exception("Emailen er allerede taget i brug");
+            if (Context.Users.Any(x => x.Email == user.Email)) throw new Exception("Emailen er allerede taget i brug");
             //var EmailExsist = Context.Users.Where(x => x.Email == users.Email).ToList();
             //if (EmailExsist.Count() > 0)
             //{
             //    if(EmailExsist[0] !=contextusers)
             //    throw new Exception("Emailen er allerede taget i brug");
             //}
-            if (Context.UserDetails.Any(x => x.Phone == ud.Phone))
+            if (Context.UserDetails.Any(x => x.Phone == user.UserDetails.Phone))
                 throw new Exception("Telefonummeret er allerede taget i brug");
 
             //var PhoneExsist = Context.Users.Where(x => x.Phone == users.Phone).ToList();
@@ -89,14 +89,14 @@ namespace Infrastructure.Repositories
             //        throw new Exception("Telefonummeret er allerede taget i brug");
             //}
 
-            contextusers.Fname = users.Fname;
-            contextusers.Lname = users.Lname;
-            contextusers.Email = users.Email;
-            contextUserDetails.Phone = ud.Phone;
-            contextUserDetails.Birthdate = ud.Birthdate;
-            contextUserDetails.Address = ud.Address;
-            contextUserDetails.Zip = ud.Zip;
-            contextUserDetails.Country = ud.Country;
+            contextusers.Fname = user.Fname;
+            contextusers.Lname = user.Lname;
+            contextusers.Email = user.Email;
+            contextUserDetails.Phone = user.UserDetails.Phone;
+            contextUserDetails.Birthdate = user.UserDetails.Birthdate;
+            contextUserDetails.Address = user.UserDetails.Address;
+            contextUserDetails.Zip = user.UserDetails.Zip;
+            contextUserDetails.Country = user.UserDetails.Country;
 
 
         }

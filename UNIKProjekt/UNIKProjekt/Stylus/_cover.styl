@@ -1,0 +1,70 @@
+// Main cover
+.cover
+    position: relative
+    
+    height: 40vh
+    max-height: 400px
+    
+    .coverImage
+        position: absolute
+
+        top: -(padMain)
+        left: -(padMain)
+
+        width: calc(100% + 40px)
+        height: 100%
+
+        background-color: #333
+        background-image: url('../images/apartments/demo-image.jpg')
+        background-size: cover
+        background-position: center center
+
+        opacity: .7
+
+    .coverContent
+        position: absolute
+
+        top: padMain
+        left: padMain
+
+        background-color: rgba(0,0,0,.7)
+
+        padding: 10px 15px
+
+        font-size: 180%
+
+        text-shadow: 2px 2px 1px rgba(0,0,0,.4)
+        box-shadow: shaDefault
+
+        border-radius: 3px
+
+        box-sizing: border-box
+
+        h1
+            font-weight: 700
+            margin: 0
+
+        h2
+            font-size: .75em
+            font-style: italic
+
+        h1, h2
+            color: white
+
+// Side cover
+
+.sideCover
+    position: relative
+
+    width: 100%
+    height: 100vh
+    max-height: 600px
+
+    .image
+        position: absolute
+
+        width: 100%
+        height: 100%
+
+        background-size: cover
+        background-position: center center

@@ -8,7 +8,7 @@ namespace Infrastructure.Interface
     public interface IApartmentRepository : IDisposable
     {
         List<Apartment> GetApartment();
-        Apartment GetApartmentsByID(Guid ID);
+        Apartment GetApartmentByID(string ID);
 
         void Add(Apartment apartment);
         void Delete(Apartment apartment);

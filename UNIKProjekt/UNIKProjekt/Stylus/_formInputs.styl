@@ -1,0 +1,157 @@
+form
+    &.right
+        float: left
+
+    ul
+        list-style: none
+
+        padding: 0
+
+        &.noMargin
+            margin: 0
+
+        li
+            &.full
+                display: block !important
+
+                input[type="text"],
+                input[type="password"],
+                input[type="email"],
+                input[type="number"],
+                input[type="search"],
+                input[type="phone"],
+                input[type="date"],
+                input[type="submit"],
+                textarea, button, select
+                    width: 100%
+            
+            input, textarea, button, select
+                &.full
+                    width: 100%
+                    min-width: 100% !important
+
+            label
+                display: inline-block
+
+                margin: 0 0 10px 0
+
+                &.checkboxContainer
+                    position: relative                    
+                    display: block
+
+                    line-height: 25px
+
+                    padding-left: 35px
+
+                    cursor: pointer
+
+                    user-select: none
+
+                    input
+                        position: absolute
+
+                        width: 0
+                        height: 0
+
+                        opacity: 0
+
+                        cursor: pointer
+                    
+                    .checkboxItem
+                        position: absolute
+
+                        width: 25px
+                        height: 25px
+
+                        background-color: #eee
+
+                        top: 0
+                        left: 0
+
+                        transition: background-color transSpeed ease, transform transSpeed ease
+
+                        &:after
+                            position: absolute
+                            content: ""
+                            display: none
+
+                        &:after
+                            top: 5px
+                            left: 9px
+
+                            width: 5px
+                            height: 10px
+
+                            border: solid lighten(colMainBlue, 20)
+                            border-width: 0 3px 3px 0
+                            transform: rotate(45deg)
+
+                    &:hover input ~ .checkboxItem
+                        background-color: #ccc
+
+                    & input:checked ~ .checkboxItem
+                        background-color: colMainBlue
+
+                        &:after
+                            display: block;
+                        
+
+            input, textarea, button, select
+                position: relative
+                display: block
+
+                margin: 0 0 10px 0
+                
+                appearance: none
+                outline: none
+
+            select
+                appearance: auto
+
+            input[type="text"],
+            input[type="password"],
+            input[type="email"],
+            input[type="number"],
+            input[type="search"],
+            input[type="phone"],
+            input[type="date"],
+            select
+                min-width: 250px
+                height: 45px
+
+                padding: 0 10px
+
+                border: 1px solid rgba(0,0,0,.05)
+                border-bottom: 3px solid rgba(0,0,0,.1)
+
+                transition: border-bottom-color transSpeed ease
+
+                &::placeholder
+                    font-style: italic
+
+                &:hover
+                    border-bottom-color: rgba(0,0,0,.2)
+
+                &:active, &:focus
+                    border-bottom-color: colMainBlue
+
+            textarea
+                min-width: 250px
+                max-width: 100%
+                min-height: 200px
+
+                padding: 10px
+
+                border: 1px solid rgba(0,0,0,.05)
+                border-bottom: 3px solid rgba(0,0,0,.1)
+
+                transition: border-bottom-color transSpeed ease
+
+                &::placeholder
+                    font-style: italic
+
+                &:hover
+                    border-bottom-color: rgba(0,0,0,.2)
+
+                &:active, &:focus
+                    border-bottom-color: colMainBlue

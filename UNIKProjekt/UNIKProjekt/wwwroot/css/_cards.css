@@ -1,0 +1,20 @@
+.cardContainer {
+  display: block;
+}
+.card {
+  margin: 0 0 10px 0;
+}
+.card.cardHeader {
+  background-color: rgba(0,0,0,0.1);
+  padding: 30px 40px;
+}
+.card.cardHeader h1 {
+  font-size: 1.5em;
+}
+.formCard {
+  padding: padMain;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 3px;
+  box-shadow: shaDefaultMedium;
+  box-sizing: border-box;
+}

@@ -1,29 +1,23 @@
 ﻿<Properties StartupConfiguration="Multiple Projects">
-  <MonoDevelop.Ide.Workbench ActiveDocument="API/Controllers/ApartmentController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UNIKProjekt/Controllers/SearchController.cs">
     <Files>
-      <File FileName="API/Controllers/ApartmentController.cs" Line="62" Column="27" />
+      <File FileName="API/Controllers/ApartmentController.cs" Line="77" Column="42" />
+      <File FileName="UNIKProjekt/Controllers/SearchController.cs" Line="40" Column="89" />
+      <File FileName="UNIKProjekt/Controllers/MyPageController.cs" />
+      <File FileName="Application/Handlers/UserHandler.cs" />
+      <File FileName="UNIKProjekt/Views/Search/Index.cshtml" />
       <File FileName="Application/Handlers/ApartmentHandler.cs" />
-      <File FileName="Infrastructure/Repositories/ApartmentRepository.cs" Line="31" Column="29" />
-      <File FileName="Infrastructure/DB.cs" />
-      <File FileName="UNIKProjekt/appsettings.json" />
-      <File FileName="API/appsettings.json" />
-      <File FileName="API/Startup.cs" />
-      <File FileName="UNIKProjekt/Startup.cs" />
-      <File FileName="Domain/Models/Apartment.cs" />
-      <File FileName="Infrastructure/Interface/IDB.cs" />
-      <File FileName="Domain/Models/User.cs" Line="43" Column="22" />
-      <File FileName="Domain/Models/UserDetails.cs" />
-      <File FileName="Domain/Models/UserRequirements.cs" />
+      <File FileName="Infrastructure/Repositories/ApartmentRepository.cs" />
+      <File FileName="UNIKProjekt/Views/Search/Item.cshtml" />
+      <File FileName="API/Properties/launchSettings.json" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="UNIKProjekt" expanded="True">
             <Node name="API" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="ApartmentController.cs" selected="True" />
-              </Node>
-              <Node name="Models" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Properties" expanded="True" />
             </Node>
             <Node name="Application" expanded="True">
               <Node name="Handlers" expanded="True" />
@@ -36,7 +30,13 @@
               <Node name="Repositories" expanded="True" />
             </Node>
             <Node name="MVC" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="SearchController.cs" selected="True" />
+              </Node>
               <Node name="Properties" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Search" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>

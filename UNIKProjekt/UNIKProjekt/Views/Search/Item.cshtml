@@ -1,5 +1,17 @@
-@{
-    ViewData["Title"] = "Item " + ViewBag.ID;
-}
+@using Domain.Models
+@using Infrastructure.Interface
+@model Apartment
+@inject IUserAuth ua
 
-<h1>Bolig @ViewBag.ID</h1>
+@{ ViewData["title"] = @Model.Address; }
+
+<div class="leaseContainer">
+    <h1>@Model.Address</h1>
+
+    @if(ua.isLoggedIn()) {
+        <span>SKRIV MIG OP</span>
+    } else {
+        <span>Log ind for at ansøge om denne bolig</span>
+    }
+    <a href=""></a>
+</div>

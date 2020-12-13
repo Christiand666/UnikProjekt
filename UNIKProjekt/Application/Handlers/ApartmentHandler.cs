@@ -8,10 +8,11 @@ namespace Application.Handlers
 {
     public interface IApartmentHandler
     {
-        void CreateApartment(Guid ID, string Address, int Zip, string City, int RoomCount, int SqrMeter, int Floors, double Rent, string Comment, bool AllowPets, bool Shareable, bool Balcony, bool IsApartment, bool IsHouse, bool IsRented);
-        void UpdateApartment(Guid ID, string Address, int Zip, string City, int RoomCount, int SqrMeter, int Floors, double Rent, string Comment, bool AllowPets, bool Shareable, bool Balcony, bool IsApartment, bool IsHouse, bool IsRented);
-        void DeleteApartment(Guid ID);
+        void CreateApartment(string ID, string Address, int Zip, string City, int RoomCount, int SqrMeter, int Floors, double Rent, string Comment, bool AllowPets, bool Shareable, bool Balcony, bool IsApartment, bool IsHouse, bool IsRented);
+        void UpdateApartment(string ID, string Address, int Zip, string City, int RoomCount, int SqrMeter, int Floors, double Rent, string Comment, bool AllowPets, bool Shareable, bool Balcony, bool IsApartment, bool IsHouse, bool IsRented);
+        void DeleteApartment(string ID);
         List<Apartment> GetAll();
+        Apartment GetApartment(string ID);
     }
 
     public class ApartmentHandler : IApartmentHandler
@@ -24,7 +25,7 @@ namespace Application.Handlers
         }
         private readonly IDB Context;
 
-        public void CreateApartment(Guid ID, string Address, int Zip, string City, int RoomCount, int SqrMeter, int Floors, double Rent, string Comment, bool AllowPets, bool Shareable, bool Balcony, bool IsApartment, bool IsHouse, bool IsRented)
+        public void CreateApartment(string ID, string Address, int Zip, string City, int RoomCount, int SqrMeter, int Floors, double Rent, string Comment, bool AllowPets, bool Shareable, bool Balcony, bool IsApartment, bool IsHouse, bool IsRented)
         {
 
             Apartment aps = new Apartment();
@@ -55,7 +56,7 @@ namespace Application.Handlers
                 //in da treashcan
             }
         }
-        public void UpdateApartment(Guid ID, string Address, int Zip, string City, int RoomCount, int SqrMeter, int Floors, double Rent, string Comment, bool AllowPets, bool Shareable, bool Balcony, bool IsApartment, bool IsHouse, bool IsRented)
+        public void UpdateApartment(string ID, string Address, int Zip, string City, int RoomCount, int SqrMeter, int Floors, double Rent, string Comment, bool AllowPets, bool Shareable, bool Balcony, bool IsApartment, bool IsHouse, bool IsRented)
         {
 
             Apartment aps = new Apartment();
@@ -75,7 +76,7 @@ namespace Application.Handlers
             aps.IsHouse = IsHouse;
             aps.IsRented = IsRented;
 
-            if (apartmentRepository.GetApartmentsByID(ID) != null)
+            if (apartmentRepository.GetApartmentByID(ID) != null)
             {
                 try
                 {
@@ -94,10 +95,10 @@ namespace Application.Handlers
             }
 
         }
-        public void DeleteApartment(Guid apartmentID)
+        public void DeleteApartment(string apartmentID)
         {
 
-            Apartment apartment = apartmentRepository.GetApartmentsByID(apartmentID);
+            Apartment apartment = apartmentRepository.GetApartmentByID(apartmentID);
 
             apartmentRepository.Delete(apartment);
             apartmentRepository.Save();
@@ -137,6 +138,11 @@ namespace Application.Handlers
         public List<Apartment> GetAll()
         {
             return apartmentRepository.GetApartment();
+        }
+
+        public Apartment GetApartment(string ID)
+        {
+            return apartmentRepository.GetApartmentByID(ID);
         }
     }
 }
