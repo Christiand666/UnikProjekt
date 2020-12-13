@@ -26,11 +26,10 @@ namespace Infrastructure.Repositories
             try
             {
                 return Context.Apartments.Where(x => x.IsRented.Equals(false)).ToList();
-            } catch(Exception e)
+            } catch(Exception)
             {
                 return null;
             }
-            //return Context.Apartments.ToList<Apartment>();
         }
 
         public void Add(Apartment apartment)

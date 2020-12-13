@@ -1,28 +1,8 @@
 @using Infrastructure.Interface
 @using Domain.Models
+@using Domain.Models.ApartmentSearch
 @model List<Apartment>
 @inject IUserAuth ua
-@{
-    ViewData["Title"] = "Søg bolig";
-    var arr = new List<string> {
-        "6000 Kolding",
-        "7100 Vejle"
-    };
-
-    var others = new List<string> {
-        "Husdyr tilladt",
-        "Delevenlig",
-        "Møbleret"
-    };
-
-    var type = new List<string> {
-        "Villa",
-        "Rækkehus",
-        "Lejlighed",
-        "Værelse",
-        "Ungdomsbolig"
-    };
-}
 
 <h1>Søg bolig</h1>
 
@@ -33,12 +13,12 @@
         <form action="" id="type" class="collapse on">
             <ul>
                 @{
-                    for (int i = 0; i < type.Count; i++)
+                    for (int i = 0; i < ApartmentSearchCriteriaData.Type.Count; i++)
                     {
                         <li>
                             <label class="checkboxContainer">
-                                @type[i]
-                                <input type="checkbox" id="type[i]" name="type[i]">
+                                @ApartmentSearchCriteriaData.Type[i]
+                                <input type="checkbox" id="apar-@i" name="apar-@i">
                                 <span class="checkboxItem"></span>
                             </label>
                         </li>
@@ -53,12 +33,11 @@
         <form action="" id="area" class="collapse on">
             <ul>
                 @{
-                    for (int i = 0; i < arr.Count; i++)
-                    {
+                    foreach(var key in ApartmentSearchCriteriaData.Area.Keys) {
                         <li>
                             <label class="checkboxContainer">
-                                @arr[i]
-                                <input type="checkbox" id="o[i]" name="o[i]">
+                                @key @ApartmentSearchCriteriaData.Area[key]
+                                <input type="checkbox" id="area-@key" name="area-@key">
                                 <span class="checkboxItem"></span>
                             </label>
                         </li>
@@ -72,12 +51,12 @@
         <form action="" id="others" class="collapse on">
             <ul>
                 @{
-                    for (int i = 0; i < others.Count; i++)
+                    for (int i = 0; i < ApartmentSearchCriteriaData.Other.Count; i++)
                     {
                         <li>
                             <label class="checkboxContainer">
-                                @others[i]
-                                <input type="checkbox" id="others[i]" name="others[i]">
+                                @ApartmentSearchCriteriaData.Other[i]
+                                <input type="checkbox" id="other-@i" name="other-@i">
                                 <span class="checkboxItem"></span>
                             </label>
                         </li>
@@ -105,11 +84,8 @@
             </div>
 
             <div class="col full">
-                <!-- Content -->
-                <hr>
-
-                <form action="">
-                    <ul>
+                <form action="" class="cl">
+                    <ul class="cl" style="margin:0; padding: 0;">
                         <li class="col col-6 col-t-6 mcol-6">
                             <label for="minRent">Min. Husleje</label>
                             <input type="number" name="minRent" id="minRent" minlength="1" value="1000" class="full">
@@ -141,10 +117,14 @@
                                 <input type="number" name="maxSize" id="maxSize" minlength="1" value="200" class="full">
                             </li>
                         </div>
+
+                        <div class="col full no-margin">
+                            <li class="full">
+                                <input type="submit" class="btn btnPrimary" style="margin: 0" value="Opdater filtre">
+                            </li>
+                        </div>
                     </ul>
                 </form>
-
-                <hr>
             </div>
         </div>
 
@@ -164,7 +144,7 @@
                             <a asp-controller="Search" asp-action="Item" asp-route-id="@item.ApartmentID" class="btn btnPrimary btnSmall full">Se mere</a>
                             @if (ua.isLoggedIn())
                             {
-                                <a asp-controller="Search" asp-action="Item" asp-route-id="@item.ApartmentID" class="btn btnDefault btnSmall full">Skriv mig op</a>
+                                <a asp-controller="Search" asp-action="AddToWishlist" asp-route-id="@item.ApartmentID" class="btn btnDefault btnSmall full">Skriv mig op</a>
                             }
                         </div>
                     </div>

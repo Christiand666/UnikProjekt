@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="UNIKProjekt/Controllers/SearchController.cs">
     <Files>
       <File FileName="API/Controllers/ApartmentController.cs" Line="77" Column="42" />
-      <File FileName="UNIKProjekt/Controllers/SearchController.cs" Line="40" Column="89" />
+      <File FileName="UNIKProjekt/Controllers/SearchController.cs" Line="45" Column="88" />
       <File FileName="UNIKProjekt/Controllers/MyPageController.cs" />
       <File FileName="Application/Handlers/UserHandler.cs" />
       <File FileName="UNIKProjekt/Views/Search/Index.cshtml" />

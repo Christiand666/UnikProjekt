@@ -82,6 +82,30 @@ namespace MVC.Controllers
             return View(Results);
         }
 
+        public async Task<IActionResult> AddToWishList(string id, string uid) {
+
+            /*using(var client = new HttpClient()) {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage res = await client.PostAsync("api/Apartment/AddToWishlist", wishlist);
+
+                if (res.IsSuccessStatusCode)
+                {
+                    var response = res.Content.ReadAsStringAsync().Result;
+                    Results = JsonConvert.DeserializeObject<Apartment>(response);
+                }
+                else
+                {
+                    HttpContext.Session.SetString("AlertMessage", "API Error");
+                    HttpContext.Session.SetString("AlertType", "Error");
+                }
+            }*/
+
+            return RedirectToAction("Index");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

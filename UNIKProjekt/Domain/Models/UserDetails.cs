@@ -15,7 +15,6 @@ namespace Domain.Models
         [Column(TypeName = "VARCHAR(64)")]
         public string UserID { get; set; }
         public User User { get; set; }
-
         
         [Required]
         [Column(TypeName = "VARCHAR(32)")]

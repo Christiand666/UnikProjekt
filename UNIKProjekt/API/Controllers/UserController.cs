@@ -30,7 +30,8 @@ namespace API.Controllers
                 ErrorMessage err = new ErrorMessage
                 {
                     Message = "Failed to create user",
-                    ErrorCode = 502
+                    ErrorCode = 502,
+                    Exception = e.Message
                 };
                 return StatusCode(502, err);
             }
@@ -48,7 +49,8 @@ namespace API.Controllers
                 ErrorMessage err = new ErrorMessage
                 {
                     Message = "Failed to find user",
-                    ErrorCode = 502
+                    ErrorCode = 502,
+                    Exception = e.Message
                 };
                 return StatusCode(502, err);
             }
@@ -66,7 +68,8 @@ namespace API.Controllers
                 ErrorMessage err = new ErrorMessage
                 {
                     Message = "Failed to get users",
-                    ErrorCode = 502
+                    ErrorCode = 502, 
+                    Exception = e.Message
                 };
                 return StatusCode(502, err);
             }
@@ -84,7 +87,8 @@ namespace API.Controllers
                 ErrorMessage err = new ErrorMessage
                 {
                     Message = "Failed to update user",
-                    ErrorCode = 502
+                    ErrorCode = 502,
+                    Exception = e.Message
                 };
                 return StatusCode(502, err);
              } 
@@ -102,7 +106,8 @@ namespace API.Controllers
                 ErrorMessage err = new ErrorMessage
                 {
                     Message = "Failed to delete user",
-                    ErrorCode = 502
+                    ErrorCode = 502,
+                    Exception = e.Message
                 };
                 return StatusCode(502, err);
             }

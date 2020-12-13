@@ -18,11 +18,12 @@ namespace Application.Handlers
     {
         private readonly IDB Context;
         private readonly IUserHandler userHandler;
+        private readonly IApartmentRepository apartmentRepository;
 
         public WaitingListHandler(IApartmentRepository ApartmentRepository, IDB context)
         {
             Context = context;
-
+            apartmentRepository = ApartmentRepository;
         }
 
         public void Create(WaitingList list)

@@ -10,22 +10,26 @@ namespace Domain.Models
     {
         [Key]
         [Required]
-        [Column(TypeName = "VARCHAR(250)")]
-
+        [Column(TypeName = "VARCHAR(64)")]
         public string ApartmentID { get; set; }
 
-        [Column(TypeName = "VARCHAR(250)")]
+        [Column(TypeName = "VARCHAR(64)")]
+        public string LandlordID { get; set; }
+        public User Landlord { get; set; }
 
+        [Column(TypeName = "VARCHAR(64)")]
         public string UserID { get; set; }
         public User User { get; set; }
 
         [Required]
+        [Column(TypeName = "VARCHAR(255)")]
         public string Address { get; set; }
 
         [Required]
         public int Zip { get; set; }
 
         [Required]
+        [Column(TypeName = "VARCHAR(255)")]
         public string City { get; set; }
 
         [Required]
