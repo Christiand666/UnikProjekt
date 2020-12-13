@@ -122,12 +122,12 @@ namespace Application.Handlers
             else
             {
                 string mail = Email.Trim(); // Removes whitespace before and after text.
-                string pwd = Hashing.Hash(Password);
+                //string pwd = Hashing.Hash(Password);
 
-                var user = Context.Users.Where(x => x.Email == mail && x.Password == pwd).FirstOrDefault();
+                //var user = Context.Users.Where(x => x.Email == mail && x.Password == pwd).FirstOrDefault();
                 Context.SaveChanges();
 
-                if (user != null) return true;
+                //if (user != null) return true;
             }
 
             return false;
