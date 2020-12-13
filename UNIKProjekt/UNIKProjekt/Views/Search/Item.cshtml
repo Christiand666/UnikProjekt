@@ -1,5 +1,6 @@
-@{
-    ViewData["Title"] = "Item " + ViewBag.ID;
-}
+@using Domain.Models
+@model Apartment
 
-<h1>Bolig @ViewBag.ID</h1>
+@{ ViewData["title"] = @Model.Address; }
+
+<h1>@Model.Address</h1>

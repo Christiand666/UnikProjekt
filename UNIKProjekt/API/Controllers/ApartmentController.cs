@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Models;
 using Application.Handlers;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -54,7 +55,26 @@ namespace API.Controllers
         [Route("GetAll")]
         public IActionResult GetAllApartments()
         {
-            List<Domain.Models.Apartment> ApartmentResponse = apartmentHandler.GetAll();
+            List<Apartment> ApartmentResponse = apartmentHandler.GetAll();
+
+            if (ApartmentResponse != null)
+                return Ok(ApartmentResponse);
+            else
+            {
+                ErrorMessage err = new ErrorMessage
+                {
+                    Message = "Some error",
+                    ErrorCode = 502
+                };
+                return StatusCode(502, err);
+            }
+        }
+
+        [HttpGet]
+        [Route("GetItem")]
+        public IActionResult GetApartment(string ID)
+        {
+            Apartment ApartmentResponse = apartmentHandler.GetApartment(ID);
 
             if (ApartmentResponse != null)
                 return Ok(ApartmentResponse);

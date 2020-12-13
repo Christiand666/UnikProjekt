@@ -16,7 +16,7 @@ namespace Infrastructure.Repositories
             this.Context = dB;
         }
 
-        public Apartment GetApartmentsByID(Guid ID)
+        public Apartment GetApartmentByID(string ID)
         {
             return Context.Apartments.Where<Apartment>(x => x.ApartmentID == ID.ToString()).FirstOrDefault();
         }

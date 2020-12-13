@@ -1,4 +1,6 @@
 @using Infrastructure.Interface
+@using Domain.Models
+@model List<Apartment>
 @inject IUserAuth ua
 @{
     ViewData["Title"] = "Søg bolig";
@@ -148,6 +150,28 @@
 
         <div class="col full leaseItemContainer">
             @{
+                foreach (var item in Model)
+                {
+                    <div class="col col-4 col-t-4 mcol-6 leaseItem" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quam fuga architecto repudiandae sunt tenetur enim atque consequatur accusamus doloribus, iste, id nostrum fugiat? Architecto consequuntur maiores quia non cumque!">
+                        <div class="image" style="background-image:url(https://via.placeholder.com/250x200);"></div>
+                        <div class="content">
+                            <h3>@item.Address</h3>
+                            <small>@item.Zip @item.City</small>
+                            <div class="desc">
+                                @item.Comment
+                            </div>
+                            <h4>@item.Rent,-/md</h4>
+                            <a asp-controller="Search" asp-action="Item" asp-route-id="@item.ApartmentID" class="btn btnPrimary btnSmall full">Se mere</a>
+                            @if (ua.isLoggedIn())
+                            {
+                                <a asp-controller="Search" asp-action="Item" asp-route-id="@item.ApartmentID" class="btn btnDefault btnSmall full">Skriv mig op</a>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+
+            @*@{
                 for (int i = 1; i <= 12; i++)
                 {
                     <div class="col col-4 col-t-4 mcol-6 leaseItem" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quam fuga architecto repudiandae sunt tenetur enim atque consequatur accusamus doloribus, iste, id nostrum fugiat? Architecto consequuntur maiores quia non cumque!">
@@ -167,7 +191,7 @@
                         </div>
                     </div>
                 }
-            }
+            }*@
         </div>
     </div>
 </div>
