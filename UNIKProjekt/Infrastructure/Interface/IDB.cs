@@ -12,7 +12,7 @@ namespace Infrastructure.Interface
         DbSet<Apartment> Apartments { get; set; }
         DbSet<UserDetails> UserDetails { get; set; }
         DbSet<UserRequirements> UserRequirements { get; set; }
-        //DbSet<WaitingList> WaitingList { get; set; }
+        DbSet<WaitingList> WaitingList { get; set; }
 
         void Dispose(bool disposing);
         void SaveChanges();
