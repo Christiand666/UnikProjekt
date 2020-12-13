@@ -1,0 +1,52 @@
+@using Infrastructure.Interface
+@inject IUserAuth ua
+
+@if(ua.isLoggedIn()) {
+    
+}
+
+<h1>Mine oplysninger</h1>
+
+<form asp-action="" asp-controller="" method="post">
+    <ul>
+        <li>
+            <label for="Email" class="required">Email</label>
+            <input type="email" id="Email" name="Email" placeholder="Min@Mail.dk" required maxlength="255">
+        </li>
+
+        <li>
+            <label for="Fname" class="required">Fornavn</label>
+            <input type="text" id="Fname" name="Fname" placeholder="Hans" required maxlength="255">
+        </li>
+
+        <li>
+            <label for="Lname" class="required">Efternavn</label>
+            <input type="text" id="Lname" name="Lname" placeholder="Hansen" required maxlength="255">
+        </li>
+
+        <li>
+            <label for="Address" class="required">Adresse</label>
+            <input type="text" id="Address" name="Address" placeholder="FakeRoad 69" required maxlength="255">
+        </li>
+
+        <li>
+            <label for="Zip" class="required">By</label>
+            <select name="" id="">
+                <option value="6000">6000 Kolding</option>
+                <option value="7000">7000 Fredericia</option>
+                <option value="7100">7100 Vejle</option>
+            </select>
+        </li>
+
+        <li>
+            <label for="Phone" class="required">Telefonnummer</label>
+            <input type="text" id="Phone" name="Phone" placeholder="Hans" required maxlength="32">
+        </li>
+
+        <hr>
+
+        <li>
+            <input type="submit" class="btn btnPrimary" value="Opdater mine oplysninger">
+        </li>
+    </ul>
+</form>

@@ -1,0 +1,79 @@
+@using Microsoft.AspNetCore.Http
+@using Infrastructure.Interface
+@inject IUserAuth ua
+
+@{
+    string userName = "Undefined.";
+
+    if (Context.Session.GetString("LoggedIn") != null)
+    {
+        userName = Context.Session.GetString("User");
+    }
+}
+
+<h1>Velkommen @userName!</h1>
+
+<ul>
+    <li>
+        <a asp-action="Profile" asp-controller="MyPage">Min profil</a>
+    </li>
+
+    <li>
+        <a asp-action="Information" asp-controller="Account">Mine oplysninger</a>
+    </li>
+
+    @if (ua.isUser())
+    {
+        <li>
+            <a asp-action="" asp-controller="MyPage">Mine tilbud</a>
+        </li>
+
+        <li>
+            <a asp-action="" asp-controller="MyPage">Mine ønsker</a>
+        </li>
+    }
+
+    <hr>
+
+    <li>
+        <a asp-action="ChangePassword" asp-controller="Account">Skift adgangskode</a>
+    </li>
+
+    <li>
+        <a asp-action="SignOut" asp-controller="MyPage">Log Ud</a>
+    </li>
+</ul>
+
+@* Landlord area *@
+
+@if (ua.isLandlord())
+{
+    <h2>Udlejer administration</h2>
+
+    <ul>
+        <li>
+            <a asp-action="" asp-controller="">Opret lejemål</a>
+        </li>
+
+        <li>
+            <a asp-action="" asp-controller="">Administrer lejemål</a>
+        </li>
+
+        <li>
+            <a asp-action="" asp-controller="">Svar ansøgninger</a>
+        </li>
+
+        <li>
+            <a asp-action="" asp-controller="">Administrer udlejer oplysninger</a>
+        </li>
+    </ul>
+}
+
+@* Admin area *@
+
+@if (ua.isAdmin())
+{
+    <h2>Administrator</h2>
+
+    <p>Du er administrator. Gør hvad det passer dig.</p>
+}

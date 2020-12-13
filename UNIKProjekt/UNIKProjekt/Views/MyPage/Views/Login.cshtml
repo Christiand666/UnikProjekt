@@ -1,0 +1,41 @@
+@model UserViewModel
+
+<div class="col full no-marin">
+    <div class="col col-8 col-t-6">
+        <div class="sideCover">
+            <div class="image" style="background-image:url(../images/apartments/family.jpg);"></div>
+        </div>
+    </div>
+
+    <div class="col col-4 col-t-6 formCard">
+        <h1>Log ind</h1>
+
+        <form asp-controller="MyPage" asp-action="SignIn" method="post" class="beautify">
+            <ul>
+                <li class="full">
+                    <label asp-for="Email" class="required">Email</label>
+                    <input type="email" name="Email" id="Email" placeholder="Email" value="@Model.Email" required>
+                </li>
+
+                <li class="full">
+                    <label asp-for="Password" class="required">Adgangskode</label>
+                    <input type="password" name="Password" id="Password" placeholder="Adgangskode ..." value="@Model.Password" required>
+                </li>
+
+                <li class="full">
+                    <input type="submit" value="Log Ind" class="btnPrimary full">
+                </li>
+            </ul>
+        </form>
+
+        <small>Er du ikke allerede bruger? <a asp-controller="MyPage" asp-action="Register">Klik her</a> for at registrer dig helt gratis!</small>
+
+        <form asp-controller="MyPage" asp-action="QuickSignIn" method="post">
+            <ul>
+                <li class="full">
+                    <input type="submit" value="Kvik Log Ind" class="btnDefault full">
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>

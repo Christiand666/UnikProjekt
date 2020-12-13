@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using Application.Classes;
+using Domain.Models;
 using Infrastructure.Interface;
 using System;
 using System.Collections.Generic;

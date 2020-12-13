@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Nyheder";
+}
+
+<h1>Nyheder</h1>
+
+<div class="newsContainer">
+    @for(int i = 1; i <= 20; i++) {
+        <div class="newsItem">
+            <div class="newsTitle">
+                <h1>Nyhed #@i</h1>
+            </div>
+            <div class="newsContent">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio eveniet ipsa corporis error natus itaque ratione placeat, autem voluptatibus recusandae tempore ipsum voluptatem at facere esse sequi, assumenda nostrum repudiandae.
+            </div>
+            <div class="newsButton">
+                <a asp-action="Article" asp-route-id="@i" asp-route-title="Nyhed-@i" asp-controller="Home" class="btn btnPrimary btnSmall">Læs hele nyheden</a>
+            </div>
+            <div class="newsInfo cl">
+                <div class="newsAuthor">
+                    Skrevet af <a asp-controller="" asp-action="">FAKEBOVIA</a>
+                </div>
+                <div class="newsPosted">
+                    Slået op for 4 timer siden
+                </div>
+            </div>
+        </div>
+    }
+</div>
