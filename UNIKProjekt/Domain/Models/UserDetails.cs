@@ -39,6 +39,8 @@ namespace Domain.Models
 
         public string AnimalType { get; set; }
 
+        public string Comment { get; set; }
+
         [Timestamp()]
         public byte[] RowVersion { get; set; }
 

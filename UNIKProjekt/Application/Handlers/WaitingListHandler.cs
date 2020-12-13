@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Application.Classes;
 using Domain.Models;
 using Infrastructure.Interface;
 
@@ -38,6 +39,7 @@ namespace Application.Handlers
             if (Apartment == null)
                 throw new Exception("Apartment not found");
 
+            list.ApplicationScore = ScoreApplication(Apartment.ApplicantGoals, User);
             Context.WaitingList.Add(list);
             Context.SaveChanges();
 
@@ -66,34 +68,16 @@ namespace Application.Handlers
             return AllAparmentsWritenUp;
         }
 
-        public List<Apartment> GetBest(ApartmentDemands demands, int amount)
+        public double ScoreApplication(ApplicantGoals goals, User user)
         {
-            SortedDictionary<double, Apartment> matches = new SortedDictionary<double, Apartment>();
+            Age AgeOfApplicant = new Age(user.UserDetails.Birthdate);
+            Age TargetAge = new Age(goals.Birthdate);
+            //Remember to add factors here
+            int petMatch = user.UserDetails.Animals ? Convert.ToInt32(goals.Animals) : 1;
+            double ageMatch = (Math.Abs(AgeOfApplicant.Value - TargetAge.Value)) / TargetAge.Value;
+            double hasComment = user.UserDetails.Comment != null ? 1.3 : 1;
 
-            IEnumerable<Apartment> apartments = apartmentRepository.GetApartment();
-
-            foreach (Apartment a in apartments)
-            {
-                double scoreTreshhold = 7; //WIP number
-
-                //Remember to add factors here
-                int petMatch = demands.AllowPets ? Convert.ToInt32(a.AllowPets) : 0;
-                double roomMatch = (a.RoomCount - demands.RoomCount) / demands.RoomCount;
-                double SqrMeterMatch = (a.SqrMeter - demands.SqrMeter) / demands.SqrMeter;
-                double RentMatch = (demands.Rent - a.Rent) / demands.Rent;
-                double ShareableMatch = demands.Shareable == a.IsShareable ? 1 : 0;
-                double BalconyMatch = demands.Balcony == a.Balcony ? 1 : 0;
-                double IsApartmentMatch = demands.IsApartment == a.IsApartment ? 1 : 0;
-                double IsHouseMatch = demands.IsHouse == a.IsHouse ? 1 : 0;
-
-                double apartmentScore = petMatch * (roomMatch + SqrMeterMatch + RentMatch + ShareableMatch + BalconyMatch + IsApartmentMatch + IsHouseMatch);
-
-                if (apartmentScore > scoreTreshhold)
-                {
-                    matches.Add(apartmentScore, a);
-                }
-            }
-            return new List<Apartment>();
+            return petMatch * ageMatch * hasComment;
         }
     }
 }

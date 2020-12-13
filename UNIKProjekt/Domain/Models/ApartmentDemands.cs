@@ -9,7 +9,7 @@ namespace Domain.Models
     {
         [Key]
         [Required]
-        public Guid DemandsID { get; set; }
+        public string DemandsID { get; set; }
 
         [Required]
         public int Zip { get; set; }

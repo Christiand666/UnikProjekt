@@ -22,6 +22,8 @@ namespace Domain.Models
 
         public List<Apartment> Apartment { get; set; }
 
+        public double ApplicationScore { get; set; }
+
         [Timestamp()]
         public byte[] RowVersion { get; set; }
     }
