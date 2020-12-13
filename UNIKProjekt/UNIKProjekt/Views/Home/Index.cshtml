@@ -1,8 +1,51 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Forside";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="cover">
+    <div class="coverImage"></div>
+    <div class="coverContent">
+        <h2>Velkommen til</h2>
+        <h1>Ikke Bovia</h1>
+    </div>
+</div>
+
+<div class="col full cl no-margin leaseContainer">
+    <h1 class="txt center bold">Nyeste ledige lejemål</h1>
+    <div class="cl noPad leaseContent">
+        <div class="cl leaseItemContainer">
+            @{
+                for(int i = 1; i <= 4; i++) {
+                    <div class="col col-3 col-t-3 mcol-6 leaseItem" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quam fuga architecto repudiandae sunt tenetur enim atque consequatur accusamus doloribus, iste, id nostrum fugiat? Architecto consequuntur maiores quia non cumque!">
+                        <div class="image" style="background-image:url(https://via.placeholder.com/250x200);"></div>
+                        <div class="content">
+                            <h3>Bolig @i</h3>
+                            <small>6000 Kolding</small>
+                            <div class="desc">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quam fuga architecto repudiandae sunt tenetur enim atque consequatur accusamus doloribus, iste, id nostrum fugiat? Architecto consequuntur maiores quia non cumque!
+                            </div>
+                            <h4>4900,-/md</h4>
+                            <a asp-controller="Search" asp-action="Item" asp-route-id="@i" class="btn btnPrimary btnSmall full">Se mere</a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    <div class="col full no-margin txt right">
+        <a asp-controller="Search" asp-action="Index" class="btn btnDefault">Se alle lejemål</a>
+    </div>
+</div>
+
+<div class="col full">
+    <div class="col col-10 col-t-10 mcol-10 center"><hr class="thick shadow"></div> <!-- Horizontal line -->
+</div>
+
+<div class="cardContainer cl">
+    @{
+        for(int i = 0; i < 8; i++) {
+            <div class="col col-3 col-t-4 mcol-6"><h1>6000 Kolding</h1></div>
+        }
+    }
 </div>

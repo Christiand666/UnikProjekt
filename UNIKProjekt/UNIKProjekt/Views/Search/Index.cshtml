@@ -1,0 +1,173 @@
+@using Infrastructure.Interface
+@inject IUserAuth ua
+@{
+    ViewData["Title"] = "Søg bolig";
+    var arr = new List<string> {
+        "6000 Kolding",
+        "7100 Vejle"
+    };
+
+    var others = new List<string> {
+        "Husdyr tilladt",
+        "Delevenlig",
+        "Møbleret"
+    };
+
+    var type = new List<string> {
+        "Villa",
+        "Rækkehus",
+        "Lejlighed",
+        "Værelse",
+        "Ungdomsbolig"
+    };
+}
+
+<h1>Søg bolig</h1>
+
+<div class="col full cl leaseContainer">
+    <!-- Sidebar -->
+    <div class="col col-3 col-t-4 mcol-12 leaseSidebar">
+        <h2 onclick="ToggleSlide(event, 'type')">Boligtype <span class="arrow Open" id="type-arrow"></span></h2>
+        <form action="" id="type" class="collapse on">
+            <ul>
+                @{
+                    for (int i = 0; i < type.Count; i++)
+                    {
+                        <li>
+                            <label class="checkboxContainer">
+                                @type[i]
+                                <input type="checkbox" id="type[i]" name="type[i]">
+                                <span class="checkboxItem"></span>
+                            </label>
+                        </li>
+                    }
+                }
+            </ul>
+        </form>
+
+
+
+        <h2 onclick="ToggleSlide(event, 'area')">Områder <span class="arrow Open" id="area-arrow"></span></h2>
+        <form action="" id="area" class="collapse on">
+            <ul>
+                @{
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        <li>
+                            <label class="checkboxContainer">
+                                @arr[i]
+                                <input type="checkbox" id="o[i]" name="o[i]">
+                                <span class="checkboxItem"></span>
+                            </label>
+                        </li>
+                    }
+                }
+            </ul>
+        </form>
+
+
+        <h2 onclick="ToggleSlide(event, 'others')">Andre <span class="arrow Open" id="others-arrow"></span></h2>
+        <form action="" id="others" class="collapse on">
+            <ul>
+                @{
+                    for (int i = 0; i < others.Count; i++)
+                    {
+                        <li>
+                            <label class="checkboxContainer">
+                                @others[i]
+                                <input type="checkbox" id="others[i]" name="others[i]">
+                                <span class="checkboxItem"></span>
+                            </label>
+                        </li>
+                    }
+                }
+            </ul>
+        </form>
+    </div>
+
+    <!-- Content -->
+    <div class="col col-9 col-t-8 mcol-12 leaseContent">
+        <div class="leaseContentInner cl">
+            <div class="col col-6 col-t-6 mcol-12 no-margin">
+                <h2>Boligkriterier</h2>
+            </div>
+
+            <div class="col col-6 col-t-6 mcol-12 no-margin">
+                <form asp-controller="" asp-action="" method="post" class="beautify">
+                    <ul class="noMargin">
+                        <li class="full">
+                            <input type="search" name="s" id="s" placeholder="Søg efter adresse ...">
+                        </li>
+                    </ul>
+                </form>
+            </div>
+
+            <div class="col full">
+                <!-- Content -->
+                <hr>
+
+                <form action="">
+                    <ul>
+                        <li class="col col-6 col-t-6 mcol-6">
+                            <label for="minRent">Min. Husleje</label>
+                            <input type="number" name="minRent" id="minRent" minlength="1" value="1000" class="full">
+                        </li>
+
+                        <li class="col col-6 col-t-6 mcol-6">
+                            <label for="maxRent">Max. Husleje</label>
+                            <input type="number" name="maxRent" id="maxRent" minlength="1" value="50000" class="full">
+                        </li>
+
+                        <div class="col full no-margin">
+                            <li class="col col-3 col-t-3 mcol-6">
+                                <label for="minRooms">Min. Værelser</label>
+                                <input type="number" name="minRooms" id="minRooms" minlength="1" value="1" class="full">
+                            </li>
+
+                            <li class="col col-3 col-t-3 mcol-6">
+                                <label for="maxRooms">Max. Værelser</label>
+                                <input type="number" name="maxRooms" id="maxRooms" minlength="1" value="5" class="full">
+                            </li>
+
+                            <li class="col col-3 col-t-3 mcol-6">
+                                <label for="minSize">Min. m<sup>2</sup></label>
+                                <input type="number" name="minSize" id="minSize" minlength="0" value="0" class="full">
+                            </li>
+
+                            <li class="col col-3 col-t-3 mcol-6">
+                                <label for="maxSize">Max. m<sup>2</sup></label>
+                                <input type="number" name="maxSize" id="maxSize" minlength="1" value="200" class="full">
+                            </li>
+                        </div>
+                    </ul>
+                </form>
+
+                <hr>
+            </div>
+        </div>
+
+        <div class="col full leaseItemContainer">
+            @{
+                for (int i = 1; i <= 12; i++)
+                {
+                    <div class="col col-4 col-t-4 mcol-6 leaseItem" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quam fuga architecto repudiandae sunt tenetur enim atque consequatur accusamus doloribus, iste, id nostrum fugiat? Architecto consequuntur maiores quia non cumque!">
+                        <div class="image" style="background-image:url(https://via.placeholder.com/250x200);"></div>
+                        <div class="content">
+                            <h3>Bolig @i</h3>
+                            <small>6000 Kolding</small>
+                            <div class="desc">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quam fuga architecto repudiandae sunt tenetur enim atque consequatur accusamus doloribus, iste, id nostrum fugiat? Architecto consequuntur maiores quia non cumque!
+                            </div>
+                            <h4>4900,-/md</h4>
+                            <a asp-controller="Search" asp-action="Item" asp-route-id="@i" class="btn btnPrimary btnSmall full">Se mere</a>
+                            @if (ua.isLoggedIn())
+                            {
+                                <a asp-controller="Search" asp-action="Item" asp-route-id="@i" class="btn btnDefault btnSmall full">Skriv mig op</a>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

@@ -1,15 +1,43 @@
-﻿<Properties StartupConfiguration="{96AC7747-F632-482E-B378-518BC0C6365C}|Default">
-  <MonoDevelop.Ide.Workbench>
+﻿<Properties StartupConfiguration="{7995D79E-333A-4122-BF11-007CF2DABF92}|UNIKProjekt">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UNIKProjekt/obj/Debug/netcoreapp3.1/Razor/Views/MyPage/Register.cshtml.g.cs">
+    <Files>
+      <File FileName="Application/Handlers/UserHandler.cs" Line="194" Column="10" />
+      <File FileName="API/Controllers/ApartmentController.cs" />
+      <File FileName="UNIKProjekt/Startup.cs" />
+      <File FileName="UNIKProjekt/Controllers/HomeController.cs" />
+      <File FileName="UNIKProjekt/Controllers/SearchController.cs" />
+      <File FileName="UNIKProjekt/Models/UserData.cs" Line="7" Column="10" />
+      <File FileName="UNIKProjekt/obj/Debug/netcoreapp3.1/Razor/Views/MyPage/Register.cshtml.g.cs" Line="62" Column="131" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="UNIKProjekt" expanded="True" />
+          <Node name="UNIKProjekt" expanded="True" selected="True">
+            <Node name="API" expanded="True" />
+            <Node name="Application" expanded="True">
+              <Node name="Classes" expanded="True" />
+              <Node name="Handlers" expanded="True" />
+            </Node>
+            <Node name="Infrastructure" expanded="True" />
+            <Node name="MVC" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True" />
+                <Node name="MyPage" expanded="True">
+                  <Node name="Account" expanded="True" />
+                  <Node name="Views" expanded="True" />
+                </Node>
+                <Node name="Search" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.ItemProperties.MVC FirstBuild="True" PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.ItemProperties.MVC PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

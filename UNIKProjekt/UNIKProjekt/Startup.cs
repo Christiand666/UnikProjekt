@@ -2,12 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Infrastructure;
+using Infrastructure.Interface;
+using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Application.Classes;
+using Microsoft.EntityFrameworkCore;
 
 namespace UNIKProjekt
 {
@@ -23,7 +28,22 @@ namespace UNIKProjekt
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
             services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddScoped<IApartmentRepository, ApartmentRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IDB, DB>();
+
+            services.AddHttpContextAccessor();
+            services.AddScoped<IUserAuth, UserAuth>();
+
+            services.AddDbContext<DB>(options =>
+                options.UseMySQL(
+                    Configuration.GetConnectionString("DBconnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,6 +52,7 @@ namespace UNIKProjekt
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //app.UseDatabaseErrorPage();
             }
             else
             {
@@ -44,13 +65,18 @@ namespace UNIKProjekt
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
+            //app.UseMvc();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

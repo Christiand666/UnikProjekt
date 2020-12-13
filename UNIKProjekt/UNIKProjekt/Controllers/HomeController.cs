@@ -20,6 +20,36 @@ namespace UNIKProjekt.Controllers
 
         public IActionResult Index()
         {
+            ViewData["Page"] = "Home";
+            return View();
+        }
+
+        [Route("About")]
+        public IActionResult About()
+        {
+            ViewData["Page"] = "About";
+            return View();
+        }
+
+        [Route("News")]
+        public IActionResult News()
+        {
+            ViewData["Page"] = "News";
+            return View();
+        }
+
+        [Route("News/[Action]/{id}/{title}")]
+        public IActionResult Article(int id, string title)
+        {
+            ViewData["Page"] = "News";
+
+            return View("News/Article");
+        }
+
+        [Route("Contact")]
+        public IActionResult Contact()
+        {
+            ViewData["Page"] = "Contact";
             return View();
         }
 

@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Kontakt";
+}
+
+<div class="contactContainer">
+    <div class="contactContent col col-8 col-t-8">
+        <h1>Hvor finder du os?</h1>
+        <br>
+        <p>
+            <i><u>Du finder os på følgende adresser:</u></i> <br>
+            <ul>
+                <li>FakeBovia ApS</li>
+                <li>FakeRoad 69</li>
+                <li>42069 FakeTown</li>
+                <li>Danmark</li>
+                <li>Tlf: +45 Fake Number</li>
+                <li>CVR: Burde vi have det som en falsk virksomhed?</li>
+            </ul>
+        </p>
+    </div>
+
+    <div class="contactForm col col-4 col-t-4">
+        <h2>Skriv til os</h2>
+        <small>Skriv til os, så vender vi tilbage hurtigst muligt.</small>
+        
+        <form action="">
+            <ul>
+                <li class="full">
+                    <label for="Email" class="required">Din email</label>
+                    <input type="email" id="Email" name="Email" placeholder="hej@FakeBovia.dk" required>
+                </li>
+
+                <li class="full">
+                    <label for="Topic" class="required">Omhandlende emne</label>
+                    <input type="text" id="Topic" name="Topic" maxlength="255" placeholder="f.eks. Kæledyr" required>
+                </li>
+
+                <li class="full">
+                    <label for="Desc" class="required">Dit spørgsmål</label>
+                    <textarea name="Desc" id="Desc" cols="30" rows="10" placeholder="Skriv her ..." required></textarea>
+                </li>
+
+                <li class="full">
+                    <input type="submit" class="btn btnDefault" value="Send">
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
