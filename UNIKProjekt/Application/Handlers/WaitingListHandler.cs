@@ -15,7 +15,7 @@ namespace Application.Handlers
 
         void Remove(string userID, string EstateID);
     }
-    class WaitingListHandler : IWaitingListPrio
+    public class WaitingListHandler : IWaitingListPrio
     {
         private readonly IDB Context;
         private readonly IUserHandler userHandler;
