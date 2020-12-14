@@ -1,5 +1,6 @@
 ﻿using Application.Classes;
 using Domain.Models;
+using Domain.Models.Auth;
 using Infrastructure.Interface;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,9 @@ namespace Application.Handlers
 {
     public interface IUserHandler
     {
+        string GetUserSalt(UserLogin user);
+        User SignIn(UserLogin user);
+        bool CheckUserSignedIn(string UserID, string Password);
         void CreateUser(User user);
         void UpdateUser(User user);
         void DeleteUsers(string ID);
@@ -27,6 +31,21 @@ namespace Application.Handlers
         {
             this.userRepository = userRepository;
             this.Context = Context;
+        }
+
+        public string GetUserSalt(UserLogin user) {
+            return userRepository.GetUserSalt(user.Email);
+        }
+
+        public User SignIn(UserLogin user) {
+            return userRepository.SignIn(user);
+        }
+
+        public bool CheckUserSignedIn(string UserID, string Password) {
+            if(userRepository.CheckUserSignedIn(UserID, Password))
+                return true;
+
+            return false;
         }
 
         public void CreateUser(User user)

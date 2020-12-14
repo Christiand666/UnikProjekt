@@ -1,19 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Http
+@using Infrastructure.Interface
+@inject IUserAuth ua
 @{
-    bool loggedIn = false;
-    string userName = "Undefined.";
-    ViewBag.isLoggedIn = false;
-
-    if (Context.Session.GetString("LoggedIn") != null)
-    {
-        ViewData["isAdmin"] = "false";
-        ViewData["isLandlord"] = "false";
-        ViewBag.isLoggedIn = true;
-        loggedIn = true;
-    }
-
-    if (Context.Session.GetString("User") != null)
-        userName = Context.Session.GetString("User");
+    bool loggedIn = ua.isLoggedIn();
 }
 
 <!doctype html>

@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Domain.Models.Auth;
 using Infrastructure.Interface;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,39 @@ namespace Infrastructure.Repositories
         public void Add(User User)
         {
             users.Add(User);
+        }
+
+        public string GetUserSalt(string Email) {
+            if(EmailExists(Email)) {
+                User u = GetUsersByEmail(Email);
+                return u.Salt;
+            } else {
+                return null;
+            }
+        }
+
+        public User GetUsersByEmail(string Email)
+        {
+            var Users = users.Where(x => x.Email == Email).FirstOrDefault();
+            return Users;
+        }
+
+        public User SignIn(UserLogin user) {
+            var User = users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
+
+            if(User != null)
+                return User;
+
+            return null;
+        }
+
+        public bool CheckUserSignedIn(string UserID, string Password) {
+            var User = users.Where(x => x.UserID == UserID).Where(x => x.Password == Password).FirstOrDefault();
+
+            if(User != null)
+                return true;
+
+            return false;
         }
 
         public void CreateUpdateUserDetails(UserDetails user)

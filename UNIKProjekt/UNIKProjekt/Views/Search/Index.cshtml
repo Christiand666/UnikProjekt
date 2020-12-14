@@ -130,6 +130,10 @@
 
         <div class="col full leaseItemContainer">
             @{
+                if(Model.Count == 0) {
+                    <h1 class="txt center">Ingen lejemål tilgængelig</h1>
+                    <p class="txt center">Kom tilbage igen senere, så er der måske et ledigt lejemål til dig.</p>
+                }
                 foreach (var item in Model)
                 {
                     <div class="col col-4 col-t-4 mcol-6 leaseItem" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quam fuga architecto repudiandae sunt tenetur enim atque consequatur accusamus doloribus, iste, id nostrum fugiat? Architecto consequuntur maiores quia non cumque!">

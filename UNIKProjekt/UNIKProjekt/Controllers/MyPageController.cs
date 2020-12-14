@@ -1,4 +1,11 @@
-﻿using Application.Classes;
+﻿using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using Application.Classes;
+using Domain.Models;
+using Domain.Models.Auth;
 using Infrastructure;
 using Infrastructure.Interface;
 using Infrastructure.Repositories;
@@ -6,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MVC.Models;
+using Newtonsoft.Json;
 
 namespace MVC.Controllers
 {
@@ -14,6 +22,7 @@ namespace MVC.Controllers
         private readonly ILogger<MyPageController> _logger;
         private readonly DB db;
         private readonly IUserAuth ua;
+        private const string apiUrl = "https://localhost:58197/";
 
         public MyPageController(ILogger<MyPageController> logger, DB db, IUserAuth ua)
         {
@@ -42,26 +51,56 @@ namespace MVC.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public IActionResult SignIn(UserViewModel user)
+        public async Task<IActionResult> SignIn(UserLogin user)
         {
+            if(!string.IsNullOrEmpty(user.Email) && !string.IsNullOrEmpty(user.Password)) {
+                using(HttpClient client = new HttpClient()) {
+                    client.BaseAddress = new Uri(apiUrl);
+                    client.DefaultRequestHeaders.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            //UsersHandlers.Login(user.Email, user.Password);
+                    HttpResponseMessage response = await client.GetAsync(apiUrl + "api/User/GetSalt?email=" + user.Email);
+                    string result = response.Content.ReadAsStringAsync().Result;
 
+                    try {
+                        SaltTransfer saltReturn = JsonConvert.DeserializeObject<SaltTransfer>(result);
+                        string salt = saltReturn.Salt;
 
+                        if(response.IsSuccessStatusCode) {
+                            string pw = Hashing.Hash(user.Password + salt);
+                            
+                            UserLogin newUser = new UserLogin() {
+                                Password = pw,
+                                Email = user.Email
+                            };
 
-            if (user.Email == "dev@dev.com" && user.Password == "12345678")
-            {
-                HttpContext.Session.SetString("LoggedIn", "1"); // Logs user in (Very insecure)
-                HttpContext.Session.SetString("User", user.Email); // Pust users email in a session, for later use.
+                            HttpResponseMessage loginResponse = await client.GetAsync(apiUrl + "api/User/SignIn?Email=" + newUser.Email + "&Password=" + newUser.Password);
+                            string loginResult = loginResponse.Content.ReadAsStringAsync().Result;
+                            
+                            User UserData = JsonConvert.DeserializeObject<User>(loginResult);
 
-                /** Adds alert message to a session **/
-                HttpContext.Session.SetString("AlertMessage", "Velkommen tilbage " + user.Email + "!");
-                HttpContext.Session.SetString("AlertType", "Success");
-            }
-            else
-            {
-                /** Adds alert message to a session **/
-                HttpContext.Session.SetString("AlertMessage", "Fejl i email eller adgangskode.");
+                            HttpContext.Session.SetString("AlertMessage", "Velkommen tilbage " + UserData.Fname + "!");
+                            HttpContext.Session.SetString("AlertType", "Success");
+
+                            // Storing user data
+                            HttpContext.Session.SetString("UserID", UserData.UserID);
+                            HttpContext.Session.SetString("UserPassword", UserData.Password);
+                            HttpContext.Session.SetString("UserEmail", UserData.Email);
+
+                            return RedirectToAction("Index");
+                        } else {
+                            HttpContext.Session.SetString("AlertMessage", result);
+                            HttpContext.Session.SetString("AlertType", "Error");
+                        }
+                    } catch(Exception) {
+                        HttpContext.Session.SetString("AlertMessage", "Log ind fejl.");
+                        HttpContext.Session.SetString("AlertType", "Error");
+
+                        return RedirectToAction("Index", user); // Redirects back to (public IActionResult Index) with given post-request.
+                    }
+                }
+            } else {
+                HttpContext.Session.SetString("AlertMessage", "Du skal udfylde alle felter.");
                 HttpContext.Session.SetString("AlertType", "Error");
             }
 
@@ -81,7 +120,7 @@ namespace MVC.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Register()
+        public IActionResult Register(RegisterViewModel register)
         {
             if (HttpContext.Session.GetString("LoggedIn") != null)
             {
@@ -90,38 +129,63 @@ namespace MVC.Controllers
 
             ViewData["Page"] = "MyPage";
             ViewData["Title"] = "Registrer";
-            return View();
+            return View(register);
         }
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public IActionResult RegisterUser(RegisterViewModel register)
+        public async Task<IActionResult> RegisterUser(RegisterViewModel register)
         {
-            var UserRep = new UserRepository(db);
+            if(register.Password != register.ConfirmPassword) {
+                HttpContext.Session.SetString("AlertMessage", "Adgangskoderne matcher ikke.");
+                HttpContext.Session.SetString("AlertType", "Error");
 
-            string pw = Hashing.Hash(register.Password);
+                return RedirectToAction("Register", register);
+            }
 
-            HttpContext.Session.SetString("AlertMessage", "Din adgangskode er: " + pw);
-            HttpContext.Session.SetString("AlertType", "Error");
+            Random rnd = new Random();
 
-            return View("Register");
+            string salt = Hashing.Hash(rnd.Next(1000,9999).ToString(), 16);
+            string password = Hashing.Hash(register.Password + salt);
 
-            // try {
-            //     if(UserRep.EmailExists(register.Email)) {
-            //         
+            UserDetails ud = new UserDetails() {
+                DetailsID = Guid.NewGuid().ToString(),
+                Phone = register.Phone,
+                Birthdate = Convert.ToDateTime(register.Birthday),
+                Address = register.Address,
+                Country = register.Country,
+                Zip = register.Zip
+            };
 
+            User user = new User() {
+                UserID = Guid.NewGuid().ToString(),
+                Fname = register.Fname,
+                Lname = register.Lname,
+                Email = register.Email,
+                Password = password,
+                UserDetails = ud,
+                Salt = salt
+            };
 
-            //     } else {
-            //         HttpContext.Session.SetString("AlertMessage", "Good to go.");
-            //         HttpContext.Session.SetString("AlertType", "Success");
-            //         return View("Register");
-            //     }
-            // } catch(Exception e) {
-            //     HttpContext.Session.SetString("AlertMessage", e.ToString());
-            //     HttpContext.Session.SetString("AlertType", "Error");
-            // }
+            using(HttpClient client = new HttpClient()) {
+                string json = JsonConvert.SerializeObject(user);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-            // return RedirectToAction("Index");
+                HttpResponseMessage response = await client.PostAsync(apiUrl + "api/User/Create", data);
+                string result = response.Content.ReadAsStringAsync().Result;
+
+                if(response.IsSuccessStatusCode) {
+                    HttpContext.Session.SetString("AlertMessage", "Du er nu medlem af FAKEBOVIA, og kan nu logge ind!");
+                    HttpContext.Session.SetString("AlertType", "Success");
+
+                    return RedirectToAction("Index");
+                } else {
+                    HttpContext.Session.SetString("AlertMessage", result);
+                    HttpContext.Session.SetString("AlertType", "Warning");
+                }
+            }
+
+            return RedirectToAction("Register", register);
         }
 
         public IActionResult Profile()

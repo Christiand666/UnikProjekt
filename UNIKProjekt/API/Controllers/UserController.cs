@@ -1,6 +1,7 @@
 ﻿using API.Models;
 using Application.Handlers;
 using Domain.Models;
+using Domain.Models.Auth;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,12 +15,67 @@ namespace API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserHandler userHandler;
-       public UserController(IUserHandler userHandler)
-       {
+        public UserController(IUserHandler userHandler)
+        {
             this.userHandler = userHandler;
-       }
-       [HttpPost]
-       public ActionResult CreateUser([FromBody] User user) { 
+        }
+
+        [HttpGet]
+        [Route("GetSalt")]
+        public IActionResult GetSalt(UserLogin user) {
+            try
+            {
+                var response = userHandler.GetUserSalt(user);
+                //return Ok(response);
+
+                if(response != null) {
+                    SaltTransfer res = new SaltTransfer() {
+                        Salt = response
+                    };
+                    
+                    return Ok(res);
+                } else {
+                    return Ok("User couldn't be found.");
+                }
+            }
+            catch (Exception e)
+            {
+                ErrorMessage err = new ErrorMessage
+                {
+                    Message = "Couldn't get salt.",
+                    ErrorCode = 502,
+                    Exception = e.Message
+                };
+                return StatusCode(502, err);
+            }
+        }
+
+        [HttpGet]
+        [Route("SignIn")]
+        public IActionResult SignIn(UserLogin user) {
+            try
+            {
+                var response = userHandler.SignIn(user);
+                if(response != null)
+                    return Ok(response);
+                else
+                    return Ok("User couldn't be found.");
+            }
+            catch (Exception e)
+            {
+                ErrorMessage err = new ErrorMessage
+                {
+                    Message = "Failed.",
+                    ErrorCode = 502,
+                    Exception = e.Message
+                };
+                return StatusCode(502, err);
+            }
+        }
+
+        [HttpPost]
+        [Route("Create")]
+        public ActionResult CreateUser([FromBody] User user) { 
             try
             {
                 userHandler.CreateUser(user);
@@ -35,7 +91,7 @@ namespace API.Controllers
                 };
                 return StatusCode(502, err);
             }
-       }
+        }
         [HttpGet] 
         public ActionResult<User> GetUserById([FromBody] string id)
         {

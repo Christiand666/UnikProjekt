@@ -19,6 +19,8 @@ namespace MVC.Models
         [Required]
         public string Password { get; set; }
 
+        public string ConfirmPassword { get; set; }
+
         [Required]
         public string Fname { get; set; }
 

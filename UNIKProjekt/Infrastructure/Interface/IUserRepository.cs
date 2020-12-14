@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Domain.Models.Auth;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,9 @@ namespace Infrastructure.Interface
     {
         IEnumerable<User> GetUsers();
         User GetUsersByID(string ID);
+        User SignIn(UserLogin user);
+        string GetUserSalt(string Email);
+        bool CheckUserSignedIn(string UserID, string Password);
         bool EmailExists(string Email);
         void Add(User User);
         void Delete(User User);

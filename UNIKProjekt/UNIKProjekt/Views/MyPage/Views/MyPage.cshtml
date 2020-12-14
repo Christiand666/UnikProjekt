@@ -2,16 +2,7 @@
 @using Infrastructure.Interface
 @inject IUserAuth ua
 
-@{
-    string userName = "Undefined.";
-
-    if (Context.Session.GetString("LoggedIn") != null)
-    {
-        userName = Context.Session.GetString("User");
-    }
-}
-
-<h1>Velkommen @userName!</h1>
+<h1>Velkommen!</h1>
 
 <ul>
     <li>

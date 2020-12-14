@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Domain.Models.Auth;
 using Infrastructure.Interface;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,33 @@ namespace Infrastructure.Repositories
             this.Context = dB;
         }
 
+        public string GetUserSalt(string Email) {
+            if(EmailExists(Email)) {
+                User u = GetUsersByEmail(Email);
+                return u.Salt;
+            } else {
+                return null;
+            }
+        }
+
+        public User SignIn(UserLogin user) {
+            var User = Context.Users.Where(x => x.Email == user.Email).Where(x => x.Password == user.Password).FirstOrDefault();
+
+            if(User != null)
+                return User;
+
+            return null;
+        }
+
+        public bool CheckUserSignedIn(string UserID, string Password) {
+            var User = Context.Users.Where(x => x.UserID.Equals(UserID)).Where(x => x.Password.Equals(Password)).FirstOrDefault();
+
+            if(User != null)
+                return true;
+
+            return false;
+        }
+
         public User GetUsersByEmail(string Email)
         {
             var Users = Context.Users.Where(x => x.Email == Email).FirstOrDefault();
@@ -25,7 +53,6 @@ namespace Infrastructure.Repositories
 
         public bool EmailExists(string Email)
         {
-
             var usr = Context.Users.Any(x => x.Email == Email);
 
             if (usr)
@@ -46,8 +73,8 @@ namespace Infrastructure.Repositories
 
         public void Add(User user)
         {
-            var CheckUser = this.Context.Users.Where(x => x.Email == user.Email || x.UserID.Equals(Context.UserDetails.Where(s => s.Phone == user.UserDetails.Phone).FirstOrDefault().UserID)).FirstOrDefault();
-            if (CheckUser != null)
+            var CheckUser = EmailExists(user.Email);
+            if (CheckUser)
                 throw new Exception("Brugeren eksistere allerede, Login eller tryk glemt kodeord");
 
             Context.Users.Add(user);

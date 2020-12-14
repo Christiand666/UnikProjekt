@@ -11,7 +11,7 @@ namespace Application.Classes
                 return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
         }
 
-        public static string Hash(string password)
+        public static string Hash(string password, int length = 64)
         {
             if (!string.IsNullOrEmpty(password))
             {
@@ -19,7 +19,12 @@ namespace Application.Classes
                 foreach (byte b in GetHash(password))
                     sb.Append(b.ToString("X2"));
 
-                return sb.ToString();
+                string res = sb.ToString();
+
+                if(res.Length > length)
+                    res = res.Substring(0, length);
+
+                return res;
             }
 
             return null;

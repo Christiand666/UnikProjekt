@@ -15,6 +15,11 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
+        public void GetUserSalt(string Email)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Delete(Apartment apartment)
         {
             throw new NotImplementedException();

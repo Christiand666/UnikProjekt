@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="UNIKProjekt/Controllers/SearchController.cs">
     <Files>
       <File FileName="API/Controllers/ApartmentController.cs" Line="77" Column="42" />
-      <File FileName="UNIKProjekt/Controllers/SearchController.cs" Line="45" Column="88" />
+      <File FileName="UNIKProjekt/Controllers/SearchController.cs" Line="14" Column="1" />
       <File FileName="UNIKProjekt/Controllers/MyPageController.cs" />
       <File FileName="Application/Handlers/UserHandler.cs" />
       <File FileName="UNIKProjekt/Views/Search/Index.cshtml" />
@@ -23,16 +23,16 @@
               <Node name="Handlers" expanded="True" />
             </Node>
             <Node name="Domain" expanded="True">
-              <Node name="Models" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="UserDetails.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="Infrastructure" expanded="True">
               <Node name="Interface" expanded="True" />
               <Node name="Repositories" expanded="True" />
             </Node>
             <Node name="MVC" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="SearchController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Properties" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Search" expanded="True" />
