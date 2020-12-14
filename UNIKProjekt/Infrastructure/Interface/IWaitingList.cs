@@ -9,8 +9,8 @@ namespace Infrastructure.Interface
     {
         void Create(WaitingList list);
 
-        public void Remove(Guid UserID, Guid Apartment);
+        public void Remove(string UserID, string Apartment);
 
-        public List<Apartment> GetApartments(Guid UserID);
+        public List<Apartment> GetApartments(string UserID);
     }
 }

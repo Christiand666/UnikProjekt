@@ -131,7 +131,7 @@ namespace API.Controllers
             }
         }
         [HttpPut]
-        public ActionResult UpdateUser([FromBody] User user)
+        public IActionResult UpdateUser([FromBody] User user)
            {
              try
              {
@@ -150,7 +150,7 @@ namespace API.Controllers
              } 
         }
         [HttpDelete]
-        public ActionResult DeleteUser([FromBody] User user)
+        public IActionResult DeleteUser([FromBody] User user)
         {
             try
             {

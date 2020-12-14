@@ -42,6 +42,7 @@ namespace API
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IApartmentHandler, ApartmentHandler>();
             services.AddScoped<IUserHandler, UserHandler>();
+            services.AddScoped<IWaitingListPrio, WaitingListHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
