@@ -206,8 +206,9 @@ namespace MVC.Controllers
 
         public IActionResult SignOut()
         {
-            HttpContext.Session.Remove("LoggedIn"); // Clears users logged in session aka. signs the user out.
-            HttpContext.Session.Remove("User"); // Clears the users email from the session.
+            HttpContext.Session.Remove("UserID");
+            HttpContext.Session.Remove("UserPassword");
+            HttpContext.Session.Remove("UserEmail");
 
             /** Adds a logout alert message to a session **/
             HttpContext.Session.SetString("AlertMessage", "Du er blevet logget ud.");
