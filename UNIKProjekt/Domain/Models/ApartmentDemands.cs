@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Domain.Models
@@ -9,6 +10,7 @@ namespace Domain.Models
     {
         [Key]
         [Required]
+        [Column(TypeName = "VARCHAR(64)")]
         public string DemandsID { get; set; }
 
         [Required]
@@ -27,10 +29,10 @@ namespace Domain.Models
         public bool AllowPets { get; set; }
 
         [Required]
-        public bool Shareable { get; set; }
+        public bool IsShareable { get; set; }
 
         [Required]
-        public bool Balcony { get; set; }
+        public bool HasBalcony { get; set; }
 
         [Required]
         public bool IsApartment { get; set; }
@@ -42,6 +44,10 @@ namespace Domain.Models
         public User User { get; set; }
 
         [Required]
-        public Guid UserID { get; set; }
+        [Column(TypeName = "VARCHAR(64)")]
+        public string UserID { get; set; }
+
+        [Timestamp()]
+        public byte[] RowVersion { get; set; }
     }
 }

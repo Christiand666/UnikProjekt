@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Domain.Models
@@ -9,6 +10,7 @@ namespace Domain.Models
     {
         [Key]
         [Required]
+        [Column(TypeName = "VARCHAR(64)")]
         public string GoalsID { get; set; }
 
         [Required]
@@ -16,5 +18,8 @@ namespace Domain.Models
 
         [Required]
         public bool Animals { get; set; }
+
+        [Timestamp()]
+        public byte[] RowVersion { get; set; }
     }
 }

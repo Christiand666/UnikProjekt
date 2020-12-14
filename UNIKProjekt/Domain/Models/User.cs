@@ -37,8 +37,7 @@ namespace Domain.Models
         public int UserType { get; set; }
 
         public List<Apartment> Apartments { get; set; }
-
-        public List<UserRequirements> UserRequirements { get; set; }
+        public ApartmentDemands ApartmentDemands { get; set; }
 
         [Timestamp()]
         public byte[] RowVersion { get; set; }

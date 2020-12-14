@@ -40,7 +40,7 @@ namespace Application.Handlers
             aps.Comment = Comment;
             aps.AllowPets = AllowPets;
             aps.IsShareable = Shareable;
-            aps.Balcony = Balcony;
+            aps.HasBalcony = Balcony;
             aps.IsApartment = IsApartment;
             aps.IsHouse = IsHouse;
             aps.IsRented = IsRented;
@@ -71,7 +71,7 @@ namespace Application.Handlers
             aps.Comment = Comment;
             aps.AllowPets = AllowPets;
             aps.IsShareable = Shareable;
-            aps.Balcony = Balcony;
+            aps.HasBalcony = Balcony;
             aps.IsApartment = IsApartment;
             aps.IsHouse = IsHouse;
             aps.IsRented = IsRented;
@@ -119,8 +119,8 @@ namespace Application.Handlers
                 double roomMatch = (a.RoomCount - demands.RoomCount) / demands.RoomCount;
                 double SqrMeterMatch = (a.SqrMeter - demands.SqrMeter) / demands.SqrMeter;
                 double RentMatch = (demands.Rent - a.Rent) / demands.Rent;
-                double ShareableMatch = demands.Shareable == a.IsShareable ? 1 : 0;
-                double BalconyMatch = demands.Balcony == a.Balcony ? 1 : 0;
+                double ShareableMatch = demands.IsShareable == a.IsShareable ? 1 : 0;
+                double BalconyMatch = demands.HasBalcony == a.HasBalcony ? 1 : 0;
                 double IsApartmentMatch = demands.IsApartment == a.IsApartment ? 1 : 0;
                 double IsHouseMatch = demands.IsHouse == a.IsHouse ? 1 : 0;
 

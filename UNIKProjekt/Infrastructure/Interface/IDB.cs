@@ -11,9 +11,9 @@ namespace Infrastructure.Interface
         DbSet<User> Users { get; set; }
         DbSet<Apartment> Apartments { get; set; }
         DbSet<UserDetails> UserDetails { get; set; }
-        DbSet<UserRequirements> UserRequirements { get; set; }
         DbSet<WaitingList> WaitingList { get; set; }
-
+        DbSet<ApartmentDemands> ApartmentDemands { get; set; }
+        DbSet<ApplicantGoals> ApplicantGoals { get; set; }
         void Dispose(bool disposing);
         void SaveChanges();
         void Dispose();

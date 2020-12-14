@@ -15,12 +15,12 @@ namespace Domain.Models
         [Column(TypeName = "VARCHAR(64)")]
         public string UserID { get; set; }
 
-        public List<User> User { get; set; }
+        public User User { get; set; }
 
         [Column(TypeName = "VARCHAR(64)")]
         public string ApartmentID { get; set; }
 
-        public List<Apartment> Apartment { get; set; }
+        public Apartment Apartment { get; set; }
 
         public double ApplicationScore { get; set; }
 

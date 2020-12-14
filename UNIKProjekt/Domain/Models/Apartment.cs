@@ -15,11 +15,10 @@ namespace Domain.Models
 
         [Column(TypeName = "VARCHAR(64)")]
         public string LandlordID { get; set; }
-        public User Landlord { get; set; }
-
+       
         [Column(TypeName = "VARCHAR(64)")]
         public string UserID { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         [Required]
         [Column(TypeName = "VARCHAR(255)")]
@@ -54,7 +53,7 @@ namespace Domain.Models
         public bool IsShareable { get; set; }
 
         [Required]
-        public bool Balcony { get; set; }
+        public bool HasBalcony { get; set; }
 
         [Required]
         public bool IsApartment { get; set; }
@@ -63,11 +62,13 @@ namespace Domain.Models
         public bool IsHouse { get; set; }
 
         [Required]
+        [Column(TypeName = "VARCHAR(64)")]
+        public string ApplicantGoalsID { get; set; }
         public ApplicantGoals ApplicantGoals { get; set; }
 
         public bool IsRented { get; set; }
 
-        /*[Timestamp()]
-        public byte[] RowVersion { get; set; }*/
+        [Timestamp()]
+        public byte[] RowVersion { get; set; }
     }
 }

@@ -72,7 +72,7 @@ namespace Infrastructure.Repositories
             contextusers.Comment = apartment.Comment;
             contextusers.AllowPets = apartment.AllowPets;
             contextusers.IsShareable = apartment.IsShareable;
-            contextusers.Balcony = apartment.Balcony;
+            contextusers.HasBalcony = apartment.HasBalcony;
             contextusers.IsApartment = apartment.IsApartment;
             contextusers.IsHouse = apartment.IsHouse;
 
