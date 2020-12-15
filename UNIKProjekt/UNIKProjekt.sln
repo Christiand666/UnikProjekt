@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.808.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "UNIKProjekt\MVC.csproj", "{7995D79E-333A-4122-BF11-007CF2DABF92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVC", "UNIKProjekt\MVC.csproj", "{7995D79E-333A-4122-BF11-007CF2DABF92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{96AC7747-F632-482E-B378-518BC0C6365C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{96AC7747-F632-482E-B378-518BC0C6365C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{ED31E7EE-3510-43EE-AA92-0C46ECF04989}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{ED31E7EE-3510-43EE-AA92-0C46ECF04989}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{A36F3A86-ED9C-4425-BF6C-EB3743D0BE0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{A36F3A86-ED9C-4425-BF6C-EB3743D0BE0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{BE68FA02-C233-4BFB-B318-979ED80DCFEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{BE68FA02-C233-4BFB-B318-979ED80DCFEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{BD74EE3C-EACB-4FD0-A4F9-3017DC910BF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{BE68FA02-C233-4BFB-B318-979ED80DCFEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE68FA02-C233-4BFB-B318-979ED80DCFEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE68FA02-C233-4BFB-B318-979ED80DCFEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD74EE3C-EACB-4FD0-A4F9-3017DC910BF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD74EE3C-EACB-4FD0-A4F9-3017DC910BF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD74EE3C-EACB-4FD0-A4F9-3017DC910BF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD74EE3C-EACB-4FD0-A4F9-3017DC910BF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
