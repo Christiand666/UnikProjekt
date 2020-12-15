@@ -45,6 +45,15 @@ namespace Infrastructure.Repositories
             return false;
         }
 
+        public bool CheckUserType(string UserID, int UserType) {
+            var User = Context.Users.Where(x => x.UserID.Equals(UserID)).Where(x => x.UserType <= UserType).FirstOrDefault();
+
+            if(User != null)
+                return true;
+
+            return false;
+        }
+
         public User GetUsersByEmail(string Email)
         {
             var Users = Context.Users.Where(x => x.Email == Email).FirstOrDefault();

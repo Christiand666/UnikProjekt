@@ -52,6 +52,15 @@ namespace Infrastructure.Repositories
             return false;
         }
 
+        public bool CheckUserType(string UserID, int UserType) {
+            var User = users.Where(x => x.UserID.Equals(UserID)).Where(x => x.UserType <= UserType).FirstOrDefault();
+
+            if(User != null)
+                return true;
+
+            return false;
+        }
+
         public void CreateUpdateUserDetails(UserDetails user)
         {
             throw new NotImplementedException();

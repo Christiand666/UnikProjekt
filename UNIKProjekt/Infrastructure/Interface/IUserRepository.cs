@@ -13,6 +13,7 @@ namespace Infrastructure.Interface
         User SignIn(UserLogin user);
         string GetUserSalt(string Email);
         bool CheckUserSignedIn(string UserID, string Password);
+        bool CheckUserType(string UserID, int UserType);
         bool EmailExists(string Email);
         void Add(User User);
         void Delete(User User);

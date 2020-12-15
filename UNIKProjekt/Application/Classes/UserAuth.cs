@@ -39,7 +39,13 @@ namespace Application.Classes
         {
             if (isLoggedIn())
             { // Checks if user is logged in before checking for admin privileges.
-                // Only admin code pls
+                var httpContext = _HttpContext.HttpContext;
+
+                string id = httpContext.Session.GetString("UserID");
+
+                if(userRep.CheckUserType(id, 2)) {
+                    return true;
+                }
             }
             return false;
         }
@@ -48,7 +54,13 @@ namespace Application.Classes
         {
             if (isLoggedIn())
             { // Checks if user is logged in before checking for landlord privileges.
-                // Code pls
+                var httpContext = _HttpContext.HttpContext;
+
+                string id = httpContext.Session.GetString("UserID");
+
+                if(userRep.CheckUserType(id, 1)) {
+                    return true;
+                }
             }
             return false;
         }
