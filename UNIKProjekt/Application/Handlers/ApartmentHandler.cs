@@ -8,8 +8,8 @@ namespace Application.Handlers
 {
     public interface IApartmentHandler
     {
-        void CreateApartment(string ID, string Address, int Zip, string City, int RoomCount, int SqrMeter, int Floors, double Rent, string Comment, bool AllowPets, bool Shareable, bool Balcony, bool IsApartment, bool IsHouse, bool IsRented);
-        void UpdateApartment(string ID, string Address, int Zip, string City, int RoomCount, int SqrMeter, int Floors, double Rent, string Comment, bool AllowPets, bool Shareable, bool Balcony, bool IsApartment, bool IsHouse, bool IsRented);
+        void CreateApartment(Apartment apartment);
+        void UpdateApartment(Apartment apartment);
         void DeleteApartment(string ID);
         List<Apartment> GetAll();
         Apartment GetApartment(string ID);
@@ -25,29 +25,11 @@ namespace Application.Handlers
         }
         private readonly IDB Context;
 
-        public void CreateApartment(string ID, string Address, int Zip, string City, int RoomCount, int SqrMeter, int Floors, double Rent, string Comment, bool AllowPets, bool Shareable, bool Balcony, bool IsApartment, bool IsHouse, bool IsRented)
+        public void CreateApartment(Apartment apartment)
         {
-
-            Apartment aps = new Apartment();
-
-            aps.Address = Address;
-            aps.Zip = Zip;
-            aps.City = City;
-            aps.RoomCount = RoomCount;
-            aps.SqrMeter = SqrMeter;
-            aps.Floors = Floors;
-            aps.Rent = Rent;
-            aps.Comment = Comment;
-            aps.AllowPets = AllowPets;
-            aps.IsShareable = Shareable;
-            aps.HasBalcony = Balcony;
-            aps.IsApartment = IsApartment;
-            aps.IsHouse = IsHouse;
-            aps.IsRented = IsRented;
-
             try
             {
-                apartmentRepository.Add(aps);
+                apartmentRepository.Add(apartment);
                 apartmentRepository.Save();
             }
             catch (Exception e)
@@ -56,31 +38,15 @@ namespace Application.Handlers
                 //in da treashcan
             }
         }
-        public void UpdateApartment(string ID, string Address, int Zip, string City, int RoomCount, int SqrMeter, int Floors, double Rent, string Comment, bool AllowPets, bool Shareable, bool Balcony, bool IsApartment, bool IsHouse, bool IsRented)
+        public void UpdateApartment(Apartment apartment)
         {
 
-            Apartment aps = new Apartment();
-
-            aps.Address = Address;
-            aps.Zip = Zip;
-            aps.City = City;
-            aps.RoomCount = RoomCount;
-            aps.SqrMeter = SqrMeter;
-            aps.Floors = Floors;
-            aps.Rent = Rent;
-            aps.Comment = Comment;
-            aps.AllowPets = AllowPets;
-            aps.IsShareable = Shareable;
-            aps.HasBalcony = Balcony;
-            aps.IsApartment = IsApartment;
-            aps.IsHouse = IsHouse;
-            aps.IsRented = IsRented;
-
-            if (apartmentRepository.GetApartmentByID(ID) != null)
+    
+            if (apartmentRepository.GetApartmentByID(apartment.ApartmentID) != null)
             {
                 try
                 {
-                    apartmentRepository.Update(aps);
+                    apartmentRepository.Update(apartment);
                     apartmentRepository.Save();
                 }
                 catch (Exception e)

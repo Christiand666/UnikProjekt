@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Infrastructure.Repositories
 {
-    class MockApartmentRepository : IApartmentRepository
+    public class MockApartmentRepository : IApartmentRepository
     {
         private bool IsDisposed;
 
