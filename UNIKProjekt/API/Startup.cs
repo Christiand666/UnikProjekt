@@ -15,6 +15,7 @@ using Infrastructure.Interface;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Application.Handlers;
+using Application.Classes;
 
 namespace API
 {
@@ -42,6 +43,8 @@ namespace API
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IApartmentHandler, ApartmentHandler>();
             services.AddScoped<IUserHandler, UserHandler>();
+            services.AddHttpContextAccessor();
+            services.AddScoped<IUserAuth, UserAuth>();
             services.AddScoped<IWaitingListPrio, WaitingListHandler>();
         }
 

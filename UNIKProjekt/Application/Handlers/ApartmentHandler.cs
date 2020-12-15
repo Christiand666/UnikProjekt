@@ -1,5 +1,8 @@
-﻿using Domain.Models;
+﻿using Application.Classes;
+using Domain.Models;
 using Infrastructure.Interface;
+using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,15 +22,18 @@ namespace Application.Handlers
     public class ApartmentHandler : IApartmentHandler
     {
         private readonly IApartmentRepository apartmentRepository;
-
+        //private readonly IHttpContextAccessor _HttpContext;
         private readonly IUserAuth userAuth;
+        private readonly IDB Context;
 
         public ApartmentHandler(IApartmentRepository apartmentRepository, IUserAuth userAuth)
         {
             this.apartmentRepository = apartmentRepository;
+            //this._HttpContext = _HttpContext;
             this.userAuth = userAuth;
         }
-        private readonly IDB Context;
+
+        //UserAuth userAuth = new UserAuth(_HttpContext, UserRepository);
 
         public void CreateApartment(Apartment apartment)
         {

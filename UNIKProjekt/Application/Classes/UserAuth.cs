@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Infrastructure.Interface;
-using Application.Handlers;
 
 namespace Application.Classes
 {
@@ -26,8 +25,6 @@ namespace Application.Classes
             ) {
                 string pw = httpContext.Session.GetString("UserPassword");
                 string id = httpContext.Session.GetString("UserID");
-
-                //throw new System.Exception(userHandler.CheckUserSignedIn(id, pw).ToString());
                 
                 if(userRep.CheckUserSignedIn(id, pw))
                     return true;

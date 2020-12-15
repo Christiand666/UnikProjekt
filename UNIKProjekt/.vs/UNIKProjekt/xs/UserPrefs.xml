@@ -1,15 +1,15 @@
-﻿<Properties StartupConfiguration="Multiple Projects">
-  <MonoDevelop.Ide.Workbench ActiveDocument="UNIKProjekt/Controllers/SearchController.cs">
+﻿<Properties StartupConfiguration="{96AC7747-F632-482E-B378-518BC0C6365C}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="API/Startup.cs">
     <Files>
       <File FileName="API/Controllers/ApartmentController.cs" Line="77" Column="42" />
-      <File FileName="UNIKProjekt/Controllers/SearchController.cs" Line="14" Column="1" />
+      <File FileName="UNIKProjekt/Controllers/SearchController.cs" Line="17" Column="47" />
       <File FileName="UNIKProjekt/Controllers/MyPageController.cs" />
-      <File FileName="Application/Handlers/UserHandler.cs" />
+      <File FileName="Application/Handlers/UserHandler.cs" Line="1" Column="1" />
       <File FileName="UNIKProjekt/Views/Search/Index.cshtml" />
-      <File FileName="Application/Handlers/ApartmentHandler.cs" />
-      <File FileName="Infrastructure/Repositories/ApartmentRepository.cs" />
-      <File FileName="UNIKProjekt/Views/Search/Item.cshtml" />
-      <File FileName="API/Properties/launchSettings.json" />
+      <File FileName="Application/Handlers/ApartmentHandler.cs" Line="27" Column="38" />
+      <File FileName="API/Program.cs" Line="16" Column="1" />
+      <File FileName="API/Startup.cs" Line="1" Column="1" />
+      <File FileName="UNIKProjekt/Startup.cs" Line="45" Column="13" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,14 +18,14 @@
             <Node name="API" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Properties" expanded="True" />
+              <Node name="Startup.cs" selected="True" />
             </Node>
             <Node name="Application" expanded="True">
+              <Node name="Classes" expanded="True" />
               <Node name="Handlers" expanded="True" />
             </Node>
             <Node name="Domain" expanded="True">
-              <Node name="Models" expanded="True">
-                <Node name="UserDetails.cs" selected="True" />
-              </Node>
+              <Node name="Models" expanded="True" />
             </Node>
             <Node name="Infrastructure" expanded="True">
               <Node name="Interface" expanded="True" />
