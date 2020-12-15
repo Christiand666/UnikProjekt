@@ -46,7 +46,7 @@ namespace Infrastructure.Repositories
         }
 
         public bool CheckUserType(string UserID, int UserType) {
-            var User = Context.Users.Where(x => x.UserID.Equals(UserID)).Where(x => x.UserType <= UserType).FirstOrDefault();
+            var User = Context.Users.Where(x => x.UserID.Equals(UserID)).Where(x => x.UserType >= UserType).FirstOrDefault();
 
             if(User != null)
                 return true;

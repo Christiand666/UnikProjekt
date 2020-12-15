@@ -8,7 +8,7 @@
       <File FileName="UNIKProjekt/Views/Search/Index.cshtml" />
       <File FileName="Application/Handlers/ApartmentHandler.cs" Line="27" Column="38" />
       <File FileName="API/Program.cs" Line="16" Column="1" />
-      <File FileName="API/Startup.cs" Line="1" Column="1" />
+      <File FileName="API/Startup.cs" Line="46" Column="47" />
       <File FileName="UNIKProjekt/Startup.cs" Line="45" Column="13" />
     </Files>
     <Pads>
