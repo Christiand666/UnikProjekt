@@ -2,6 +2,7 @@
 using Infrastructure.Interface;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Application.Handlers
@@ -19,14 +20,20 @@ namespace Application.Handlers
     {
         private readonly IApartmentRepository apartmentRepository;
 
-        public ApartmentHandler(IApartmentRepository apartmentRepository)
+        private readonly IUserAuth userAuth;
+
+        public ApartmentHandler(IApartmentRepository apartmentRepository, IUserAuth userAuth)
         {
             this.apartmentRepository = apartmentRepository;
+            this.userAuth = userAuth;
         }
         private readonly IDB Context;
 
         public void CreateApartment(Apartment apartment)
         {
+            if (!userAuth.isLandlord())
+                throw new Exception("ingen privilegier");
+                
             try
             {
                 apartmentRepository.Add(apartment);
@@ -40,7 +47,11 @@ namespace Application.Handlers
         }
         public void UpdateApartment(Apartment apartment)
         {
-
+            var ApartmentUser = Context.Apartments.Where(x => x.ApartmentID == apartment.ApartmentID).FirstOrDefault();
+            if (apartment == null)
+                throw new Exception("Lejemålet blev ikke fundet");
+            if (!userAuth.isLandlord())
+                throw new Exception("ingen privilegier");
     
             if (apartmentRepository.GetApartmentByID(apartment.ApartmentID) != null)
             {
@@ -63,7 +74,8 @@ namespace Application.Handlers
         }
         public void DeleteApartment(string apartmentID)
         {
-
+            if (!userAuth.isLandlord())
+                throw new Exception("ingen privilegier");
             Apartment apartment = apartmentRepository.GetApartmentByID(apartmentID);
 
             apartmentRepository.Delete(apartment);
@@ -109,6 +121,13 @@ namespace Application.Handlers
         public Apartment GetApartment(string ID)
         {
             return apartmentRepository.GetApartmentByID(ID);
+        }
+
+        public List<Apartment>GetAllOwnedApartmentsForLandLords(string UserID)
+        {
+            if (!userAuth.isLandlord())
+                throw new Exception("ingen privilegier");
+            return Context.Apartments.Where(x => x.LandlordID == UserID).ToList();
         }
     }
 }
