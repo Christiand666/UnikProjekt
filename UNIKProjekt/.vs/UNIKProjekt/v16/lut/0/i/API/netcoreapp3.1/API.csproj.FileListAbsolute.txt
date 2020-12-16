@@ -1,0 +1,17 @@
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\API\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\API\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\API\bin\Debug\netcoreapp3.1\API.exe
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\API\bin\Debug\netcoreapp3.1\API.deps.json
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\API\bin\Debug\netcoreapp3.1\API.runtimeconfig.json
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\API\bin\Debug\netcoreapp3.1\API.runtimeconfig.dev.json
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\API\bin\Debug\netcoreapp3.1\API.dll
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\i\API\netcoreapp3.1\API.csprojAssemblyReference.cache
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\i\API\netcoreapp3.1\API.AssemblyInfoInputs.cache
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\i\API\netcoreapp3.1\API.AssemblyInfo.cs
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\i\API\netcoreapp3.1\staticwebassets\API.StaticWebAssets.Manifest.cache
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\i\API\netcoreapp3.1\staticwebassets\API.StaticWebAssets.xml
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\i\API\netcoreapp3.1\scopedcss\bundle\API.styles.css
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\i\API\netcoreapp3.1\API.RazorTargetAssemblyInfo.cache
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\i\API\netcoreapp3.1\API.csproj.CopyComplete
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\i\API\netcoreapp3.1\API.dll
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\i\API\netcoreapp3.1\API.genruntimeconfig.cache

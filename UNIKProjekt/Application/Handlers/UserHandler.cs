@@ -20,6 +20,9 @@ namespace Application.Handlers
         bool Login(string Email, string Password);
         User GetUsersByID(string ID);
         List<User> GetAllUsers();
+
+        //bool til test af User
+        bool DoesAlreadyExistInDatabase();
     }
     public class UserHandler : IUserHandler
     {
@@ -201,6 +204,12 @@ namespace Application.Handlers
                 return false;
             else
                 return true;
+        }
+
+        //bool til test af User
+        public bool DoesAlreadyExistInDatabase()
+        {
+            return true;
         }
     }
 }

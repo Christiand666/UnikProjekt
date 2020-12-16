@@ -1,0 +1,16 @@
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\UnitTests\Debug\netcoreapp3.1\testhost.dll
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\UnitTests\Debug\netcoreapp3.1\testhost.exe
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\UnitTests\Debug\netcoreapp3.1\Microsoft.TestPlatform.PlatformAbstractions.dll
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\UnitTests\Debug\netcoreapp3.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\UnitTests\Debug\netcoreapp3.1\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\UnitTests\Debug\netcoreapp3.1\xunit.runner.utility.netcoreapp10.dll
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\UnitTests\Debug\netcoreapp3.1\UnitTests.deps.json
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\UnitTests\Debug\netcoreapp3.1\UnitTests.runtimeconfig.json
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\UnitTests\Debug\netcoreapp3.1\UnitTests.runtimeconfig.dev.json
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\b\UnitTests\Debug\netcoreapp3.1\UnitTests.dll
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\i\UnitTests\Debug\netcoreapp3.1\UnitTests.csprojAssemblyReference.cache
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\i\UnitTests\Debug\netcoreapp3.1\UnitTests.AssemblyInfoInputs.cache
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\i\UnitTests\Debug\netcoreapp3.1\UnitTests.AssemblyInfo.cs
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\i\UnitTests\Debug\netcoreapp3.1\UnitTests.csproj.CopyComplete
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\i\UnitTests\Debug\netcoreapp3.1\UnitTests.dll
+C:\Users\shant\OneDrive\Dokumenter\GitHub\UnikProjekt\UNIKProjekt\.vs\UNIKProjekt\v16\lut\0\i\UnitTests\Debug\netcoreapp3.1\UnitTests.genruntimeconfig.cache
