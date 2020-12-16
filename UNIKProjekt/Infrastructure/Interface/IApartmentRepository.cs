@@ -10,7 +10,7 @@ namespace Infrastructure.Interface
         List<Apartment> GetApartment();
         Apartment GetApartmentByID(string ID);
 
-        void Add(Apartment apartment);
+        void Add(Apartment apartment, string LandlordID);
         void Delete(Apartment apartment);
         void Update(Apartment apartment);
         void Save();

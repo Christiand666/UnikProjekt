@@ -18,27 +18,49 @@ namespace Infrastructure.Repositories
 
         public Apartment GetApartmentByID(string ID)
         {
-            return Context.Apartments.Where<Apartment>(x => x.ApartmentID == ID.ToString()).FirstOrDefault();
+            return Context.Apartments.Where(x => x.ApartmentID.Equals(ID)).FirstOrDefault();
         }
 
         public List<Apartment> GetApartment()
         {
             try
             {
-                return Context.Apartments.Where(x => x.IsRented.Equals(false)).ToList();
+                return Context.Apartments.ToList();
             } catch(Exception)
             {
                 return null;
             }
         }
 
-        public void Add(Apartment apartment)
+        public void Add(Apartment apartment, string LandlordID)
         {
-            var CheckUser = this.Context.Apartments.Where(x => x.Address == apartment.Address || x.Zip == apartment.Zip).FirstOrDefault();
-            if (CheckUser != null)
-                throw new Exception("Brugeren eksistere allerede, Login eller tryk glemt kodeord");
+            var CheckApartment = this.Context.Apartments.Where(x => x.Address == apartment.Address).Where(x => x.Zip == apartment.Zip).FirstOrDefault();
+            if (CheckApartment != null)
+                throw new Exception("Lejemålet eksistere allerede.");
+            
+            Apartment newApart = new Apartment()
+            {
+                ApartmentID = Guid.NewGuid().ToString(),
+                LandlordID = LandlordID,
+                UserID = null,
+                Address = apartment.Address,
+                Zip = apartment.Zip,
+                City = apartment.City,
+                RoomCount = apartment.RoomCount,
+                SqrMeter = apartment.SqrMeter,
+                Floors = apartment.Floors,
+                Rent = apartment.Rent,
+                Comment = apartment.Comment,
+                AllowPets = Convert.ToBoolean(apartment.AllowPets),
+                IsShareable = Convert.ToBoolean(apartment.IsShareable),
+                HasBalcony = Convert.ToBoolean(apartment.HasBalcony),
+                IsApartment = Convert.ToBoolean(apartment.IsApartment),
+                IsHouse = Convert.ToBoolean(apartment.IsHouse),
+                IsRented = Convert.ToBoolean(apartment.IsRented),
+                ApplicantGoalsID = null
+            };
 
-            Context.Apartments.Add(apartment);
+            Context.Apartments.Add(newApart);
             Context.SaveChanges();
 
         }

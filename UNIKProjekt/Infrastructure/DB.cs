@@ -48,6 +48,29 @@ namespace Infrastructure
                 .HasOne(u => u.UserDetails)
                 .WithOne(i => i.User)
                 .HasForeignKey<UserDetails>(b => b.UserID).IsRequired();*/
+
+            modelBuilder.Entity<Apartment>()
+                .HasOne(p => p.User)
+                .WithMany(b => b.Apartments)
+                .HasForeignKey(p => p.ApartmentID)
+                .HasConstraintName("FK_Apartments_LandlordID")
+                .IsRequired(true);
+
+            modelBuilder.Entity<Apartment>()
+                .HasOne(p => p.User)
+                .WithMany(b => b.Apartments)
+                .HasForeignKey(p => p.ApartmentID)
+                .HasConstraintName("FK_Apartments_UserID")
+                .IsRequired(false);
+
+            modelBuilder.Entity<Apartment>()
+                .HasOne(p => p.ApplicantGoals)
+                .WithMany(b => b.Apartments)
+                .HasForeignKey(p => p.ApplicantGoalsID)
+                .HasConstraintName("FK_Apartments_ApplicantGoals_ApplicantGoalsID")
+                .IsRequired(false);
+
+            // FK_Apartments_LandlordID
         }
 
         public void Dispose(bool disposing)

@@ -1,16 +1,5 @@
 ﻿<Properties StartupConfiguration="{96AC7747-F632-482E-B378-518BC0C6365C}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="API/Startup.cs">
-    <Files>
-      <File FileName="API/Controllers/ApartmentController.cs" Line="77" Column="42" />
-      <File FileName="UNIKProjekt/Controllers/SearchController.cs" Line="17" Column="47" />
-      <File FileName="UNIKProjekt/Controllers/MyPageController.cs" />
-      <File FileName="Application/Handlers/UserHandler.cs" Line="1" Column="1" />
-      <File FileName="UNIKProjekt/Views/Search/Index.cshtml" />
-      <File FileName="Application/Handlers/ApartmentHandler.cs" Line="27" Column="38" />
-      <File FileName="API/Program.cs" Line="16" Column="1" />
-      <File FileName="API/Startup.cs" Line="46" Column="47" />
-      <File FileName="UNIKProjekt/Startup.cs" Line="45" Column="13" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
@@ -18,14 +7,15 @@
             <Node name="API" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Properties" expanded="True" />
-              <Node name="Startup.cs" selected="True" />
             </Node>
             <Node name="Application" expanded="True">
               <Node name="Classes" expanded="True" />
               <Node name="Handlers" expanded="True" />
             </Node>
             <Node name="Domain" expanded="True">
-              <Node name="Models" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="User.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="Infrastructure" expanded="True">
               <Node name="Interface" expanded="True" />
@@ -40,6 +30,9 @@
             </Node>
           </Node>
         </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

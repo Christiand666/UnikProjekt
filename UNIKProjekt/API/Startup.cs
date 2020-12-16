@@ -32,6 +32,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSession();
 
             services.AddDbContext<DB>(options =>
                 options.UseMySQL("Server=176.20.155.226;Port=3306;Database=unik_projekt;user=unik_projekt;password=12345678"));
@@ -61,6 +62,7 @@ namespace API
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

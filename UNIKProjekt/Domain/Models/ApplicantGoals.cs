@@ -12,6 +12,7 @@ namespace Domain.Models
         [Required]
         [Column(TypeName = "VARCHAR(64)")]
         public string GoalsID { get; set; }
+        public List<Apartment> Apartments { get; set; }
 
         [Required]
         public DateTime Birthdate { get; set; }

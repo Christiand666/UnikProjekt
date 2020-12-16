@@ -10,7 +10,7 @@ namespace Infrastructure.Repositories
     {
         private bool IsDisposed;
 
-        public void Add(Apartment apartment)
+        public void Add(Apartment apartment, string LandlordID)
         {
             throw new NotImplementedException();
         }

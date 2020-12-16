@@ -12,11 +12,13 @@ namespace Application.Handlers
 {
     public interface IApartmentHandler
     {
-        void CreateApartment(Apartment apartment);
-        void UpdateApartment(Apartment apartment);
-        void DeleteApartment(string ID);
+        void CreateApartment(Apartment apartment, string LandlordID, string Password);
+        void UpdateApartment(Apartment apartment, string LandlordID, string Password);
+        void DeleteApartment(string ID, string LandlordID, string Password);
+        List<Apartment> GetBest(ApartmentDemands demands, int amount);
         List<Apartment> GetAll();
         Apartment GetApartment(string ID);
+        List<Apartment> GetAllOwnedApartmentsForLandLords(string UserID, string Password);
     }
 
     public class ApartmentHandler : IApartmentHandler
@@ -35,14 +37,14 @@ namespace Application.Handlers
 
         //UserAuth userAuth = new UserAuth(_HttpContext, UserRepository);
 
-        public void CreateApartment(Apartment apartment)
+        public void CreateApartment(Apartment apartment, string LandlordID, string Password)
         {
-            if (!userAuth.isLandlord())
-                throw new Exception("ingen privilegier");
+            if (!userAuth.isLandlord(LandlordID, Password))
+                throw new Exception("ingen privilegier" + LandlordID + " pw " + Password);
                 
             try
             {
-                apartmentRepository.Add(apartment);
+                apartmentRepository.Add(apartment, LandlordID);
                 apartmentRepository.Save();
             }
             catch (Exception e)
@@ -51,12 +53,12 @@ namespace Application.Handlers
                 //in da treashcan
             }
         }
-        public void UpdateApartment(Apartment apartment)
+        public void UpdateApartment(Apartment apartment, string LandlordID, string Password)
         {
             var ApartmentUser = Context.Apartments.Where(x => x.ApartmentID == apartment.ApartmentID).FirstOrDefault();
             if (apartment == null)
                 throw new Exception("Lejemålet blev ikke fundet");
-            if (!userAuth.isLandlord())
+            if (!userAuth.isLandlord(LandlordID, Password))
                 throw new Exception("ingen privilegier");
     
             if (apartmentRepository.GetApartmentByID(apartment.ApartmentID) != null)
@@ -78,9 +80,9 @@ namespace Application.Handlers
             }
 
         }
-        public void DeleteApartment(string apartmentID)
+        public void DeleteApartment(string apartmentID, string LandlordID, string Password)
         {
-            if (!userAuth.isLandlord())
+            if (!userAuth.isLandlord(LandlordID, Password))
                 throw new Exception("ingen privilegier");
             Apartment apartment = apartmentRepository.GetApartmentByID(apartmentID);
 
@@ -129,9 +131,9 @@ namespace Application.Handlers
             return apartmentRepository.GetApartmentByID(ID);
         }
 
-        public List<Apartment>GetAllOwnedApartmentsForLandLords(string UserID)
+        public List<Apartment> GetAllOwnedApartmentsForLandLords(string UserID, string Password)
         {
-            if (!userAuth.isLandlord())
+            if (!userAuth.isLandlord(UserID, Password))
                 throw new Exception("ingen privilegier");
             return Context.Apartments.Where(x => x.LandlordID == UserID).ToList();
         }

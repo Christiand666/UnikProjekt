@@ -6,6 +6,7 @@ using API.Models;
 using Application.Handlers;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace API.Controllers
 {
@@ -64,7 +65,8 @@ namespace API.Controllers
                 ErrorMessage err = new ErrorMessage
                 {
                     Message = "Some error",
-                    ErrorCode = 502
+                    ErrorCode = 502,
+                    Exception = JsonConvert.SerializeObject(ApartmentResponse)
                 };
                 return StatusCode(502, err);
             }
@@ -84,6 +86,26 @@ namespace API.Controllers
                 {
                     Message = "Some error",
                     ErrorCode = 502
+                };
+                return StatusCode(502, err);
+            }
+        }
+
+        [HttpPost]
+        [Route("Create")]
+        public IActionResult CreateApartment([FromBody] Apartment apartmentModel, string LandlordID, string Password) {
+            try
+            {
+                apartmentHandler.CreateApartment(apartmentModel, LandlordID, Password);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                ErrorMessage err = new ErrorMessage
+                {
+                    Message = "Failed to create apartment",
+                    ErrorCode = 502,
+                    Exception = e.Message
                 };
                 return StatusCode(502, err);
             }

@@ -32,6 +32,13 @@ namespace Application.Classes
             return false;
         }
 
+        public bool isLoggedIn(string UserID, string Password) {
+            if(userRep.CheckUserSignedIn(UserID, Password))
+                return true;
+
+            return false;
+        }
+
         public bool isAdmin()
         {
             if (isLoggedIn())
@@ -47,6 +54,15 @@ namespace Application.Classes
             return false;
         }
 
+        public bool isAdmin(string UserID, string Password) {
+            if(isLoggedIn(UserID, Password)) {
+                if(userRep.CheckUserType(UserID, 2)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public bool isLandlord()
         {
             if (isLoggedIn())
@@ -56,6 +72,15 @@ namespace Application.Classes
                 string id = httpContext.Session.GetString("UserID");
 
                 if(userRep.CheckUserType(id, 1)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        public bool isLandlord(string UserID, string Password) {
+            if(isLoggedIn(UserID, Password)) {
+                if(userRep.CheckUserType(UserID, 1)) {
                     return true;
                 }
             }

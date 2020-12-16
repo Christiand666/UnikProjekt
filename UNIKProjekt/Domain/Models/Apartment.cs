@@ -15,7 +15,8 @@ namespace Domain.Models
 
         [Column(TypeName = "VARCHAR(64)")]
         public string LandlordID { get; set; }
-       
+        public virtual User Landlord { get; set; }
+
         [Column(TypeName = "VARCHAR(64)")]
         public string UserID { get; set; }
         public virtual User User { get; set; }
@@ -61,7 +62,6 @@ namespace Domain.Models
         [Required]
         public bool IsHouse { get; set; }
 
-        [Required]
         [Column(TypeName = "VARCHAR(64)")]
         public string ApplicantGoalsID { get; set; }
         public ApplicantGoals ApplicantGoals { get; set; }
