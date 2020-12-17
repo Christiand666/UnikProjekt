@@ -39,6 +39,7 @@ namespace UNIKProjekt
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddScoped<IDB, DB>();
+            
             services.AddScoped<IApartmentRepository, ApartmentRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
@@ -78,6 +79,6 @@ namespace UNIKProjekt
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
-        }
+        }        
     }
 }

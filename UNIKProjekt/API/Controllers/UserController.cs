@@ -92,12 +92,14 @@ namespace API.Controllers
                 return StatusCode(502, err);
             }
         }
-        [HttpGet] 
-        public ActionResult<User> GetUserById([FromBody] string id)
+        [HttpGet]
+        [Route("Get")]
+        public ActionResult<User> GetUserById(string id)
         {
             try
             {
-                var match = userHandler.GetUsersByID(id);
+                User match = userHandler.GetUsersByID(id);
+
                 return Ok(match);
             }
             catch (Exception e)
@@ -112,11 +114,12 @@ namespace API.Controllers
             }
         }
         [HttpGet]
+        [Route("GetAll")]
         public ActionResult<List<User>> GetAllUsers()
         {
             try
             {
-                var match = userHandler.GetAllUsers();
+                List<User> match = userHandler.GetAllUsers();
                 return Ok(match);
             } 
             catch (Exception e)
@@ -130,16 +133,17 @@ namespace API.Controllers
                 return StatusCode(502, err);
             }
         }
-        [HttpPut]
-        public IActionResult UpdateUser([FromBody] User user)
-           {
-             try
-             {
-                 userHandler.UpdateUser(user);
-                 return Ok();
-             }
-             catch (Exception e)
-             {
+        [HttpPost]
+        [Route("Update")]
+        public IActionResult UpdateUser(User user, string UserID, string Password)
+        {
+            try
+            {
+                userHandler.UpdateUser(user, UserID, Password);
+                return Ok();
+            }
+            catch (Exception e)
+            {
                 ErrorMessage err = new ErrorMessage
                 {
                     Message = "Failed to update user",
@@ -147,7 +151,7 @@ namespace API.Controllers
                     Exception = e.Message
                 };
                 return StatusCode(502, err);
-             } 
+            } 
         }
         [HttpDelete]
         public IActionResult DeleteUser([FromBody] User user)

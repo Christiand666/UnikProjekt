@@ -3,15 +3,101 @@
 @model Apartment
 @inject IUserAuth ua
 
+@{
+    string compressedAddress = Model.Address;
+    compressedAddress = compressedAddress.Replace(" ", "+");
+}
+
 @{ ViewData["title"] = @Model.Address; }
 
 <div class="leaseContainer">
-    <h1>@Model.Address</h1>
+    <div class="leaseContainerContent">
+        <div class="leaseImage">
+            <div class="leaseBack">
+                <a asp-action="Index" asp-controller="Search" class="btn btnDefault btnSmall">Tilbage til søgning</a>
+            </div>
+            <img src="https://via.placeholder.com/1280x720.png?text=@compressedAddress" alt="">
+        </div>
 
-    @if(ua.isLoggedIn()) {
-        <span>SKRIV MIG OP</span>
-    } else {
-        <span>Log ind for at ansøge om denne bolig</span>
-    }
-    <a href=""></a>
+        <div class="leaseInformationContent">
+            @if(@Model.IsRented) {
+                <div class="alert alertWarning">
+                    Bemærk dette lejemål allerede er udlejet.
+                </div>
+            }
+
+            <div class="col full no-margin">
+                <div class="col col-8 col-t-7">
+                    <div class="leaseTitle">
+                        <h1>@if(Model.IsRented) { <div class="label labelError">Udlejet</div> } @Model.RoomCount værelses lejemål på @Model.SqrMeter m<sup>2</sup></h1>
+                        <h2>@Model.Address, @Model.Zip @Model.City</h2>
+                    </div>
+
+                    <div class="leaseContent">
+                        <h2>Lejemålsbeskrivelse</h2>
+                        <hr>
+                        <p>@Model.Comment</p>
+
+                        <div class="col full no-margin formCard leaseSpecs">
+                            <h2>Lejemål specifikationer</h2>
+                            <div class="col col-6 col-t-6 mcol-12">
+                                <div class="leaseSpecItem cl">
+                                    <div class="col col-6 col-t-6 mcol-6 no-margin txt left">Værelser</div>
+                                    <div class="col col-6 col-t-6 mcol-6 no-margin txt right">@Model.RoomCount</div>
+                                </div>
+
+                                <div class="leaseSpecItem cl">
+                                    <div class="col col-6 col-t-6 mcol-6 no-margin txt left">Kæledyr tilladt</div>
+                                    <div class="col col-6 col-t-6 mcol-6 no-margin txt right">@(Model.AllowPets ? "Ja" : "Nej")</div>
+                                </div>
+
+                                <div class="leaseSpecItem cl">
+                                    <div class="col col-6 col-t-6 mcol-6 no-margin txt left">Delevenlig</div>
+                                    <div class="col col-6 col-t-6 mcol-6 no-margin txt right">@(Model.IsShareable ? "Ja" : "Nej")</div>
+                                </div>
+
+                                <div class="leaseSpecItem cl">
+                                    <div class="col col-6 col-t-6 mcol-6 no-margin txt left">Altan</div>
+                                    <div class="col col-6 col-t-6 mcol-6 no-margin txt right">@(Model.HasBalcony ? "Ja" : "Nej")</div>
+                                </div>
+                            </div>
+
+                            <div class="col col-6 col-t-6 mcol-12">
+                                <div class="leaseSpecItem cl">
+                                    <div class="col col-6 col-t-6 mcol-6 no-margin txt left">Størrelse</div>
+                                    <div class="col col-6 col-t-6 mcol-6 no-margin txt right">@Model.SqrMeter m<sup>2</sup></div>
+                                </div>
+
+                                <div class="leaseSpecItem cl">
+                                    <div class="col col-6 col-t-6 mcol-6 no-margin txt left">Antal etager</div>
+                                    <div class="col col-6 col-t-6 mcol-6 no-margin txt right">@Model.Floors</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col col-4 col-t-5 formCard">
+                    <h1>@Model.Rent kr/md.</h1>
+                    <hr>
+                    @if(!Model.IsRented) {
+                        @if(ua.isUser()) {
+                            <a asp-controller="" asp-action="" class="btn btnDefault">Skriv mig op</a>
+                        } else {
+                            if(!ua.isLandlord()) {
+                                <div><br><a asp-action="Index" asp-controller="MyPage">Log ind</a> for at ansøge om denne bolig</div>
+                            } else {
+                                <a asp-controller="" asp-action="" class="btn btnPrimary">Rediger dette lejemål</a>
+                            }
+                        }
+                    } else {
+                        <div>Dette lejemål er desværre allerede udlejet.</div>
+                    }
+                    <br><hr><br>
+                    <h3>Udlejer informationer</h3>
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

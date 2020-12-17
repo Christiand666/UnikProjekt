@@ -1,0 +1,41 @@
+@using Infrastructure.Interface
+@inject IUserAuth ua
+@model Domain.Models.User
+
+@{
+    string[] type = {"Bruger", "Udlejer", "Administrator"};
+}
+
+@{
+    ViewData["Title"] = "Administrer bruger";
+}
+
+@if(!ua.isAdmin()) {
+    <h1>Adgang nægtet!</h1>
+    <p>Log venligst ind med en bruger der har privilegier.</p>
+} else {
+    <div class="col full no-margin">
+        <a asp-controller="Admin" asp-action="EditUsers" class="btn btnDefault btnSmall">Tilbage</a>
+        
+        <form asp-action="UpdateUser" asp-controller="Admin" asp-route-id="@Model.UserID">
+            <ul>
+                <li>
+                    <label for="UserType">Brugergruppe</label>
+                    <select name="UserType" id="UserType">
+                        @for(int i = 0; i < type.Count(); i++) {
+                            <option value="@i">@type[i]</option>
+                        }
+                    </select>
+
+                    <script>
+                        document.getElementById("UserType").value = @Model.UserType;
+                    </script>
+                </li>
+
+                <li>
+                    <input type="submit" class="btn btnPrimary" value="Opdater">
+                </li>
+            </ul>
+        </form>
+    </div>
+}

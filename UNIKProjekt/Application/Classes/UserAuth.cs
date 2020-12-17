@@ -89,8 +89,10 @@ namespace Application.Classes
 
         public bool isUser()
         {
-            if (!isAdmin() && !isLandlord())
-                return true;
+            if(isLoggedIn()) {
+                if (!isAdmin() && !isLandlord())
+                    return true;
+            }
             return false;
         }
     }

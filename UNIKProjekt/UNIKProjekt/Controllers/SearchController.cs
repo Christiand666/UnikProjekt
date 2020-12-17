@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Connection;
 using Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,8 +18,8 @@ namespace MVC.Controllers
     public class SearchController : Controller
     {
         private readonly ILogger<SearchController> _logger;
-
-        private const string apiUrl = "https://localhost:58197/";
+        //private readonly IAPI con;
+        private readonly string apiUrl = APIConnection.GetConnection();
 
         public SearchController(ILogger<SearchController> logger)
         {

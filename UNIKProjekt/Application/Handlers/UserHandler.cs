@@ -15,7 +15,7 @@ namespace Application.Handlers
         User SignIn(UserLogin user);
         bool CheckUserSignedIn(string UserID, string Password);
         void CreateUser(User user);
-        void UpdateUser(User user);
+        void UpdateUser(User user, string UserID, string Password);
         void DeleteUsers(string ID);
         bool Login(string Email, string Password);
         User GetUsersByID(string ID);
@@ -75,13 +75,13 @@ namespace Application.Handlers
 
             
         }
-        public void UpdateUser(User user)
+        public void UpdateUser(User user, string UserID, string Password)
         {
             if (IsNotEmpty(user))
             {
             try
                 {
-                    userRepository.Update(user);
+                    userRepository.Update(user, UserID, Password);
                     userRepository.Save();
                 }
                 catch (Exception e)
@@ -104,9 +104,9 @@ namespace Application.Handlers
         public void DeleteUsers(string UserID)
         {
             //mangler noget admin slette elelr om de skal achvies
-            User user = userRepository.GetUsersByID(UserID);
-            userRepository.Delete(user);
-            userRepository.Save();
+            // User user = userRepository.GetUsersByID(UserID);
+            // userRepository.Delete(user);
+            // userRepository.Save();
 
         }
         public void ToggleUserActivity(string UserID, string AdminID)

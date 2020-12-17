@@ -4,6 +4,7 @@ using Infrastructure.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Infrastructure.Repositories
@@ -72,7 +73,34 @@ namespace Infrastructure.Repositories
 
         public User GetUsersByID(string ID)
         {
-            return Context.Users.Where(x => x.UserID == ID.ToString()).FirstOrDefault(); // HER
+            User userRes = Context.Users.Where(x => x.UserID == ID).FirstOrDefault();
+            UserDetails detailsRes = Context.UserDetails.Where(x => x.UserID == ID).FirstOrDefault();
+
+            UserDetails ud = new UserDetails() {
+                DetailsID = detailsRes.DetailsID,
+                UserID = detailsRes.UserID,
+                Phone = detailsRes.Phone,
+                Birthdate = detailsRes.Birthdate,
+                Address = detailsRes.Address,
+                Country = detailsRes.Country,
+                Zip = detailsRes.Zip,
+                Animals = detailsRes.Animals,
+                AnimalType = detailsRes.AnimalType,
+                Comment = detailsRes.Comment
+            };
+
+            User res = new User() {
+                UserDetails = ud,
+                Email = userRes.Email,
+                Fname = userRes.Fname,
+                Lname = userRes.Lname,
+                UserID = userRes.UserID,
+                UserType = userRes.UserType,
+                Password = userRes.Password,
+                Salt = userRes.Salt,
+            };
+
+            return res;
         }
 
         public IEnumerable<User> GetUsers()
@@ -101,9 +129,9 @@ namespace Infrastructure.Repositories
         }
 
 
-        public void Update(User user)
+        public void Update(User inUser, string UserID, string Password)
         {
-            var contextusers = Context.Users.Where(x => x.UserID == user.UserID).FirstOrDefault();
+            /*var contextusers = Context.Users.Where(x => x.UserID == user.UserID).FirstOrDefault();
             var contextUserDetails = Context.UserDetails.Where(x => x.UserID.Equals(user.UserID)).FirstOrDefault();
             if (contextusers == null)
                 throw new Exception("brugeren blev ikke fundet");
@@ -128,13 +156,50 @@ namespace Infrastructure.Repositories
             contextusers.Fname = user.Fname;
             contextusers.Lname = user.Lname;
             contextusers.Email = user.Email;
+            contextusers.UserType = user.UserType;
             contextUserDetails.Phone = user.UserDetails.Phone;
             contextUserDetails.Birthdate = user.UserDetails.Birthdate;
             contextUserDetails.Address = user.UserDetails.Address;
             contextUserDetails.Zip = user.UserDetails.Zip;
             contextUserDetails.Country = user.UserDetails.Country;
 
+            Context.SaveChanges();*/
 
+            User usr = Context.Users.Where(x => x.UserID.Equals(inUser.UserID)).FirstOrDefault();
+
+            if(usr != null) {
+                User user = new User()
+                {
+                    UserID = inUser.UserID != null ? inUser.UserID : usr.UserID,
+                    Fname = inUser.Fname != null ? inUser.Fname : usr.Fname,
+                    Lname = inUser.Lname != null ? inUser.Lname : usr.Lname,
+                    Email = inUser.Email != null ? inUser.Email : usr.Email,
+                    Password = inUser.Password != null ? inUser.Password : usr.Password,
+                    Salt = inUser.Salt != null ? inUser.Salt : usr.Salt,
+                    UserType = inUser.UserType != inUser.UserType ? inUser.UserType : usr.UserType,
+                };
+
+                //foreach (PropertyInfo item in user.GetType().GetProperties())
+                //{
+                //    var name = item.Name;
+
+                //    if (item.GetValue(item.GetType(), null) == null)
+                //    {
+                //        item.SetValue()
+                //        //item.SetValue(user, item.GetValue(item.GetType(), null));
+                //        //user.GetType();
+                //        //User. = item.GetValue(item.GetType(), null);
+                //    }
+                //}
+
+                Context.Users.Update(user);
+                Context.SaveChanges();
+
+
+
+            } else {
+                throw new Exception("Brugeren kunne ikke findes.");
+            }
         }
 
         public void CreateUpdateUserDetails(UserDetails details)

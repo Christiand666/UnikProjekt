@@ -90,3 +90,41 @@
 
     &.bold
         font-weight: bold
+    
+// Labels
+
+.label
+    display: inline-block
+
+    margin: 5px
+    padding: 7px 15px
+
+    font-size: 14px
+    vertical-align: middle
+
+    &.labelError
+        background-color: colMainRed
+
+        color: white
+
+// Table
+
+table
+    width: 100%
+
+    border-collapse: collapse
+
+    tr
+        &:nth-child(2n)
+            background-color: rgba(0,0,0,.1)
+        
+        th
+            text-align: left
+        
+        th, td
+            padding: 10px 20px
+
+            box-sizing: border-box
+
+            .btn
+                margin: 0

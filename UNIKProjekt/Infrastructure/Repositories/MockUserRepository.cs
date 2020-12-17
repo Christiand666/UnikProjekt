@@ -83,7 +83,8 @@ namespace Infrastructure.Repositories
 
         public User GetUsersByID(string ID)
         {
-            return users.Where(x => x.UserID == ID).FirstOrDefault();
+            return null;
+            //return users.Where(x => x.UserID == ID).FirstOrDefault();
         }
 
         public void Save()
@@ -91,7 +92,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public void Update(User user)
+        public void Update(User user, string UserID, string Password)
         {
             var match = users.Where(x => x.UserID == user.UserID).FirstOrDefault();
             match = user;
