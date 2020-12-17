@@ -129,74 +129,23 @@ namespace Infrastructure.Repositories
         }
 
 
-        public void Update(User inUser, string UserID, string Password)
+        public void Update(User inUser, string UID, string Pwd)
         {
-            /*var contextusers = Context.Users.Where(x => x.UserID == user.UserID).FirstOrDefault();
-            var contextUserDetails = Context.UserDetails.Where(x => x.UserID.Equals(user.UserID)).FirstOrDefault();
-            if (contextusers == null)
-                throw new Exception("brugeren blev ikke fundet");
-
-            if (Context.Users.Any(x => x.Email == user.Email)) throw new Exception("Emailen er allerede taget i brug");
-            //var EmailExsist = Context.Users.Where(x => x.Email == users.Email).ToList();
-            //if (EmailExsist.Count() > 0)
-            //{
-            //    if(EmailExsist[0] !=contextusers)
-            //    throw new Exception("Emailen er allerede taget i brug");
-            //}
-            if (Context.UserDetails.Any(x => x.Phone == user.UserDetails.Phone))
-                throw new Exception("Telefonummeret er allerede taget i brug");
-
-            //var PhoneExsist = Context.Users.Where(x => x.Phone == users.Phone).ToList();
-            //if (PhoneExsist.Count() > 0)
-            //{
-            //    if (PhoneExsist[0] != contextusers)
-            //        throw new Exception("Telefonummeret er allerede taget i brug");
-            //}
-
-            contextusers.Fname = user.Fname;
-            contextusers.Lname = user.Lname;
-            contextusers.Email = user.Email;
-            contextusers.UserType = user.UserType;
-            contextUserDetails.Phone = user.UserDetails.Phone;
-            contextUserDetails.Birthdate = user.UserDetails.Birthdate;
-            contextUserDetails.Address = user.UserDetails.Address;
-            contextUserDetails.Zip = user.UserDetails.Zip;
-            contextUserDetails.Country = user.UserDetails.Country;
-
-            Context.SaveChanges();*/
-
             User usr = Context.Users.Where(x => x.UserID.Equals(inUser.UserID)).FirstOrDefault();
 
-            if(usr != null) {
-                User user = new User()
-                {
-                    UserID = inUser.UserID != null ? inUser.UserID : usr.UserID,
-                    Fname = inUser.Fname != null ? inUser.Fname : usr.Fname,
-                    Lname = inUser.Lname != null ? inUser.Lname : usr.Lname,
-                    Email = inUser.Email != null ? inUser.Email : usr.Email,
-                    Password = inUser.Password != null ? inUser.Password : usr.Password,
-                    Salt = inUser.Salt != null ? inUser.Salt : usr.Salt,
-                    UserType = inUser.UserType != inUser.UserType ? inUser.UserType : usr.UserType,
-                };
+            if (usr != null) {
+                usr.UserID = inUser.UserID != null ? inUser.UserID : usr.UserID;
+                usr.Fname = inUser.Fname != null ? inUser.Fname : usr.Fname;
+                usr.Lname = inUser.Lname != null ? inUser.Lname : usr.Lname;
+                usr.Email = inUser.Email != null ? inUser.Email : usr.Email;
+                usr.Password = inUser.Password != null ? inUser.Password : usr.Password;
+                usr.Salt = inUser.Salt != null ? inUser.Salt : usr.Salt;
+                usr.UserType = usr.UserType != inUser.UserType ? inUser.UserType : usr.UserType;
+                usr.RowVersion = null;
+                usr.UserDetails = usr.UserDetails;
 
-                //foreach (PropertyInfo item in user.GetType().GetProperties())
-                //{
-                //    var name = item.Name;
-
-                //    if (item.GetValue(item.GetType(), null) == null)
-                //    {
-                //        item.SetValue()
-                //        //item.SetValue(user, item.GetValue(item.GetType(), null));
-                //        //user.GetType();
-                //        //User. = item.GetValue(item.GetType(), null);
-                //    }
-                //}
-
-                Context.Users.Update(user);
+                Context.Users.Update(usr);
                 Context.SaveChanges();
-
-
-
             } else {
                 throw new Exception("Brugeren kunne ikke findes.");
             }

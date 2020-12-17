@@ -17,6 +17,8 @@
     <div class="col full no-margin">
         <a asp-controller="Admin" asp-action="EditUsers" class="btn btnDefault btnSmall">Tilbage</a>
         
+        <h1>Rediger <u>@Model.Email</u> oplysniger</h1>
+
         <form asp-action="UpdateUser" asp-controller="Admin" asp-route-id="@Model.UserID">
             <ul>
                 <li>

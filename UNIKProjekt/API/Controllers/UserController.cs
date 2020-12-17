@@ -135,11 +135,11 @@ namespace API.Controllers
         }
         [HttpPost]
         [Route("Update")]
-        public IActionResult UpdateUser(User user, string UserID, string Password)
+        public IActionResult UpdateUser([FromBody] User user, string UID, string Pwd)
         {
             try
             {
-                userHandler.UpdateUser(user, UserID, Password);
+                userHandler.UpdateUser(user, UID, Pwd);
                 return Ok();
             }
             catch (Exception e)

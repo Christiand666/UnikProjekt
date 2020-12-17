@@ -1,20 +1,27 @@
 ﻿<Properties StartupConfiguration="Multiple Projects">
-  <MonoDevelop.Ide.Workbench ActiveDocument="API/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure/Repositories/UserRepository.cs">
     <Files>
-      <File FileName="UNIKProjekt/Controllers/AdminController.cs" Line="118" Column="101" />
-      <File FileName="UNIKProjekt/Views/MyPage/Admin/EditUser.cshtml" Line="1" Column="1" />
-      <File FileName="Infrastructure/Repositories/UserRepository.cs" Line="173" Column="81" />
+      <File FileName="UNIKProjekt/Controllers/AdminController.cs" Line="94" Column="53" />
+      <File FileName="Infrastructure/Repositories/UserRepository.cs" Line="133" Column="10" />
       <File FileName="API/Program.cs" Line="15" Column="10" />
+      <File FileName="Application/Handlers/UserHandler.cs" Line="86" Column="23" />
+      <File FileName="API/Controllers/UserController.cs" Line="142" Column="1" />
+      <File FileName="UNIKProjekt/Controllers/MyPageController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="UNIKProjekt" expanded="True">
             <Node name="API" expanded="True">
-              <Node name="Program.cs" selected="True" />
+              <Node name="Controllers" expanded="True" />
+            </Node>
+            <Node name="Application" expanded="True">
+              <Node name="Handlers" expanded="True" />
             </Node>
             <Node name="Infrastructure" expanded="True">
-              <Node name="Repositories" expanded="True" />
+              <Node name="Repositories" expanded="True">
+                <Node name="UserRepository.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="MVC" expanded="True">
               <Node name="Controllers" expanded="True" />

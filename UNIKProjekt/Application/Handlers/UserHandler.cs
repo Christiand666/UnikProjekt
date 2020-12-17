@@ -64,6 +64,7 @@ namespace Application.Handlers
                     //    context.ud.add(ud);
                     //    context.savechanges();
                     //}
+
                     userRepository.Add(user);
                     userRepository.Save();
                 }
@@ -77,19 +78,19 @@ namespace Application.Handlers
         }
         public void UpdateUser(User user, string UserID, string Password)
         {
-            if (IsNotEmpty(user))
+            //if (IsNotEmpty(user))
             {
             try
                 {
                     userRepository.Update(user, UserID, Password);
-                    userRepository.Save();
+                    //userRepository.Save();
                 }
                 catch (Exception e)
                 {
                     throw e;
                 }
             }
-            
+            //
         }
         public User GetUsersByID(string ID)
         {

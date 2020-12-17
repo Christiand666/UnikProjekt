@@ -9,9 +9,9 @@
 <div class="col full cl leaseContainer">
     <!-- Sidebar -->
     <div class="col col-3 col-t-4 mcol-12 leaseSidebar">
-        <h2 onclick="ToggleSlide(event, 'type')">Boligtype <span class="arrow Open" id="type-arrow"></span></h2>
-        <form action="" id="type" class="collapse on">
-            <ul>
+        <form action="" id="criteriaForm" onchange="UpdateSorting(event)">
+            <h2 onclick="ToggleSlide(event, 'type')">Boligtype <span class="arrow Open" id="type-arrow"></span></h2>
+            <ul id="type" class="collapse on">
                 @{
                     for (int i = 0; i < ApartmentSearchCriteriaData.Type.Count; i++)
                     {
@@ -25,38 +25,33 @@
                     }
                 }
             </ul>
-        </form>
 
+            <h2 onclick="ToggleSlide(event, 'area')">Områder <span class="arrow Open" id="area-arrow"></span></h2>
 
-
-        <h2 onclick="ToggleSlide(event, 'area')">Områder <span class="arrow Open" id="area-arrow"></span></h2>
-        <form action="" id="area" class="collapse on">
-            <ul>
+            <ul id="area" class="collapse on">
                 @{
                     foreach(var key in ApartmentSearchCriteriaData.Area.Keys) {
                         <li>
                             <label class="checkboxContainer">
                                 @key @ApartmentSearchCriteriaData.Area[key]
-                                <input type="checkbox" id="area-@key" name="area-@key">
+                                <input type="checkbox" id="@ApartmentSearchCriteriaData.Area[key]" name="@ApartmentSearchCriteriaData.Area[key]" data-key="@ApartmentSearchCriteriaData.Area">
                                 <span class="checkboxItem"></span>
                             </label>
                         </li>
                     }
                 }
             </ul>
-        </form>
 
-
-        <h2 onclick="ToggleSlide(event, 'others')">Andre <span class="arrow Open" id="others-arrow"></span></h2>
-        <form action="" id="others" class="collapse on">
-            <ul>
+            <h2 onclick="ToggleSlide(event, 'others')">Andre <span class="arrow Open" id="others-arrow"></span></h2>
+        
+            <ul id="others" class="collapse on">
                 @{
-                    for (int i = 0; i < ApartmentSearchCriteriaData.Other.Count; i++)
+                    foreach(var key in ApartmentSearchCriteriaData.Other.Keys)
                     {
                         <li>
                             <label class="checkboxContainer">
-                                @ApartmentSearchCriteriaData.Other[i]
-                                <input type="checkbox" id="other-@i" name="other-@i">
+                                @key
+                                <input type="checkbox" id="@ApartmentSearchCriteriaData.Other[key]" name="@ApartmentSearchCriteriaData.Other[key]" data-key="@ApartmentSearchCriteriaData.Other[key]">
                                 <span class="checkboxItem"></span>
                             </label>
                         </li>
@@ -77,7 +72,7 @@
                 <form asp-controller="" asp-action="" method="post" class="beautify">
                     <ul class="noMargin">
                         <li class="full">
-                            <input type="search" name="s" id="s" placeholder="Søg efter adresse ...">
+                            <input type="search" name="s" id="s" onkeyup="Search(event)" placeholder="Søg efter adresse ...">
                         </li>
                     </ul>
                 </form>
@@ -133,10 +128,20 @@
                 if(Model.Count == 0) {
                     <h1 class="txt center">Ingen lejemål tilgængelig</h1>
                     <p class="txt center">Kom tilbage igen senere, så er der måske et ledigt lejemål til dig.</p>
+                } else {
+                    <h3>Viser <b><span id="itemCount">@Model.Count()</span></b> lejemål</h3><hr><br>
                 }
                 foreach (var item in Model)
                 {
-                    <div class="col col-4 col-t-4 mcol-6 leaseItem" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quam fuga architecto repudiandae sunt tenetur enim atque consequatur accusamus doloribus, iste, id nostrum fugiat? Architecto consequuntur maiores quia non cumque!">
+                    <div class="col col-4 col-t-4 mcol-6 leaseItem searchItem" title="@item.Comment" 
+                        data-address="@item.Address" 
+                        data-city="@item.Zip @item.City" 
+                        data-allow-pets="@item.AllowPets"
+                        data-shareable="@item.IsShareable"
+                        data-size="@item.SqrMeter"
+                        data-rooms="@item.RoomCount"
+                        data-price="@item.Rent"
+                    >
                         <div class="image" style="background-image:url(https://via.placeholder.com/250x200);"></div>
                         <div class="content">
                             <h3>@item.Address</h3>

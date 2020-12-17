@@ -17,10 +17,10 @@ namespace Domain.Models.ApartmentSearch
             { 7100, "Vejle" },
         };
 
-        public static List<string> Other = new List<string>() {
-            "Husdyr tilladt",
-            "Delevenlig",
-            "Møbleret",
+        public static Dictionary<string, string> Other = new Dictionary<string, string>() {
+            { "Husdyr tilladt", "allow-pets" },
+            { "Delevenlig", "shareable" },
+            { "Møbleret", "furnished" },
         };
     }
 }

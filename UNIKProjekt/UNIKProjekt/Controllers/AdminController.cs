@@ -113,7 +113,7 @@ namespace UNIKProjekt.Controllers
 
                     User user = new User()
                     {
-                        UserID = ID,
+                        UserID = userDataResults.UserID,
                         UserType = userUpdate.UserType,
                         Fname = userUpdate.Fname != null ? userUpdate.Fname : userDataResults.Fname,
                         Lname = userUpdate.Lname != null ? userUpdate.Lname : userDataResults.Lname,
@@ -128,7 +128,7 @@ namespace UNIKProjekt.Controllers
                     HttpContext.Session.SetString("AlertMessage", json);
                     HttpContext.Session.SetString("AlertType", "Success");
 
-                    HttpResponseMessage response = await client.PostAsync(apiUrl + "api/User/Update?UserID=" + UserID + "&Password=" + Password + "&", data);
+                    HttpResponseMessage response = await client.PostAsync(apiUrl + "api/User/Update?UID=" + UserID + "&Pwd=" + Password + "&", data);
                     string result = response.Content.ReadAsStringAsync().Result;
 
                     if (response.IsSuccessStatusCode)
