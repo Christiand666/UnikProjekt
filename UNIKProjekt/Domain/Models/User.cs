@@ -8,6 +8,7 @@ namespace Domain.Models
 {
     public class User
     {
+        
         [Key]
         [Column(TypeName = "VARCHAR(64)")]
         public string UserID { get; set; }
@@ -41,5 +42,17 @@ namespace Domain.Models
 
         [Timestamp()]
         public byte[] RowVersion { get; set; }
+        //create metode til test
+        public static User CreateNewUser(string fname, string lname, string email, string password, string salt)
+        {
+            User user = new User();
+            user.Fname = fname;
+            user.Lname = lname;
+            user.Email = email;
+            user.Password = password;
+            user.Salt = salt;
+
+            return user;
+        }
     }
 }
