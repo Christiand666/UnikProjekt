@@ -17,7 +17,7 @@ namespace Infrastructure.Interface
         bool EmailExists(string Email);
         void Add(User User);
         void Delete(User User);
-        void Update(User User);
+        void Update(User User, string UserID, string Password);
         void Save();
         void CreateUpdateUserDetails(UserDetails user);
     }

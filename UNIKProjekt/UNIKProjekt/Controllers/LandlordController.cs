@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Connection;
 using Domain.Models;
 using Infrastructure.Interface;
 using Microsoft.AspNetCore.Http;
@@ -17,7 +18,7 @@ namespace MVC.Controllers
     {
         private readonly ILogger<LandlordController> _logger;
         private readonly IUserAuth ua;
-        private const string apiUrl = "https://localhost:58197/";
+        private readonly string apiUrl = APIConnection.GetConnection();
 
         public LandlordController(ILogger<LandlordController> logger, IUserAuth ua)
         {

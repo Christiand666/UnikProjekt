@@ -146,7 +146,7 @@
                             </div>
                             <h4>@item.Rent,-/md</h4>
                             <a asp-controller="Search" asp-action="Item" asp-route-id="@item.ApartmentID" class="btn btnPrimary btnSmall full">Se mere</a>
-                            @if (ua.isLoggedIn())
+                            @if (ua.isLoggedIn() && ua.isUser())
                             {
                                 <a asp-controller="Search" asp-action="AddToWishlist" asp-route-id="@item.ApartmentID" class="btn btnDefault btnSmall full">Skriv mig op</a>
                             }

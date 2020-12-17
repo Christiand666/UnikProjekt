@@ -302,6 +302,36 @@ body .txt.center option {
 body .txt.bold {
   font-weight: bold;
 }
+body .label {
+  display: inline-block;
+  margin: 5px;
+  padding: 7px 15px;
+  font-size: 14px;
+  vertical-align: middle;
+}
+body .label.labelError {
+  background-color: #f06048;
+  color: #fff;
+}
+body table {
+  width: 100%;
+  border-collapse: collapse;
+}
+body table tr:nth-child(2n) {
+  background-color: rgba(0,0,0,0.1);
+}
+body table tr th {
+  text-align: left;
+}
+body table tr th,
+body table tr td {
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+body table tr th .btn,
+body table tr td .btn {
+  margin: 0;
+}
 body form.right {
   float: left;
 }
@@ -750,6 +780,51 @@ body .leaseContainer .leaseContent .leaseItemContainer .leaseItem .content .desc
   background-repeat: repeat-x;
   background-position: bottom;
   pointer-events: none;
+}
+body .leaseContainer .leaseContainerContent .leaseImage {
+  position: relative;
+  width: calc(100% + 40px);
+  height: 50vh;
+  max-height: 400px;
+  background-color: rgba(0,0,0,0.5);
+  margin: -20px 0 20px -20px;
+  border-bottom: 6px solid #6495ed;
+  overflow: hidden;
+}
+body .leaseContainer .leaseContainerContent .leaseImage .leaseBack {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+body .leaseContainer .leaseContainerContent .leaseImage img {
+  height: 100%;
+  margin: 0 50%;
+  transform: translateX(-50%);
+}
+body .leaseContainer .leaseContainerContent .leaseTitle {
+  border-bottom: 2px solid rgba(0,0,0,0.08);
+}
+body .leaseContainer .leaseContainerContent .leaseTitle h1 {
+  color: #36393f;
+}
+body .leaseContainer .leaseContainerContent .leaseTitle h2 {
+  font-weight: 300;
+  font-size: 1.2em;
+}
+body .leaseContainer .leaseContainerContent .leaseContent {
+  margin: 20px 0 0 0;
+}
+body .leaseContainer .leaseContainerContent .leaseContent .leaseSpecs .leaseSpecItem {
+  display: block;
+  background-color: rgba(0,0,0,0.1);
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+body .leaseContainer .leaseContainerContent .leaseContent .leaseSpecs .leaseSpecItem:nth-child(2n) {
+  background-color: transparent;
+}
+body .leaseContainer .leaseContainerContent .leaseSidebar {
+  background-color: #6495ed;
 }
 body .col {
   margin: 0.5%;

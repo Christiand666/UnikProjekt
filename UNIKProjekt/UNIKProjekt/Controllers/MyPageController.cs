@@ -4,11 +4,11 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Classes;
+using Connection;
 using Domain.Models;
 using Domain.Models.Auth;
 using Infrastructure;
 using Infrastructure.Interface;
-using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -22,7 +22,7 @@ namespace MVC.Controllers
         private readonly ILogger<MyPageController> _logger;
         private readonly DB db;
         private readonly IUserAuth ua;
-        private const string apiUrl = "https://localhost:58197/";
+        private readonly string apiUrl = APIConnection.GetConnection();
 
         public MyPageController(ILogger<MyPageController> logger, DB db, IUserAuth ua)
         {
@@ -107,7 +107,7 @@ namespace MVC.Controllers
             return RedirectToAction("Index", user); // Redirects back to (public IActionResult Index) with given post-request.
         }
 
-        public IActionResult QuickSignIn(UserData ud)
+        public IActionResult QuickSignIn(MVC.Models.UserData ud)
         {
             HttpContext.Session.SetString("LoggedIn", "1"); // Logs user in (Very insecure)
             HttpContext.Session.SetString("User", "HackMan@Hack.this");

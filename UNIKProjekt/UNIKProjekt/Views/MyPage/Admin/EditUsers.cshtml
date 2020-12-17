@@ -1,0 +1,41 @@
+@using Infrastructure.Interface
+@inject IUserAuth ua
+@model List<Domain.Models.User>
+
+@{
+    string[] type = {"Bruger", "Udlejer", "Administrator"};
+}
+
+@{
+    ViewData["Title"] = "Administrer brugere";
+}
+
+@if(!ua.isAdmin()) {
+    <h1>Adgang nægtet!</h1>
+    <p>Log venligst ind med en bruger der har privilegier.</p>
+} else {
+    <div class="col full no-margin">
+        <a asp-controller="MyPage" asp-action="Index" class="btn btnDefault btnSmall">Tilbage</a>
+        
+        <table>
+            <tr>
+                <th>Bruger ID</th>
+                <th>Email</th>
+                <th>Navn</th>
+                <th>Brugergruppe</th>
+                <th>.:.</th>
+            </tr>
+            @foreach(var item in Model) {
+                <tr>
+                    <td>@item.UserID</td>
+                    <td>@item.Email</td>
+                    <td>@item.Fname @item.Lname</td>
+                    <td>@type[item.UserType]</td>
+                    <td>
+                        <a asp-controller="Admin" asp-action="EditUser" asp-route-id="@item.UserID" class="btn btnPrimary">Rediger</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+}

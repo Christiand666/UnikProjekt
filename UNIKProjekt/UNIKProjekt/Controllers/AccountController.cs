@@ -1,8 +1,15 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Connection;
+using Domain.Models;
 using Infrastructure.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using UNIKProjekt.Models;
 
 namespace MVC.Controllers
@@ -12,6 +19,7 @@ namespace MVC.Controllers
     {
         private readonly ILogger<AccountController> _logger;
         private readonly IUserAuth ua;
+        private readonly string apiUrl = APIConnection.GetConnection();
 
         public AccountController(ILogger<AccountController> logger, IUserAuth ua)
         {
@@ -19,7 +27,7 @@ namespace MVC.Controllers
             this.ua = ua;
         }
 
-        public IActionResult Information()
+        public async Task<IActionResult> Information()
         {
             if (!ua.isLoggedIn())
             {
@@ -31,7 +39,31 @@ namespace MVC.Controllers
 
             ViewData["Page"] = "MyPage";
             ViewData["Title"] = "Mine Oplysninger";
-            return View("../MyPage/Account/Information");
+
+            User Results = new User();
+            string id = HttpContext.Session.GetString("UserID");
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage res = await client.GetAsync("api/User/Get?id=" + id);
+
+                if (res.IsSuccessStatusCode)
+                {
+                    var response = res.Content.ReadAsStringAsync().Result;
+                    Results = JsonConvert.DeserializeObject<User>(response);
+                }
+                else
+                {
+                    HttpContext.Session.SetString("AlertMessage", "API Error");
+                    HttpContext.Session.SetString("AlertType", "Error");
+                }
+            }
+
+            return View("../MyPage/Account/Information", Results);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
