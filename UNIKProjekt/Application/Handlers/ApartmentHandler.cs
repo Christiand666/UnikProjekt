@@ -15,10 +15,13 @@ namespace Application.Handlers
         void CreateApartment(Apartment apartment, string LandlordID, string Password);
         void UpdateApartment(Apartment apartment, string LandlordID, string Password);
         void DeleteApartment(string ID, string LandlordID, string Password);
+        void AddWish(Wishlist wish);
         List<Apartment> GetBest(ApartmentDemands demands, int amount);
         List<Apartment> GetAll();
         Apartment GetApartment(string ID);
         List<Apartment> GetAllOwnedApartmentsForLandLords(string UserID, string Password);
+        List<WaitingList> GetAllFromWishlist();
+        List<WaitingList> GetWishlistById(string UID);
     }
 
     public class ApartmentHandler : IApartmentHandler
@@ -55,10 +58,9 @@ namespace Application.Handlers
         }
         public void UpdateApartment(Apartment apartment, string LandlordID, string Password)
         {
-            var ApartmentUser = Context.Apartments.Where(x => x.ApartmentID == apartment.ApartmentID).FirstOrDefault();
-            if (apartment == null)
-                throw new Exception("Lejemålet blev ikke fundet");
-            if (!userAuth.isLandlord(LandlordID, Password))
+            //var ApartmentUser = Context.Apartments.Where(x => x.ApartmentID == apartment.ApartmentID).FirstOrDefault();
+
+            if (!userAuth.isLandlord(LandlordID, Password) || !userAuth.isAdmin(LandlordID, Password))
                 throw new Exception("ingen privilegier");
     
             if (apartmentRepository.GetApartmentByID(apartment.ApartmentID) != null)
@@ -71,7 +73,6 @@ namespace Application.Handlers
                 catch (Exception e)
                 {
                     throw e;
-                    //in da treashcan
                 }
             }
             else
@@ -136,6 +137,18 @@ namespace Application.Handlers
             if (!userAuth.isLandlord(UserID, Password))
                 throw new Exception("ingen privilegier");
             return Context.Apartments.Where(x => x.LandlordID == UserID).ToList();
+        }
+
+        public void AddWish(Wishlist wish) {
+            apartmentRepository.AddWish(wish);
+        }
+
+        public List<WaitingList> GetAllFromWishlist() {
+            return apartmentRepository.GetAllFromWishlist();
+        }
+
+        public List<WaitingList> GetWishlistById(string UID) {
+            return apartmentRepository.GetWishlistById(UID);
         }
     }
 }

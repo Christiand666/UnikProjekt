@@ -29,18 +29,23 @@ namespace Application.Handlers
 
         public void Create(WaitingList list)
         {
-            list.WaitingID = Guid.NewGuid().ToString();
-
-            var User = Context.Users.Where(x => x.UserID == list.UserID.ToString()).FirstOrDefault();
+            var User = Context.Users.Where(x => x.UserID == list.UserID).FirstOrDefault();
             if (User == null)
                 throw new Exception("Brugeren blev ikke fundet");
 
-            var Apartment = Context.Apartments.Where(x => x.ApartmentID == list.ApartmentID.ToString()).FirstOrDefault();
+            var Apartment = Context.Apartments.Where(x => x.ApartmentID == list.ApartmentID).FirstOrDefault();
             if (Apartment == null)
                 throw new Exception("Apartment not found");
 
-            list.ApplicationScore = ScoreApplication(Apartment.ApplicantGoals, User);
-            Context.WaitingList.Add(list);
+            WaitingList newWL = new WaitingList()
+            {
+                WaitingID = Guid.NewGuid().ToString(),
+                UserID = list.UserID,
+                ApartmentID = list.ApartmentID,
+                //ApplicationScore = ScoreApplication(Apartment.ApplicantGoals, User)
+            };
+
+            Context.WaitingList.Add(newWL);
             Context.SaveChanges();
 
         }

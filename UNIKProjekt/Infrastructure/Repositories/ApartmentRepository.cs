@@ -19,23 +19,14 @@ namespace Infrastructure.Repositories
 
         public Apartment GetApartmentByID(string ID)
         {
-            return Context.Apartments.Where(x => x.ApartmentID.Equals(ID)).FirstOrDefault();
+            return Context.Apartments.Include("ApplicantGoals").Where(x => x.ApartmentID.Equals(ID)).FirstOrDefault();
         }
 
         public List<Apartment> GetApartment()
         {
             try
             {
-                var appGoals = Context.ApplicantGoals.ToList();
                 var apartments = Context.Apartments.Include("ApplicantGoals").ToList();
-
-                /*List<Apartment> res = (from ap in Context.Apartments join ag in Context.ApplicantGoals on ap.ApplicantGoalsID equals ag.GoalsID select new List<Apartment>
-                {
-                    ApartmentID = ap.ApartmentID,
-                    LandlordID = ap.LandlordID,
-                    UserID = ap.UserID,
-
-                }).ToList();*/
 
                 return apartments;
             } catch(Exception)
@@ -98,29 +89,55 @@ namespace Infrastructure.Repositories
 
         public void Update(Apartment apartment)
         {
-            var contextusers = Context.Apartments.Where(x => x.ApartmentID == apartment.ApartmentID).FirstOrDefault();
-            if (contextusers == null)
-                throw new Exception("brugeren blev ikke fundet");
+            var ap = Context.Apartments.Where(x => x.ApartmentID == apartment.ApartmentID).FirstOrDefault();
+            if (ap == null)
+                throw new Exception("Lejemålet blev ikke fundet");
 
-            if (Context.Apartments.Any(x => x.Address == apartment.Address || x.Zip == apartment.Zip)) throw new Exception("Adressen er allerede taget i brug");
-          
+            ap.Address = apartment.Address ?? ap.Address;
+            ap.Zip = apartment.Zip != ap.Zip ? apartment.Zip : ap.Zip;
+            ap.City = apartment.City ?? ap.City;
+            ap.RoomCount = apartment.RoomCount != ap.RoomCount ? apartment.RoomCount : ap.RoomCount;
+            ap.SqrMeter = apartment.SqrMeter != ap.SqrMeter ? apartment.SqrMeter : ap.SqrMeter;
+            ap.Floors = apartment.Floors != ap.Floors ? apartment.Floors : ap.Floors;
+            ap.Rent = apartment.Rent != ap.Rent ? apartment.Rent : ap.Rent;
+            ap.Comment = apartment.Comment ?? ap.Comment;
+            ap.AllowPets = Convert.ToBoolean(apartment.AllowPets != ap.AllowPets ? apartment.AllowPets : ap.AllowPets);
+            ap.IsShareable = Convert.ToBoolean(apartment.IsShareable != ap.IsShareable ? apartment.IsShareable : ap.IsShareable);
+            ap.HasBalcony = Convert.ToBoolean(apartment.HasBalcony != ap.HasBalcony ? apartment.HasBalcony : ap.HasBalcony);
+            ap.IsApartment = Convert.ToBoolean(apartment.IsApartment != ap.IsApartment ? apartment.IsApartment : ap.IsApartment);
+            ap.IsHouse = Convert.ToBoolean(apartment.IsHouse != ap.IsHouse ? apartment.IsHouse : ap.IsHouse);
+            ap.IsRented = Convert.ToBoolean(apartment.IsRented != ap.IsRented ? apartment.IsRented : ap.IsRented);
+            ap.ApplicantGoals.Birthdate = apartment.ApplicantGoals.Birthdate != null ? apartment.ApplicantGoals.Birthdate : ap.ApplicantGoals.Birthdate;
+            ap.ApplicantGoals.Animals = apartment.AllowPets != ap.AllowPets ? apartment.AllowPets : ap.AllowPets;
 
-            contextusers.Address = apartment.Address;
-            contextusers.Zip = apartment.Zip;
-            contextusers.City = apartment.City;
-            contextusers.RoomCount = apartment.RoomCount;
-            contextusers.SqrMeter = apartment.SqrMeter;
-            contextusers.Floors = apartment.Floors;
-            contextusers.Rent = apartment.Rent;
-            contextusers.Comment = apartment.Comment;
-            contextusers.AllowPets = apartment.AllowPets;
-            contextusers.IsShareable = apartment.IsShareable;
-            contextusers.HasBalcony = apartment.HasBalcony;
-            contextusers.IsApartment = apartment.IsApartment;
-            contextusers.IsHouse = apartment.IsHouse;
-
-
+            Context.Apartments.Update(ap);
+            Context.SaveChanges();
         }
+
+        public void AddWish(Wishlist wish) {
+            var wl = Context.WaitingList.Where(x => x.UserID.Equals(wish.UserID)).Where(x => x.ApartmentID.Equals(wish.ApartmentID)).FirstOrDefault();
+
+            if(wl != null)
+                throw new Exception("Du er allerede skrevet på listen.");
+
+            WaitingList newWL = new WaitingList() {
+                WaitingID = Guid.NewGuid().ToString(),
+                UserID = wish.UserID,
+                ApartmentID = wish.ApartmentID
+            };
+
+            Context.WaitingList.Add(newWL);
+            Context.SaveChanges();
+        }
+
+        public List<WaitingList> GetAllFromWishlist() {
+            return Context.WaitingList.ToList();
+        }
+
+        public List<WaitingList> GetWishlistById(string UID) {
+            return Context.WaitingList.Where(x => x.UserID.Equals(UID)).ToList();
+        }
+
         public void Save()
         {
             Context.SaveChanges();

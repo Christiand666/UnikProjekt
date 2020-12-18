@@ -13,6 +13,9 @@ namespace Infrastructure.Interface
         void Add(Apartment apartment, string LandlordID);
         void Delete(Apartment apartment);
         void Update(Apartment apartment);
+        void AddWish(Wishlist wish);
+        List<WaitingList> GetAllFromWishlist();
+        List<WaitingList> GetWishlistById(string UID);
         void Save();
     }
 }

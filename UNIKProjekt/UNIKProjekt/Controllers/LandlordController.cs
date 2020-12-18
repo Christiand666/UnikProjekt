@@ -84,10 +84,6 @@ namespace MVC.Controllers
                     return RedirectToAction("/MyPage/Landlord/Add", apartmentModel);
                 }
             }
-
-            HttpContext.Session.SetString("AlertMessage", "Alle felter med en '*', skal udfyldes!");
-            HttpContext.Session.SetString("AlertType", "Error");
-            return RedirectToAction("../MyPage/Landlord/Add", apartmentModel);
         }
 
         [HttpGet]
@@ -116,6 +112,65 @@ namespace MVC.Controllers
             }
 
             return View("../MyPage/Landlord/EditApartments", Results);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditApartment(string ID) {
+            ViewData["Page"] = "MyPage";
+
+            Apartment Results = new Apartment();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage res = await client.GetAsync("api/Apartment/GetItem?id=" + ID);
+
+                if(res.IsSuccessStatusCode)
+                {
+                    var response = res.Content.ReadAsStringAsync().Result;
+                    Results = JsonConvert.DeserializeObject<Apartment>(response);
+                } else
+                {
+                    HttpContext.Session.SetString("AlertMessage", "API Error");
+                    HttpContext.Session.SetString("AlertType", "Error");
+                }
+            }
+
+            return View("../MyPage/Landlord/EditApartment", Results);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateApartment(Apartment apartment, string ID) {
+            string UserID = HttpContext.Session.GetString("UserID");
+            string Password = HttpContext.Session.GetString("UserPassword");
+
+            apartment.ApartmentID = ID;
+
+            using(HttpClient client = new HttpClient()) {
+                string json = JsonConvert.SerializeObject(apartment);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(apiUrl + "api/Apartment/Update?UID=" + UserID + "&Pwd=" + Password + "&", data);
+                string result = response.Content.ReadAsStringAsync().Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    HttpContext.Session.SetString("AlertMessage", "Lejemålet blev opdateret!");
+                    HttpContext.Session.SetString("AlertType", "Success");
+
+                    return RedirectToAction("EditApartments");
+                }
+                else
+                {
+                    HttpContext.Session.SetString("AlertMessage", result);
+                    HttpContext.Session.SetString("AlertType", "Warning");
+                }
+            }
+
+            return RedirectToAction("EditApartments");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

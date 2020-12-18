@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using API.Models;
 using Application.Handlers;
 using Domain.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -104,6 +105,80 @@ namespace API.Controllers
                 ErrorMessage err = new ErrorMessage
                 {
                     Message = "Failed to create apartment",
+                    ErrorCode = 502,
+                    Exception = e.Message
+                };
+                return StatusCode(502, err);
+            }
+        }
+
+        [HttpPost]
+        [Route("Update")]
+        public IActionResult UpdateApartment([FromBody] Apartment apartment, string UID, string Pwd) {
+            try
+            {
+                apartmentHandler.UpdateApartment(apartment, UID, Pwd);
+                return Ok();
+            } catch(Exception e) {
+                ErrorMessage err = new ErrorMessage
+                {
+                    Message = "Failed to update apartment",
+                    ErrorCode = 502,
+                    Exception = e.Message
+                };
+                return StatusCode(502, err);
+            }
+        }
+
+        [HttpPost]
+        [Route("AddWish")]
+        public IActionResult AddToWishList([FromBody] Wishlist wish) {
+            try
+            {
+                apartmentHandler.AddWish(wish);
+                return Ok();
+            } catch(Exception e) {
+                ErrorMessage err = new ErrorMessage
+                {
+                    Message = "Der skete en fejl ved opskrivningen. Prøv igen.",
+                    ErrorCode = 502,
+                    Exception = e.Message
+                };
+                return StatusCode(502, err);
+            }
+        }
+
+        [HttpGet]
+        [Route("WishlistAll")]
+        public IActionResult GetAllFromWishlist() {
+            List<WaitingList> wl = apartmentHandler.GetAllFromWishlist();
+            
+            try
+            {
+                return Ok(wl);
+            } catch(Exception e) {
+                ErrorMessage err = new ErrorMessage
+                {
+                    Message = "Der skete en fejl ved hentningen af listen.",
+                    ErrorCode = 502,
+                    Exception = e.Message
+                };
+                return StatusCode(502, err);
+            }
+        }
+
+        [HttpGet]
+        [Route("MyWishlist")]
+        public IActionResult GetWishlistById(string id) {
+            List<WaitingList> wl = apartmentHandler.GetWishlistById(id);
+            
+            try
+            {
+                return Ok(wl);
+            } catch(Exception e) {
+                ErrorMessage err = new ErrorMessage
+                {
+                    Message = "Der skete en fejl ved hentningen af listen.",
                     ErrorCode = 502,
                     Exception = e.Message
                 };

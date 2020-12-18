@@ -45,6 +45,18 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
+        public void AddWish(Wishlist wish) {
+
+        }
+
+        public List<WaitingList> GetAllFromWishlist() {
+            return null;
+        }
+
+        public List<WaitingList> GetWishlistById(string UID) {
+            return null;
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (!this.IsDisposed)

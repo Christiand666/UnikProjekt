@@ -21,6 +21,7 @@ namespace API.Controllers
             this.WaitingListHandler = WaitingListHandler;
         }
         [HttpPost]
+        [Route("Add")]
         public IActionResult CreateWaitingList([FromBody] WaitingList List)
         {
             try
@@ -32,7 +33,7 @@ namespace API.Controllers
             {
                 ErrorMessage err = new ErrorMessage
                 {
-                    Message = "Failed to create user",
+                    Message = "Failed to add you to the waiting list",
                     ErrorCode = 502,
                     Exception = e.Message
                 };
@@ -41,7 +42,8 @@ namespace API.Controllers
 
         }
 
-        [HttpDelete]
+        [HttpPost]
+        [Route("Remove")]
         public IActionResult RemoveWaitingList([FromBody] WaitingList list)
         {
             try
@@ -53,7 +55,7 @@ namespace API.Controllers
             {
                 ErrorMessage err = new ErrorMessage
                 {
-                    Message = "Failed to delete user",
+                    Message = "Failed to delete waiting entry",
                     ErrorCode = 502,
                     Exception = e.Message
                 };

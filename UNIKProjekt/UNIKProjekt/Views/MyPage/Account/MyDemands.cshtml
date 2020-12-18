@@ -1,0 +1,19 @@
+@using Infrastructure.Interface
+@inject IUserAuth ua
+@model Domain.Models.ApartmentDemands;
+
+<h1>Mine lejemåls kriterier</h1>
+
+<form asp-action="UpdateDemands" asp-controller="Account" method="post">
+    <ul>
+        <li>
+            <label></label>
+        </li>
+
+        <hr>
+
+        <li>
+            <input type="submit" class="btn btnPrimary" value="Opdater lejemåls kriterier">
+        </li>
+    </ul>
+</form>

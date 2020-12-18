@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using Connection;
 using Domain.Models;
@@ -84,29 +85,39 @@ namespace MVC.Controllers
             return View(Results);
         }
 
-        // public async Task<IActionResult> AddToWishList(string id, string uid) {
+        [HttpPost]
+        [Route("Search/AddToWishlist/{id}")]
+        public async Task<IActionResult> AddToWishlist(string id) {
+            string UserID = HttpContext.Session.GetString("UserID");
 
-        //     /*using(var client = new HttpClient()) {
-        //         client.BaseAddress = new Uri(apiUrl);
-        //         client.DefaultRequestHeaders.Clear();
-        //         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            WaitingList wish = new WaitingList() {
+                UserID = UserID,
+                ApartmentID = id
+            };
+            
+            using(HttpClient client = new HttpClient()) {
+                string json = JsonConvert.SerializeObject(wish);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-        //         HttpResponseMessage res = await client.PostAsync("api/Apartment/AddToWishlist", wishlist);
+                HttpResponseMessage response = await client.PostAsync(apiUrl + "api/WaitingList/Add", data);
+                string result = response.Content.ReadAsStringAsync().Result;
 
-        //         if (res.IsSuccessStatusCode)
-        //         {
-        //             var response = res.Content.ReadAsStringAsync().Result;
-        //             Results = JsonConvert.DeserializeObject<Apartment>(response);
-        //         }
-        //         else
-        //         {
-        //             HttpContext.Session.SetString("AlertMessage", "API Error");
-        //             HttpContext.Session.SetString("AlertType", "Error");
-        //         }
-        //     }*/
+                if (response.IsSuccessStatusCode)
+                {
+                    HttpContext.Session.SetString("AlertMessage", "Du er blevet skrevet op!!");
+                    HttpContext.Session.SetString("AlertType", "Success");
 
-        //     return RedirectToAction("Index");
-        // }
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    HttpContext.Session.SetString("AlertMessage", result);
+                    HttpContext.Session.SetString("AlertType", "Warning");
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

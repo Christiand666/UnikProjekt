@@ -10,7 +10,7 @@
     <!-- Sidebar -->
     <div class="col col-3 col-t-4 mcol-12 leaseSidebar">
         <form action="" id="criteriaForm" onchange="UpdateSorting(event)">
-            <h2 onclick="ToggleSlide(event, 'type')">Boligtype <span class="arrow Open" id="type-arrow"></span></h2>
+            @* <h2 onclick="ToggleSlide(event, 'type')">Boligtype <span class="arrow Open" id="type-arrow"></span></h2>
             <ul id="type" class="collapse on">
                 @{
                     for (int i = 0; i < ApartmentSearchCriteriaData.Type.Count; i++)
@@ -24,7 +24,7 @@
                         </li>
                     }
                 }
-            </ul>
+            </ul> *@
 
             <h2 onclick="ToggleSlide(event, 'area')">Områder <span class="arrow Open" id="area-arrow"></span></h2>
 
@@ -78,7 +78,7 @@
                 </form>
             </div>
 
-            <div class="col full">
+            @* <div class="col full">
                 <form action="" class="cl">
                     <ul class="cl" style="margin:0; padding: 0;">
                         <li class="col col-6 col-t-6 mcol-6">
@@ -120,7 +120,7 @@
                         </div>
                     </ul>
                 </form>
-            </div>
+            </div> *@
         </div>
 
         <div class="col full leaseItemContainer">
@@ -153,34 +153,14 @@
                             <a asp-controller="Search" asp-action="Item" asp-route-id="@item.ApartmentID" class="btn btnPrimary btnSmall full">Se mere</a>
                             @if (ua.isLoggedIn() && ua.isUser())
                             {
-                                <a asp-controller="Search" asp-action="AddToWishlist" asp-route-id="@item.ApartmentID" class="btn btnDefault btnSmall full">Skriv mig op</a>
+                                <form asp-controller="Search" asp-action="AddToWishlist" asp-route-id="@item.ApartmentID">
+                                    <input type="submit" value="Skriv mig op" class="btn btnDefault btnSmall full">
+                                </form>
                             }
                         </div>
                     </div>
                 }
             }
-
-            @*@{
-                for (int i = 1; i <= 12; i++)
-                {
-                    <div class="col col-4 col-t-4 mcol-6 leaseItem" title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quam fuga architecto repudiandae sunt tenetur enim atque consequatur accusamus doloribus, iste, id nostrum fugiat? Architecto consequuntur maiores quia non cumque!">
-                        <div class="image" style="background-image:url(https://via.placeholder.com/250x200);"></div>
-                        <div class="content">
-                            <h3>Bolig @i</h3>
-                            <small>6000 Kolding</small>
-                            <div class="desc">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quam fuga architecto repudiandae sunt tenetur enim atque consequatur accusamus doloribus, iste, id nostrum fugiat? Architecto consequuntur maiores quia non cumque!
-                            </div>
-                            <h4>4900,-/md</h4>
-                            <a asp-controller="Search" asp-action="Item" asp-route-id="@i" class="btn btnPrimary btnSmall full">Se mere</a>
-                            @if (ua.isLoggedIn())
-                            {
-                                <a asp-controller="Search" asp-action="Item" asp-route-id="@i" class="btn btnDefault btnSmall full">Skriv mig op</a>
-                            }
-                        </div>
-                    </div>
-                }
-            }*@
         </div>
     </div>
 </div>

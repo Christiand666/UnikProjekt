@@ -15,20 +15,24 @@
 
     @if (ua.isUser())
     {
-        <li>
+        @* <li>
             <a asp-action="" asp-controller="MyPage">Mine tilbud</a>
-        </li>
+        </li> *@
 
         <li>
-            <a asp-action="" asp-controller="MyPage">Mine ønsker</a>
+            <a asp-action="MyWishes" asp-controller="Account">Mine ønsker</a>
         </li>
+
+        @* <li>
+            <a asp-action="MyDemands" asp-controller="Account">Mine lejemåls kriterier</a>
+        </li> *@
     }
 
     <hr>
 
-    <li>
-        <a asp-action="ChangePassword" asp-controller="Account">Skift adgangskode</a>
-    </li>
+    @* <li>
+        <a asp-action="ChangePassword" asp-controller="Account"><s>Skift adgangskode</s> (Ned prioritering)</a>
+    </li> *@
 
     <li>
         <a asp-action="SignOut" asp-controller="MyPage">Log Ud</a>
@@ -50,13 +54,13 @@
             <a asp-action="EditApartments" asp-controller="Landlord">Administrer lejemål</a>
         </li>
 
-        <li>
-            <a asp-action="" asp-controller="">Svar ansøgninger</a>
-        </li>
+        @* <li>
+            <a asp-action="Answer" asp-controller="Landlord">Svar ansøgninger</a>
+        </li> *@
 
-        <li>
-            <a asp-action="" asp-controller="">Administrer udlejer oplysninger</a>
-        </li>
+        @* <li>
+            <a asp-action="" asp-controller=""><s>Administrer udlejer oplysninger</s></a>
+        </li> *@
     </ul>
 }
 

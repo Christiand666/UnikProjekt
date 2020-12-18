@@ -1,0 +1,39 @@
+@using Infrastructure.Interface
+@inject IUserAuth ua
+@model List<Domain.Models.Apartment>
+
+@if(!ua.isLoggedIn()) {
+    <h1>Adgang nægtet!</h1>
+} else {
+    <h1>Mine ønsker</h1>
+    <a asp-controller="MyPage" asp-action="Index" class="btn btnDefault btnSmall">Tilbage</a>
+
+    if(Model != null) {
+        <table>
+            <tr>
+                <th>Adresse</th>
+                <th>By</th>
+                <th></th>
+            </tr>
+            @foreach(var item in Model) {
+                <tr>
+                    <td>
+                        <a asp-controller="Search" asp-action="Item" asp-route-id="@item.ApartmentID">@item.Address</a>
+                    </td>
+                    <td>
+                        @item.Zip @item.City
+                    </td>
+                    <td>
+                        <form asp-action="RemoveWish" asp-controller="Account">
+                            <input type="submit" class="btn btnError" value="Fjern ønske">
+                            <input type="hidden" id="ApartmentID" name="ApartmentID" value="@item.ApartmentID" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        </table>
+    } else {
+        <h1>Du har ingen ønsker</h1>
+        <p>Du kan ønske dig dit kommende lejemål <a asp-controller="Search" asp-action="Index">Her</a></p>
+    }
+}
