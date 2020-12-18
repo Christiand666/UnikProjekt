@@ -36,7 +36,7 @@
                     <div class="leaseContent">
                         <h2>Lejemålsbeskrivelse</h2>
                         <hr>
-                        <p>@Model.Comment</p>
+                        <p>@Html.Raw(Model.Comment.Replace(Environment.NewLine, "<br>"))</p>
 
                         <div class="col full no-margin formCard leaseSpecs">
                             <h2>Lejemål specifikationer</h2>

@@ -16,6 +16,8 @@ using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Application.Handlers;
 using Application.Classes;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 namespace API
 {
@@ -31,7 +33,9 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            );
             services.AddSession();
 
             services.AddDbContext<DB>(options =>

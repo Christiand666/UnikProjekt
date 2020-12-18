@@ -1,12 +1,15 @@
 ﻿<Properties StartupConfiguration="Multiple Projects">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure/Repositories/UserRepository.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="API/Startup.cs">
     <Files>
       <File FileName="UNIKProjekt/Controllers/AdminController.cs" Line="94" Column="53" />
       <File FileName="Infrastructure/Repositories/UserRepository.cs" Line="133" Column="10" />
-      <File FileName="API/Program.cs" Line="15" Column="10" />
-      <File FileName="Application/Handlers/UserHandler.cs" Line="86" Column="23" />
-      <File FileName="API/Controllers/UserController.cs" Line="142" Column="1" />
-      <File FileName="UNIKProjekt/Controllers/MyPageController.cs" Line="1" Column="1" />
+      <File FileName="API/Program.cs" />
+      <File FileName="Application/Handlers/UserHandler.cs" />
+      <File FileName="API/Controllers/UserController.cs" />
+      <File FileName="UNIKProjekt/Controllers/MyPageController.cs" />
+      <File FileName="Infrastructure/Repositories/ApartmentRepository.cs" Line="40" Column="1" />
+      <File FileName="API/Controllers/ApartmentController.cs" Line="69" Column="66" />
+      <File FileName="API/Startup.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,14 +17,13 @@
           <Node name="UNIKProjekt" expanded="True">
             <Node name="API" expanded="True">
               <Node name="Controllers" expanded="True" />
+              <Node name="Startup.cs" selected="True" />
             </Node>
             <Node name="Application" expanded="True">
               <Node name="Handlers" expanded="True" />
             </Node>
             <Node name="Infrastructure" expanded="True">
-              <Node name="Repositories" expanded="True">
-                <Node name="UserRepository.cs" selected="True" />
-              </Node>
+              <Node name="Repositories" expanded="True" />
             </Node>
             <Node name="MVC" expanded="True">
               <Node name="Controllers" expanded="True" />
@@ -42,7 +44,9 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/jesperwolder/Documents/GitHub/UnikProjekt/UNIKProjekt/Infrastructure/Repositories/ApartmentRepository.cs" relfile="Infrastructure/Repositories/ApartmentRepository.cs" line="30" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations>
     <MultiItemSolutionRunConfiguration Id="Multiple Projects" Name="Multiple Projects">

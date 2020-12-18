@@ -1,0 +1,49 @@
+@using Infrastructure.Interface
+@using Microsoft.AspNetCore.Http
+@inject IUserAuth ua
+@model List<Domain.Models.Apartment>
+
+@{
+    string userid = Context.Session.GetString("UserID");
+}
+
+@{
+    ViewData["Title"] = "Administrer brugere";
+}
+
+@if(!ua.isAdmin()) {
+    <h1>Adgang nægtet!</h1>
+    <p>Log venligst ind med en bruger der har privilegier.</p>
+} else {
+    <div class="col full no-margin">
+        <a asp-controller="MyPage" asp-action="Index" class="btn btnDefault btnSmall">Tilbage</a>
+        
+        <h1>Administrer lejemål</h1>
+
+        @if(ua.isAdmin()) {
+            <small>Da du er administrator, kan du administrer alle lejemål.</small><br>
+        }
+
+        <table>
+            <tr>
+                <th>Adresse</th>
+                <th>By</th>
+                <th>Udlejet</th>
+                <th></th>
+            </tr>
+            @foreach(var item in Model) {
+                if(userid == item.LandlordID || ua.isAdmin()) {
+                    string rented = item.IsRented ? "background-color:#FFB2B2 !important;" : "";
+                    <tr style="@rented">
+                        <td>@item.Address</td>
+                        <td>@item.Zip @item.City</td>
+                        <td>@(item.IsRented ? "Ja" : "Nej")</td>
+                        <td>
+                            <a asp-controller="Landlord" asp-action="EditApartment" asp-route-id="@item.ApartmentID" class="btn btnPrimary">Rediger</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+}

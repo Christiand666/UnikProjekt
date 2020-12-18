@@ -1,5 +1,8 @@
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Connection;
@@ -85,6 +88,34 @@ namespace MVC.Controllers
             HttpContext.Session.SetString("AlertMessage", "Alle felter med en '*', skal udfyldes!");
             HttpContext.Session.SetString("AlertType", "Error");
             return RedirectToAction("../MyPage/Landlord/Add", apartmentModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditApartments() {
+            ViewData["Page"] = "MyPage";
+
+            List<Apartment> Results = new List<Apartment>();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage res = await client.GetAsync("api/Apartment/GetAll");
+
+                if(res.IsSuccessStatusCode)
+                {
+                    var response = res.Content.ReadAsStringAsync().Result;
+                    Results = JsonConvert.DeserializeObject<List<Apartment>>(response);
+                } else
+                {
+                    HttpContext.Session.SetString("AlertMessage", "API Error");
+                    HttpContext.Session.SetString("AlertType", "Error");
+                }
+            }
+
+            return View("../MyPage/Landlord/EditApartments", Results);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

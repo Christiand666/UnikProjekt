@@ -1,9 +1,12 @@
 @using Infrastructure.Interface
+@using Microsoft.AspNetCore.Http
 @inject IUserAuth ua
 @model List<Domain.Models.User>
 
 @{
     string[] type = {"Bruger", "Udlejer", "Administrator"};
+    string userid = Context.Session.GetString("UserID");
+    string bold = "";
 }
 
 @{
@@ -17,20 +20,29 @@
     <div class="col full no-margin">
         <a asp-controller="MyPage" asp-action="Index" class="btn btnDefault btnSmall">Tilbage</a>
         
+        <h1>Administrer bruger</h1>
+        <small><b>@Model.Count()</b> bruger(er) registreret</small>
+
         <table>
             <tr>
                 <th>Bruger ID</th>
                 <th>Email</th>
                 <th>Navn</th>
                 <th>Brugergruppe</th>
-                <th>.:.</th>
+                <th></th>
             </tr>
             @foreach(var item in Model) {
+                if(userid == item.UserID) {
+                    bold = "font-weight: bold;";
+                } else {
+                    bold = "";
+                }
+
                 <tr>
-                    <td>@item.UserID</td>
-                    <td>@item.Email</td>
-                    <td>@item.Fname @item.Lname</td>
-                    <td>@type[item.UserType]</td>
+                    <td style="@bold">@item.UserID</td>
+                    <td style="@bold">@item.Email</td>
+                    <td style="@bold">@item.Fname @item.Lname</td>
+                    <td style="@bold">@type[item.UserType]</td>
                     <td>
                         <a asp-controller="Admin" asp-action="EditUser" asp-route-id="@item.UserID" class="btn btnPrimary">Rediger</a>
                     </td>

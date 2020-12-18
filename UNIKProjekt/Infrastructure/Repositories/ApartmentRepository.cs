@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -25,7 +26,18 @@ namespace Infrastructure.Repositories
         {
             try
             {
-                return Context.Apartments.ToList();
+                var appGoals = Context.ApplicantGoals.ToList();
+                var apartments = Context.Apartments.Include("ApplicantGoals").ToList();
+
+                /*List<Apartment> res = (from ap in Context.Apartments join ag in Context.ApplicantGoals on ap.ApplicantGoalsID equals ag.GoalsID select new List<Apartment>
+                {
+                    ApartmentID = ap.ApartmentID,
+                    LandlordID = ap.LandlordID,
+                    UserID = ap.UserID,
+
+                }).ToList();*/
+
+                return apartments;
             } catch(Exception)
             {
                 return null;
@@ -38,6 +50,15 @@ namespace Infrastructure.Repositories
             if (CheckApartment != null)
                 throw new Exception("Lejemålet eksistere allerede.");
             
+            string goalID = Guid.NewGuid().ToString();
+
+            ApplicantGoals appGoal = new ApplicantGoals() {
+                GoalsID = goalID,
+                Birthdate = apartment.ApplicantGoals.Birthdate,
+                Animals = apartment.AllowPets,
+                RowVersion = null,
+            };
+
             Apartment newApart = new Apartment()
             {
                 ApartmentID = Guid.NewGuid().ToString(),
@@ -57,7 +78,7 @@ namespace Infrastructure.Repositories
                 IsApartment = Convert.ToBoolean(apartment.IsApartment),
                 IsHouse = Convert.ToBoolean(apartment.IsHouse),
                 IsRented = Convert.ToBoolean(apartment.IsRented),
-                ApplicantGoalsID = null
+                ApplicantGoals = appGoal
             };
 
             Context.Apartments.Add(newApart);
