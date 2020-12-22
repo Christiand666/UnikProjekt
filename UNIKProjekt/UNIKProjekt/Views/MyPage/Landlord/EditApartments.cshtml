@@ -11,7 +11,7 @@
     ViewData["Title"] = "Administrer lejemål";
 }
 
-@if(!ua.isAdmin()) {
+@if(ua.isUser()) {
     <h1>Adgang nægtet!</h1>
     <p>Log venligst ind med en bruger der har privilegier.</p>
 } else {

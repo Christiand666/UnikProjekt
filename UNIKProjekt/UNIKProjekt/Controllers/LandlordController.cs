@@ -90,6 +90,14 @@ namespace MVC.Controllers
         public async Task<IActionResult> EditApartments() {
             ViewData["Page"] = "MyPage";
 
+            if (!ua.isLoggedIn())
+            {
+                HttpContext.Session.SetString("AlertMessage", "Adgang nægtet. Venligst log ind først.");
+                HttpContext.Session.SetString("AlertType", "Warning");
+
+                return RedirectToAction("Index", "MyPage");
+            }
+
             List<Apartment> Results = new List<Apartment>();
 
             using (var client = new HttpClient())
@@ -117,6 +125,14 @@ namespace MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> EditApartment(string ID) {
             ViewData["Page"] = "MyPage";
+
+            if (!ua.isLoggedIn())
+            {
+                HttpContext.Session.SetString("AlertMessage", "Adgang nægtet. Venligst log ind først.");
+                HttpContext.Session.SetString("AlertType", "Warning");
+
+                return RedirectToAction("Index", "MyPage");
+            }
 
             Apartment Results = new Apartment();
 

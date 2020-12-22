@@ -1,143 +1,150 @@
 @using Infrastructure.Interface
+@using Microsoft.AspNetCore.Http
 @inject IUserAuth ua
 @model Domain.Models.Apartment
 
 @{
     ViewData["Title"] = "Opret lejemål";
+    string uid = Context.Session.GetString("UserID");
 }
 
 @if(!ua.isLandlord()) {
     <h1>Adgang nægtet!</h1>
     <p>Log venligst ind med en bruger der har privilegier.</p>
 } else {
-    <div class="col col-6 col-t-6 mcol-12 no-margin center">
-        <a asp-controller="Landlord" asp-action="EditApartments" class="btn btnDefault btnSmall">Tilbage</a>
-        
-        <div class="formLifted txt center">
-            <h1>Administrer lejemål</h1>
+    if(!uid.Equals(Model.LandlordID) && !ua.isAdmin()) {
+        <h1>Adgang nægtet!</h1>
+        <p>Du har ikke privilegier til at redigere dette lejemål!</p>
+    } else {
+        <div class="col col-6 col-t-6 mcol-12 no-margin center">
+            <a asp-controller="Landlord" asp-action="EditApartments" class="btn btnDefault btnSmall">Tilbage</a>
+            
+            <div class="formLifted txt center">
+                <h1>Administrer lejemål</h1>
 
-            <form asp-action="UpdateApartment" asp-controller="Landlord" asp-route-id="@Model.ApartmentID">
-                <ul>
-                    <li class="full">
-                        <label for="Address" class="required">Adresse</label>
-                        <input type="text" id="Address" name="Address" value="@Model.Address" maxlength="255" required>
-                    </li>
+                <form asp-action="UpdateApartment" asp-controller="Landlord" asp-route-id="@Model.ApartmentID">
+                    <ul>
+                        <li class="full">
+                            <label for="Address" class="required">Adresse</label>
+                            <input type="text" id="Address" name="Address" value="@Model.Address" maxlength="255" required>
+                        </li>
 
-                    <li class="full">
-                        <label for="Zip" class="required">Postnummer</label>
-                        <input type="number" id="Zip" name="Zip" value="@Model.Zip" maxlength="11" required>
-                    </li>
+                        <li class="full">
+                            <label for="Zip" class="required">Postnummer</label>
+                            <input type="number" id="Zip" name="Zip" value="@Model.Zip" maxlength="11" required>
+                        </li>
 
-                    <li class="full">
-                        <label for="City" class="required">By</label>
-                        <input type="text" id="City" name="City" value="@Model.City" maxlength="255" required>
-                    </li>
+                        <li class="full">
+                            <label for="City" class="required">By</label>
+                            <input type="text" id="City" name="City" value="@Model.City" maxlength="255" required>
+                        </li>
 
-                    <li class="full">
-                        <label for="RoomCount" class="required">Antal værelser</label>
-                        <input type="number" id="RoomCount" name="RoomCount" value="@Model.RoomCount" maxlength="11" min="1" required>
-                    </li>
+                        <li class="full">
+                            <label for="RoomCount" class="required">Antal værelser</label>
+                            <input type="number" id="RoomCount" name="RoomCount" value="@Model.RoomCount" maxlength="11" min="1" required>
+                        </li>
 
-                    <li class="full">
-                        <label for="SqrMeter" class="required">Lejemålsareal (m<sup>2</sup>)</label>
-                        <input type="number" id="SqrMeter" name="SqrMeter" value="@Model.SqrMeter" maxlength="11" min="1" required>
-                    </li>
+                        <li class="full">
+                            <label for="SqrMeter" class="required">Lejemålsareal (m<sup>2</sup>)</label>
+                            <input type="number" id="SqrMeter" name="SqrMeter" value="@Model.SqrMeter" maxlength="11" min="1" required>
+                        </li>
 
-                    <li class="full">
-                        <label for="Floors" class="required">Etager</label>
-                        <input type="number" id="Floors" name="Floors" value="@Model.Floors" maxlength="11" min="1" required>
-                    </li>
+                        <li class="full">
+                            <label for="Floors" class="required">Etager</label>
+                            <input type="number" id="Floors" name="Floors" value="@Model.Floors" maxlength="11" min="1" required>
+                        </li>
 
-                    <li class="full">
-                        <label for="Rent" class="required">Pris pr/md</label>
-                        <input type="number" id="Rent" name="Rent" value="@Model.Rent" maxlength="255" min="0" required>
-                    </li>
+                        <li class="full">
+                            <label for="Rent" class="required">Pris pr/md</label>
+                            <input type="number" id="Rent" name="Rent" value="@Model.Rent" maxlength="255" min="0" required>
+                        </li>
 
-                    <li class="full">
-                        <label for="Comment" class="required">Lejemålsbeskrivelse</label>
-                        <textarea name="Comment" id="Comment" cols="30" rows="10" required>@Model.Comment</textarea>
-                    </li>
+                        <li class="full">
+                            <label for="Comment" class="required">Lejemålsbeskrivelse</label>
+                            <textarea name="Comment" id="Comment" cols="30" rows="10" required>@Model.Comment</textarea>
+                        </li>
 
-                    <li class="full">
-                        <label for="AllowPets" class="required">Tillad kæledyr</label>
-                        <select name="AllowPets" id="AllowPets">
-                            <option value="false">Nej</option>
-                            <option value="true">Ja</option>
-                        </select>
-                    </li>
+                        <li class="full">
+                            <label for="AllowPets" class="required">Tillad kæledyr</label>
+                            <select name="AllowPets" id="AllowPets">
+                                <option value="false">Nej</option>
+                                <option value="true">Ja</option>
+                            </select>
+                        </li>
 
-                    <li class="full">
-                        <label for="IsShareable" class="required">Delevenlig</label>
-                        <select name="IsShareable" id="IsShareable">
-                            <option value="false">Nej</option>
-                            <option value="true">Ja</option>
-                        </select>
-                    </li>
-                    
-                    <li class="full">
-                        <label for="HasBalcony" class="required">Altan</label>
-                        <select name="HasBalcony" id="HasBalcony">
-                            <option value="false">Nej</option>
-                            <option value="true">Ja</option>
-                        </select>
-                    </li>
+                        <li class="full">
+                            <label for="IsShareable" class="required">Delevenlig</label>
+                            <select name="IsShareable" id="IsShareable">
+                                <option value="false">Nej</option>
+                                <option value="true">Ja</option>
+                            </select>
+                        </li>
+                        
+                        <li class="full">
+                            <label for="HasBalcony" class="required">Altan</label>
+                            <select name="HasBalcony" id="HasBalcony">
+                                <option value="false">Nej</option>
+                                <option value="true">Ja</option>
+                            </select>
+                        </li>
 
-                    <li class="full">
-                        <label for="IsApartment" class="required">Lejlighed</label>
-                        <select name="IsApartment" id="IsApartment">
-                            <option value="false">Nej</option>
-                            <option value="true">Ja</option>
-                        </select>
-                    </li>
+                        <li class="full">
+                            <label for="IsApartment" class="required">Lejlighed</label>
+                            <select name="IsApartment" id="IsApartment">
+                                <option value="false">Nej</option>
+                                <option value="true">Ja</option>
+                            </select>
+                        </li>
 
-                    <li class="full">
-                        <label for="IsHouse" class="required">Hus</label>
-                        <select name="IsHouse" id="IsHouse">
-                            <option value="false">Nej</option>
-                            <option value="true">Ja</option>
-                        </select>
-                    </li>
+                        <li class="full">
+                            <label for="IsHouse" class="required">Hus</label>
+                            <select name="IsHouse" id="IsHouse">
+                                <option value="false">Nej</option>
+                                <option value="true">Ja</option>
+                            </select>
+                        </li>
 
-                    <li class="full">
-                        <label for="IsRented" class="required">Er dette lejemål allerede udlejet?</label>
-                        <select name="IsRented" id="IsRented">
-                            <option value="false">Nej</option>
-                            <option value="true">Ja</option>
-                        </select>
-                    </li>
+                        <li class="full">
+                            <label for="IsRented" class="required">Er dette lejemål allerede udlejet?</label>
+                            <select name="IsRented" id="IsRented">
+                                <option value="false">Nej</option>
+                                <option value="true">Ja</option>
+                            </select>
+                        </li>
 
-                    <hr style="border-color:rgba(255,255,255,.1);">
+                        <hr style="border-color:rgba(255,255,255,.1);">
 
-                    <li class="full">
-                        @{
-                            string date = (Model.ApplicantGoals != null ? Convert.ToDateTime(Model.ApplicantGoals.Birthdate).ToString("yyyy-MM-dd") : "");
-                        }
+                        <li class="full">
+                            @{
+                                string date = (Model.ApplicantGoals != null ? Convert.ToDateTime(Model.ApplicantGoals.Birthdate).ToString("yyyy-MM-dd") : "");
+                            }
 
-                        <label for="ApplicantGoals.Birthdate">Ønske til alder (sortere efter brugere der er tættest på datoen)</label>
-                        <input type="date" id="ApplicantGoals.Birthdate" name="ApplicantGoals.Birthdate" value="@date">
-                    </li>
+                            <label for="ApplicantGoals.Birthdate">Ønske til alder (sortere efter brugere der er tættest på datoen)</label>
+                            <input type="date" id="ApplicantGoals.Birthdate" name="ApplicantGoals.Birthdate" value="@date">
+                        </li>
 
-                    <script>
-                        document.getElementById("AllowPets").value = "@Model.AllowPets.ToString().ToLower()";
-                        document.getElementById("IsShareable").value = "@Model.IsShareable.ToString().ToLower()";
-                        document.getElementById("HasBalcony").value = "@Model.HasBalcony.ToString().ToLower()";
-                        document.getElementById("IsApartment").value = "@Model.IsApartment.ToString().ToLower()";
-                        document.getElementById("IsHouse").value = "@Model.IsHouse.ToString().ToLower()";
-                        document.getElementById("IsRented").value = "@Model.IsRented.ToString().ToLower()";
-                    </script>
+                        <script>
+                            document.getElementById("AllowPets").value = "@Model.AllowPets.ToString().ToLower()";
+                            document.getElementById("IsShareable").value = "@Model.IsShareable.ToString().ToLower()";
+                            document.getElementById("HasBalcony").value = "@Model.HasBalcony.ToString().ToLower()";
+                            document.getElementById("IsApartment").value = "@Model.IsApartment.ToString().ToLower()";
+                            document.getElementById("IsHouse").value = "@Model.IsHouse.ToString().ToLower()";
+                            document.getElementById("IsRented").value = "@Model.IsRented.ToString().ToLower()";
+                        </script>
 
-                    <li class="full">
-                        <input type="submit" class="btn btnPrimary" value="Opdater lejemål">
-                    </li>
+                        <li class="full">
+                            <input type="submit" class="btn btnPrimary" value="Opdater lejemål">
+                        </li>
 
-                    <br><br><hr style="border-color:rgba(255,255,255,.1);"><br><br>
+                        <br><br><hr style="border-color:rgba(255,255,255,.1);"><br><br>
 
-                    <li class="full">
-                        <a asp-action="" asp-controller="" class="btn btnError full">Fjern dette lejemål</a>
-                        <small style="color:red;">Bemærk dette kan <u><b>ikke</b></u> fortrydes! Slettes hvis knappen klikkes på.</small>
-                    </li>
-                </ul>
-            </form>
+                        <li class="full">
+                            <a asp-action="" asp-controller="" class="btn btnError full">Fjern dette lejemål</a>
+                            <small style="color:red;">Bemærk dette kan <u><b>ikke</b></u> fortrydes! Slettes hvis knappen klikkes på.</small>
+                        </li>
+                    </ul>
+                </form>
+            </div>
         </div>
-    </div>
+    }
 }
