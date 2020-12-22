@@ -1,26 +1,27 @@
 ﻿<Properties StartupConfiguration="Multiple Projects">
-  <MonoDevelop.Ide.Workbench ActiveDocument="API/Controllers/WaitingListController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Application/Classes/Age.cs">
     <Files>
-      <File FileName="API/Controllers/WaitingListController.cs" Line="57" Column="18" />
-      <File FileName="Application/Handlers/WaitingListHandler.cs" Line="78" Column="39" />
-      <File FileName="Infrastructure/Repositories/UserRepository.cs" Line="1" Column="1" />
-      <File FileName="UNIKProjekt/Controllers/SearchController.cs" Line="102" Column="105" />
-      <File FileName="API/Controllers/ApartmentController.cs" Line="181" Column="68" />
-      <File FileName="UNIKProjekt/Views/MyPage/Account/MyWishes.cshtml" Line="29" Column="98" />
+      <File FileName="API/Controllers/WaitingListController.cs" Line="32" Column="1" />
+      <File FileName="Application/Handlers/WaitingListHandler.cs" Line="82" Column="41" />
+      <File FileName="Infrastructure/Repositories/UserRepository.cs" />
+      <File FileName="UNIKProjekt/Controllers/SearchController.cs" />
+      <File FileName="API/Controllers/ApartmentController.cs" />
+      <File FileName="UNIKProjekt/Views/MyPage/Account/MyWishes.cshtml" />
       <File FileName="UNIKProjekt/Controllers/AccountController.cs" Line="172" Column="94" />
       <File FileName="UNIKProjekt/Controllers/LandlordController.cs" Line="86" Column="14" />
+      <File FileName="Application/Classes/Age.cs" Line="11" Column="16" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="UNIKProjekt" expanded="True">
             <Node name="API" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="WaitingListController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
             </Node>
             <Node name="Application" expanded="True">
-              <Node name="Classes" expanded="True" />
+              <Node name="Classes" expanded="True">
+                <Node name="Age.cs" selected="True" />
+              </Node>
               <Node name="Handlers" expanded="True" />
             </Node>
             <Node name="Infrastructure" expanded="True">
@@ -47,7 +48,9 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/jesperwolder/Documents/GitHub/UnikProjekt/UNIKProjekt/Application/Handlers/WaitingListHandler.cs" relfile="Application/Handlers/WaitingListHandler.cs" line="82" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations>
     <MultiItemSolutionRunConfiguration Id="Multiple Projects" Name="Multiple Projects">
