@@ -1,9 +1,0 @@
-.container {
-  width: 100%;
-  max-width: maxWidth;
-  background-color: colMainWhite;
-  margin: 68px auto 0 auto;
-  padding: 20px;
-  box-shadow: shaDefault;
-  box-sizing: border-box;
-}

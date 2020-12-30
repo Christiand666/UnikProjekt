@@ -74,7 +74,7 @@ namespace MVC.Controllers
             string Pwd = HttpContext.Session.GetString("UserPassword");
 
             user.UserID = UID;
-            user.UserType = UserType;
+            user.UserType = -1;
 
             using(HttpClient client = new HttpClient()) {
                 string json = JsonConvert.SerializeObject(user);

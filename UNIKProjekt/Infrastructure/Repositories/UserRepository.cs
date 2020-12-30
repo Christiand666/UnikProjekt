@@ -140,7 +140,7 @@ namespace Infrastructure.Repositories
                 usr.Email = inUser.Email != null ? inUser.Email : usr.Email;
                 usr.Password = inUser.Password != null ? inUser.Password : usr.Password;
                 usr.Salt = inUser.Salt != null ? inUser.Salt : usr.Salt;
-                usr.UserType = usr.UserType != inUser.UserType ? inUser.UserType : usr.UserType;
+                usr.UserType = inUser.UserType != -1 ? inUser.UserType : usr.UserType;
                 usr.RowVersion = null;
                 usr.UserDetails = usr.UserDetails;
 
