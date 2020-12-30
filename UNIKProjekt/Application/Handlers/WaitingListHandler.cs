@@ -93,10 +93,10 @@ namespace Application.Handlers
 
             //Remember to add factors here
             int petMatch = user.Animals ? Convert.ToInt32(goals.Animals) : 1;
-            double ageMatch = (Math.Abs(AgeOfApplicant - TargetAge)) / TargetAge;
+            double ageMatch = Math.Min(1 - (Math.Abs(AgeOfApplicant - TargetAge)) / TargetAge, 0.3);
             double hasComment = user.Comment != null ? 1.3 : 1;
 
-            return petMatch * ageMatch * hasComment;
+            return petMatch * (ageMatch + hasComment);
         }
     }
 }
