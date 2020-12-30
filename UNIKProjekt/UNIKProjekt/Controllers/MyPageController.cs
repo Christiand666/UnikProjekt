@@ -107,19 +107,6 @@ namespace MVC.Controllers
             return RedirectToAction("Index", user); // Redirects back to (public IActionResult Index) with given post-request.
         }
 
-        public IActionResult QuickSignIn(MVC.Models.UserData ud)
-        {
-            HttpContext.Session.SetString("LoggedIn", "1"); // Logs user in (Very insecure)
-            HttpContext.Session.SetString("User", "HackMan@Hack.this");
-
-            ud.UserID = "hack123";
-            ud.isLoggedIn = true;
-            ud.isAdmin = false;
-            ud.isLandlord = false;
-
-            return RedirectToAction("Index");
-        }
-
         public IActionResult Register(RegisterViewModel register)
         {
             if (HttpContext.Session.GetString("LoggedIn") != null)
